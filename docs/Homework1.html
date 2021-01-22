@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="KiseokUChicago" />
+
+<meta name="date" content="2021-01-22" />
+
+<title>Homework1</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Theoretical_ecology</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework1</h1>
+<h4 class="author">KiseokUChicago</h4>
+<h4 class="date">2021-01-22</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-01-22
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>Theoretical_ecology_HW/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210122code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210122)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210122code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210122)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongd4ffd83"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> d4ffd83 </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongd4ffd83" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version d4ffd83. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rproj.user/
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="homework1" class="section level3">
+<h3>Homework1</h3>
+</div>
+<div id="exercise-6.-the-ricker-model-and-bifurcation-diagram.-repeat-the-analysis-of-the-fixed-point-for-the-ricker-model" class="section level3">
+<h3>Exercise 6. The Ricker Model and Bifurcation diagram. Repeat the analysis of the fixed point for the Ricker Model:</h3>
+<p>This is the provided script to make bifurcation plot for the logistic map</p>
+<pre class="r"><code>## Bifurcation.R 
+## Stefano Allesina sallesina@uchicago.edu allesinalab.uchicago.edu
+## Code for &quot;Theoretical Ecology&quot;
+
+
+## This function returns the values of the min and max 
+peaks &lt;- function(x) {
+  if (min(x)==max(x)) return(min(x)) ## Does not oscillate 
+  l &lt;- length(x) 
+  xm1 &lt;- c(x[-1], x[l])
+  xp1 &lt;- c(x[1], x[-l]) 
+  z&lt;-x[x &gt; xm1 &amp; x &gt; xp1 | x &lt; xm1 &amp; x &lt; xp1] 
+  if (length(z)==0) return(min(x)) ## It has not converged yet 
+  return (z)
+} 
+
+## This function creates a simulation of the logistic map 
+LogisticMap&lt;-function(N0,r,TimeSteps){
+  Results&lt;-rep(0,TimeSteps) 
+  Results[1]&lt;-N0 
+  for (j in 2:TimeSteps){
+    Results[j]&lt;-r*Results[j-1]*(1-Results[j-1])
+  } 
+  return(Results)
+} 
+
+## Plot the Diagram 
+plot(0,0, xlim=c(0,4), ylim=c(-0.05,1.05),type=&quot;n&quot;, xlab=&quot;r&quot;, ylab=&quot;X&quot;) 
+for (r in seq(0.001,4,0.005)) { # These are the initial and final values for r
+  out &lt;- LogisticMap(0.5,r,2500) # Initial conditions 
+  l &lt;- length(out) %/% 10 # use only the last 250 steps 
+  out &lt;- out[(9*l):(10*l)] 
+  p &lt;- peaks(out) 
+  l &lt;- length(out) 
+  points(rep(r, length(p)), p, pch=&quot;.&quot;)
+}</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-1-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<p>Make new function for Ricker model</p>
+<pre class="r"><code>## This function creates a simulation of the logistic map 
+RickerModel&lt;-function(N0,r,TimeSteps,b){
+  Results&lt;-rep(0,TimeSteps) 
+  Results[1]&lt;-N0 
+  for (j in 2:TimeSteps){
+    Results[j]&lt;-r*Results[j-1]*exp(-b*Results[j-1])
+  } 
+  return(Results)
+} 
+
+## Plot the Diagram with b fixated (4 different values)
+
+par(mfrow=c(2,2))
+b_vec &lt;- c(0.5, 2, 4, 8) 
+r_end &lt;- 20
+
+for (b in b_vec){
+  plot(0,0, xlim=c(0,r_end), ylim=c(-0.05,1.05),type=&quot;n&quot;, xlab=&quot;r&quot;, ylab=&quot;X&quot;)
+  for (r in seq(0.001,r_end,0.005)) { # These are the initial and final values for r
+  out &lt;- RickerModel(0.5,r,2500,b) # Initial conditions 
+  l &lt;- length(out) %/% 10 # use only the last 250 steps 
+  out &lt;- out[(9*l):(10*l)] 
+  p &lt;- peaks(out) 
+  l &lt;- length(out) 
+  points(rep(r, length(p)), p, pch=&quot;.&quot;)
+}
+}</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-2-1.png" width="1056" style="display: block; margin: auto;" /> Ricker model is: N(t+1)=rN(t)e^(-bN(t))<br />
+From the top left to bottom right, b value is 0.5, 2, 4(bottom left), 8(bottom right). We can see first bifurcations around r=1 in all 4 graphs.</p>
+</div>
+<div id="exercise-7.-numerical-integration." class="section level3">
+<h3>Exercise 7. Numerical integration.</h3>
+<p>Integrate the exponential growth and the logistic growth using as initial condition t = 0,N(0) = 0.25 until t = 10.<br />
+Plot the error at time t = 10 as a function of the step-size (using delta t = (0.05, 0.1, 0.2)).</p>
+<p>This is the provided script to make Euler method approximations on dN/dt = rN (exponential growth)</p>
+<pre class="r"><code>ExponentialGrowth&lt;-function(x,lambda){
+   return (lambda*x)
+}
+
+Euler&lt;-function(x, D, FUN,lambda){
+   return(x+FUN(x,lambda)*D)
+}
+
+ExponentialSolution&lt;-function(N0,t,lambda){
+   return (N0*exp(t*lambda))
+}
+# dev.off()
+N0&lt;-0.25
+lambda&lt;-0.3
+plot(c(0,0),col=&quot;0&quot;,xlim=c(0,10),ylim=c(0,(N0*exp(lambda*10)+1)), xlab=&#39;t&#39;, ylab=&#39;x&#39;)
+for (Deltat in c(0.05,0.1,0.2)){
+   PointsToEstimate&lt;-seq(0,10,by=Deltat)
+   Iterations&lt;-length(PointsToEstimate)-1
+   Approx&lt;-rep(0,Iterations+1)
+   RealSol&lt;-rep(0,Iterations+1)
+   Approx[1]&lt;-RealSol[1]&lt;-N0
+   for (i in 1:Iterations){
+      RealSol[i+1]&lt;-ExponentialSolution(N0,Deltat*i,lambda)     
+      Approx[i+1]&lt;-Euler(Approx[i],Deltat,ExponentialGrowth,lambda)     
+   }
+   if (Deltat==0.05) mycol=&quot;red&quot;
+   if (Deltat==0.1) mycol=&quot;blue&quot;
+   if (Deltat==0.2) mycol=&quot;green&quot;
+   points(RealSol~PointsToEstimate,col=&quot;black&quot;,type=&quot;l&quot;)
+   points(Approx~PointsToEstimate,col=mycol,type=&quot;l&quot;)
+}</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-3-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<p>Add the function to logistic growth I increased the error time t=10 to t=30 in order to better see the plateau.</p>
+<pre class="r"><code>LogisticGrowth&lt;-function(x,lambda){
+   return (lambda*x*(1-x))
+}
+
+LogisticSolution&lt;-function(N0,t,lambda){
+   return ( (N0*exp(t*lambda)) / ( 1+N0*(exp(t*lambda)-1) ) )
+}
+
+# dev.off()
+N0&lt;-0.25
+lambda&lt;-0.3
+plot(c(0,0),col=&quot;0&quot;,xlim=c(0,30),ylim=c(0,(N0*exp(lambda*2)+1)), xlab=&#39;t&#39;, ylab=&#39;x&#39;)
+for (Deltat in c(0.05,0.1,0.2)){
+   PointsToEstimate&lt;-seq(0,30,by=Deltat)
+   Iterations&lt;-length(PointsToEstimate)-1
+   Approx&lt;-rep(0,Iterations+1)
+   RealSol&lt;-rep(0,Iterations+1)
+   Approx[1]&lt;-RealSol[1]&lt;-N0
+   for (i in 1:Iterations){
+      RealSol[i+1]&lt;-LogisticSolution(N0,Deltat*i,lambda)        
+      Approx[i+1]&lt;-Euler(Approx[i],Deltat,LogisticGrowth,lambda)        
+   }
+   if (Deltat==0.05) mycol=&quot;red&quot;
+   if (Deltat==0.1) mycol=&quot;blue&quot;
+   if (Deltat==0.2) mycol=&quot;green&quot;
+   points(RealSol~PointsToEstimate,col=&quot;black&quot;,type=&quot;l&quot;)
+   points(Approx~PointsToEstimate,col=mycol,type=&quot;l&quot;)
+}</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-4-1.png" width="1056" style="display: block; margin: auto;" /> The Euler’s estimation of logistic growth model works well. The red/blue/green line almost aligns with the black line, which is the real solution of the logistic growth model.</p>
+</div>
+<div id="exercise-8.-more-numerical-integration" class="section level3">
+<h3>Exercise 8. More numerical integration!</h3>
+<p>Using the code below as a template, write functions that integrate the exponential, logistic, Allee, Levins, and theta-logistic ODE models we saw in this chapter using deSolve.<br />
+</p>
+<pre class="r"><code>## ExpGrowth.R 
+## Stefano Allesina sallesina@uchicago.edu allesinalab.uchicago.edu
+## Code for &quot;Theoretical Ecology&quot;
+
+require(deSolve) 
+## package for integrating numerically ODEs see 
+##http://cran.r-project.org/web/packages/deSolve/</code></pre>
+<p>Plot the dynamics over time. Specify which parameter values you use, and label everything.<br />
+</p>
+<div id="exponential-ode-model" class="section level4">
+<h4>(1) exponential ODE model</h4>
+<pre class="r"><code>## This function takes a step in time
+ExponentialGrowth&lt;-function(t, state, parameters) { 
+  X &lt;- state[1] ## the first element is the density of X at time t
+  r &lt;- parameters[1] ## the first parameter is the growth rate
+  dX&lt;-r*X 
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunExponentialGrowth &lt;- function(MaxTime=10, GrowthRate=0.1, InitialX=1.0, title=&#39;Exponential&#39;){
+  times &lt;- seq(0, MaxTime, by = 0.01)
+  parameters &lt;- c(r=GrowthRate)
+  state &lt;- c(X=InitialX)
+  out &lt;- ode(y = state, times = times, func = ExponentialGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type=&quot;l&quot;,xlab=&quot;time&quot;,ylab=&quot;Density of X&quot;, main=title))
+  # return(out)
+}
+
+RunExponentialGrowth()</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-6-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<pre><code>NULL</code></pre>
+</div>
+<div id="logistic-model" class="section level4">
+<h4>(2) logistic model</h4>
+<pre class="r"><code>## This function takes a step in time
+LogisticGrowth&lt;-function(t, state, parameters) { 
+  X &lt;- state[1] ## the first element is the density of X at time t
+  r &lt;- parameters[1] ## the first parameter is the growth rate
+  K &lt;- parameters[2]
+  dX&lt;-r*X*(1-(X/K))
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunLogisticGrowth &lt;- function(MaxTime=100, GrowthRate=0.1, InitialX=1.0, Carrying_capa=15, title=&#39;Logistic&#39;){
+  times &lt;- seq(0, MaxTime, by = 0.01)
+  parameters &lt;- c(r=GrowthRate, K=Carrying_capa)
+  state &lt;- c(X=InitialX)
+  out &lt;- ode(y = state, times = times, func = LogisticGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type=&quot;l&quot;,xlab=&quot;time&quot;,ylab=&quot;Density of X&quot;, main=title))
+  # return(out)
+}
+
+RunLogisticGrowth()</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-7-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<pre><code>NULL</code></pre>
+</div>
+<div id="allee-effect-model" class="section level4">
+<h4>(3) Allee effect model</h4>
+<pre class="r"><code>## This function takes a step in time
+AlleeGrowth&lt;-function(t, state, parameters) { 
+  X &lt;- state[1] ## the first element is the density of X at time t
+  u &lt;- parameters[1] ## the first parameter is the growth rate
+  c &lt;- parameters[2]
+  v &lt;- parameters[3]
+  dX&lt;- X*( (u*X/(v+X))-c*X )
+  return(list(dX)) ## for some reason, you have to return a list
+  # u = 2, c = 0.1, and v = 5.
+}
+
+## This function runs the model and produces the trajectory
+RunAlleeGrowth &lt;- function(MaxTime=10, InitialX=2, u=2, c=0.1, v=5, title=&#39;Allee effect&#39;){
+  times &lt;- seq(0, MaxTime, by = 0.01)
+  parameters &lt;- c(u=u, c=c, v=v)
+  state &lt;- c(X=InitialX)
+  out &lt;- ode(y = state, times = times, func = AlleeGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type=&quot;l&quot;,xlab=&quot;time&quot;,ylab=&quot;Density of X&quot;, main=title))
+  # return(out)
+}
+
+RunAlleeGrowth()</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-8-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<pre><code>NULL</code></pre>
+</div>
+<div id="levins-model" class="section level4">
+<h4>(4) Levins model</h4>
+<pre class="r"><code>## This function takes a step in time
+LevinsGrowth&lt;-function(t, state, parameters) { 
+  X &lt;- state[1] ## the first element is the density of X at time t
+  c &lt;- parameters[1] ## the first parameter is the growth rate
+  dX&lt;- c*X*(1-X) - exp(1)*X
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunLevinsGrowth &lt;- function(MaxTime=10, c=1, InitialX=1.0, title=&#39;Levins&#39;){
+  times &lt;- seq(0, MaxTime, by = 0.01)
+  parameters &lt;- c(c=c)
+  state &lt;- c(X=InitialX)
+  out &lt;- ode(y = state, times = times, func = LevinsGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type=&quot;l&quot;,xlab=&quot;time&quot;,ylab=&quot;Density of X&quot;, main=title))
+  # return(out)
+}
+
+RunLevinsGrowth()</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-9-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<pre><code>NULL</code></pre>
+</div>
+<div id="theta-logistic-ode-model" class="section level4">
+<h4>(5) theta-logistic ODE model</h4>
+<pre class="r"><code>## This function takes a step in time
+ThetaLogisticGrowth&lt;-function(t, state, parameters) { 
+  X &lt;- state[1] ## the first element is the density of X at time t
+  r &lt;- parameters[1] ## the first parameter is the growth rate
+  K &lt;- parameters[2]
+  theta &lt;- parameters[3]
+  dX&lt;- r*X*( 1 - (X/K)^theta)
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunThetaLogisticGrowth &lt;- function(MaxTime=30, r=.25, K=10, theta = 1, InitialX=1.0, title=&#39;ThetaLogistic&#39;){
+  times &lt;- seq(0, MaxTime, by = 0.01)
+  parameters &lt;- c(r=r, K=K, theta=theta)
+  state &lt;- c(X=InitialX)
+  out &lt;- ode(y = state, times = times, func = ThetaLogisticGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type=&quot;l&quot;,xlab=&quot;time&quot;,ylab=&quot;Density of X&quot;, main=title))
+  # return(out)
+}
+
+# plot for 3 different theta value as Exercise 3
+par(mfrow=c(3,1))
+for (th in c(0.5, 1, 1.5)){
+  RunThetaLogisticGrowth(theta=th)
+}</code></pre>
+<pre><code>NULL</code></pre>
+<pre><code>NULL</code></pre>
+<p><img src="figure/Homework1.Rmd/unnamed-chunk-10-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<pre><code>NULL</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.3 (2020-10-10)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19042)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] deSolve_1.28    workflowr_1.6.2
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5      rstudioapi_0.13 knitr_1.30      magrittr_2.0.1 
+ [5] R6_2.5.0        rlang_0.4.10    stringr_1.4.0   tools_4.0.3    
+ [9] xfun_0.20       git2r_0.27.1    htmltools_0.5.0 ellipsis_0.3.1 
+[13] rprojroot_2.0.2 yaml_2.2.1      digest_0.6.27   tibble_3.0.4   
+[17] lifecycle_0.2.0 crayon_1.3.4    later_1.1.0.1   vctrs_0.3.6    
+[21] promises_1.1.1  fs_1.5.0        glue_1.4.2      evaluate_0.14  
+[25] rmarkdown_2.6   stringi_1.5.3   compiler_4.0.3  pillar_1.4.7   
+[29] httpuv_1.5.4    pkgconfig_2.0.3</code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
