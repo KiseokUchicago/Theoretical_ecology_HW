@@ -13,6 +13,9 @@ knitr::opts_chunk$set(fig.width=9, fig.height=9,
 ```
 
 ### Homework1
+## Coding assignment for ECEV 42900
+Professor: **Sarah Cobey** **Greg Dwyer** 
+Student: **Kiseok Lee**  
 
 ### Exercise 6. The Ricker Model and Bifurcation diagram. Repeat the analysis of the fixed point for the Ricker Model:
 
