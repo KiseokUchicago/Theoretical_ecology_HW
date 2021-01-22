@@ -1,7 +1,7 @@
-name: "Theoretical_ecology"
+name: Theoretical_ecology
 output_dir: ../docs
 navbar:
-  title: "Theoretical_ecology"
+  title: Theoretical_ecology
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/KiseokUchicago/Theoretical_ecology_HW
 output:
   workflowr::wflow_html:
     toc: yes
