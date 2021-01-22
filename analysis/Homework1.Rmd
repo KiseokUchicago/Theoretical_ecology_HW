@@ -1,0 +1,320 @@
+---
+title: "Homework1"
+author: "KiseokUChicago"
+date: "2021-01-22"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=11, fig.height=11,
+                      error=TRUE, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE)
+```
+
+### Homework1
+
+### Exercise 6. The Ricker Model and Bifurcation diagram. Repeat the analysis of the fixed point for the Ricker Model:
+
+This is the provided script to make bifurcation plot for the logistic map
+```{r}
+## Bifurcation.R 
+## Stefano Allesina sallesina@uchicago.edu allesinalab.uchicago.edu
+## Code for "Theoretical Ecology"
+
+
+## This function returns the values of the min and max 
+peaks <- function(x) {
+  if (min(x)==max(x)) return(min(x)) ## Does not oscillate 
+  l <- length(x) 
+  xm1 <- c(x[-1], x[l])
+  xp1 <- c(x[1], x[-l]) 
+  z<-x[x > xm1 & x > xp1 | x < xm1 & x < xp1] 
+  if (length(z)==0) return(min(x)) ## It has not converged yet 
+  return (z)
+} 
+
+## This function creates a simulation of the logistic map 
+LogisticMap<-function(N0,r,TimeSteps){
+  Results<-rep(0,TimeSteps) 
+  Results[1]<-N0 
+  for (j in 2:TimeSteps){
+    Results[j]<-r*Results[j-1]*(1-Results[j-1])
+  } 
+  return(Results)
+} 
+
+## Plot the Diagram 
+plot(0,0, xlim=c(0,4), ylim=c(-0.05,1.05),type="n", xlab="r", ylab="X") 
+for (r in seq(0.001,4,0.005)) { # These are the initial and final values for r
+  out <- LogisticMap(0.5,r,2500) # Initial conditions 
+  l <- length(out) %/% 10 # use only the last 250 steps 
+  out <- out[(9*l):(10*l)] 
+  p <- peaks(out) 
+  l <- length(out) 
+  points(rep(r, length(p)), p, pch=".")
+}
+
+
+```
+
+
+Make new function for Ricker model
+```{r}
+## This function creates a simulation of the logistic map 
+RickerModel<-function(N0,r,TimeSteps,b){
+  Results<-rep(0,TimeSteps) 
+  Results[1]<-N0 
+  for (j in 2:TimeSteps){
+    Results[j]<-r*Results[j-1]*exp(-b*Results[j-1])
+  } 
+  return(Results)
+} 
+
+## Plot the Diagram with b fixated (4 different values)
+
+par(mfrow=c(2,2))
+b_vec <- c(0.5, 2, 4, 8) 
+r_end <- 20
+
+for (b in b_vec){
+  plot(0,0, xlim=c(0,r_end), ylim=c(-0.05,1.05),type="n", xlab="r", ylab="X")
+  for (r in seq(0.001,r_end,0.005)) { # These are the initial and final values for r
+  out <- RickerModel(0.5,r,2500,b) # Initial conditions 
+  l <- length(out) %/% 10 # use only the last 250 steps 
+  out <- out[(9*l):(10*l)] 
+  p <- peaks(out) 
+  l <- length(out) 
+  points(rep(r, length(p)), p, pch=".")
+}
+}
+
+```
+Ricker model is: N(t+1)=rN(t)e^(-bN(t)) \
+From the top left to bottom right, b value is 0.5, 2, 4(bottom left), 8(bottom right).
+We can see first bifurcations around r=1 in all 4 graphs. 
+
+
+### Exercise 7. Numerical integration.
+
+Integrate the exponential growth and the logistic growth using as initial condition t = 0,N(0) = 0.25 until t = 10. \
+Plot the error at time t = 10 as a function of the step-size (using delta t = (0.05, 0.1, 0.2)).
+
+This is the provided script to make Euler method approximations on dN/dt = rN (exponential growth)
+```{r}
+ExponentialGrowth<-function(x,lambda){
+   return (lambda*x)
+}
+
+Euler<-function(x, D, FUN,lambda){
+   return(x+FUN(x,lambda)*D)
+}
+
+ExponentialSolution<-function(N0,t,lambda){
+   return (N0*exp(t*lambda))
+}
+# dev.off()
+N0<-0.25
+lambda<-0.3
+plot(c(0,0),col="0",xlim=c(0,10),ylim=c(0,(N0*exp(lambda*10)+1)), xlab='t', ylab='x')
+for (Deltat in c(0.05,0.1,0.2)){
+   PointsToEstimate<-seq(0,10,by=Deltat)
+   Iterations<-length(PointsToEstimate)-1
+   Approx<-rep(0,Iterations+1)
+   RealSol<-rep(0,Iterations+1)
+   Approx[1]<-RealSol[1]<-N0
+   for (i in 1:Iterations){
+      RealSol[i+1]<-ExponentialSolution(N0,Deltat*i,lambda)		
+      Approx[i+1]<-Euler(Approx[i],Deltat,ExponentialGrowth,lambda)		
+   }
+   if (Deltat==0.05) mycol="red"
+   if (Deltat==0.1) mycol="blue"
+   if (Deltat==0.2) mycol="green"
+   points(RealSol~PointsToEstimate,col="black",type="l")
+   points(Approx~PointsToEstimate,col=mycol,type="l")
+}
+
+```
+
+
+Add the function to logistic growth
+I increased the error time t=10 to t=30 in order to better see the plateau.
+```{r}
+LogisticGrowth<-function(x,lambda){
+   return (lambda*x*(1-x))
+}
+
+LogisticSolution<-function(N0,t,lambda){
+   return ( (N0*exp(t*lambda)) / ( 1+N0*(exp(t*lambda)-1) ) )
+}
+
+# dev.off()
+N0<-0.25
+lambda<-0.3
+plot(c(0,0),col="0",xlim=c(0,30),ylim=c(0,(N0*exp(lambda*2)+1)), xlab='t', ylab='x')
+for (Deltat in c(0.05,0.1,0.2)){
+   PointsToEstimate<-seq(0,30,by=Deltat)
+   Iterations<-length(PointsToEstimate)-1
+   Approx<-rep(0,Iterations+1)
+   RealSol<-rep(0,Iterations+1)
+   Approx[1]<-RealSol[1]<-N0
+   for (i in 1:Iterations){
+      RealSol[i+1]<-LogisticSolution(N0,Deltat*i,lambda)		
+      Approx[i+1]<-Euler(Approx[i],Deltat,LogisticGrowth,lambda)		
+   }
+   if (Deltat==0.05) mycol="red"
+   if (Deltat==0.1) mycol="blue"
+   if (Deltat==0.2) mycol="green"
+   points(RealSol~PointsToEstimate,col="black",type="l")
+   points(Approx~PointsToEstimate,col=mycol,type="l")
+}
+
+```
+The Euler's estimation of logistic growth model works well. The red/blue/green line almost aligns with the black line, which is the real solution of the logistic growth model.
+
+### Exercise 8. More numerical integration!
+
+Using the code below as a template, write functions that integrate the exponential, logistic, Allee, Levins, and theta-logistic ODE models we saw in this chapter using deSolve. \
+```{r}
+## ExpGrowth.R 
+## Stefano Allesina sallesina@uchicago.edu allesinalab.uchicago.edu
+## Code for "Theoretical Ecology"
+
+require(deSolve) 
+## package for integrating numerically ODEs see 
+##http://cran.r-project.org/web/packages/deSolve/
+```
+
+Plot the dynamics over time. Specify which parameter values you use, and label everything. \
+
+#### (1) exponential ODE model
+```{r}
+## This function takes a step in time
+ExponentialGrowth<-function(t, state, parameters) { 
+  X <- state[1] ## the first element is the density of X at time t
+  r <- parameters[1] ## the first parameter is the growth rate
+  dX<-r*X 
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunExponentialGrowth <- function(MaxTime=10, GrowthRate=0.1, InitialX=1.0, title='Exponential'){
+  times <- seq(0, MaxTime, by = 0.01)
+  parameters <- c(r=GrowthRate)
+  state <- c(X=InitialX)
+  out <- ode(y = state, times = times, func = ExponentialGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type="l",xlab="time",ylab="Density of X", main=title))
+  # return(out)
+}
+
+RunExponentialGrowth()
+
+```
+
+#### (2) logistic model
+```{r}
+## This function takes a step in time
+LogisticGrowth<-function(t, state, parameters) { 
+  X <- state[1] ## the first element is the density of X at time t
+  r <- parameters[1] ## the first parameter is the growth rate
+  K <- parameters[2]
+  dX<-r*X*(1-(X/K))
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunLogisticGrowth <- function(MaxTime=100, GrowthRate=0.1, InitialX=1.0, Carrying_capa=15, title='Logistic'){
+  times <- seq(0, MaxTime, by = 0.01)
+  parameters <- c(r=GrowthRate, K=Carrying_capa)
+  state <- c(X=InitialX)
+  out <- ode(y = state, times = times, func = LogisticGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type="l",xlab="time",ylab="Density of X", main=title))
+  # return(out)
+}
+
+RunLogisticGrowth()
+```
+
+#### (3) Allee effect model
+```{r}
+## This function takes a step in time
+AlleeGrowth<-function(t, state, parameters) { 
+  X <- state[1] ## the first element is the density of X at time t
+  u <- parameters[1] ## the first parameter is the growth rate
+  c <- parameters[2]
+  v <- parameters[3]
+  dX<- X*( (u*X/(v+X))-c*X )
+  return(list(dX)) ## for some reason, you have to return a list
+  # u = 2, c = 0.1, and v = 5.
+}
+
+## This function runs the model and produces the trajectory
+RunAlleeGrowth <- function(MaxTime=10, InitialX=2, u=2, c=0.1, v=5, title='Allee effect'){
+  times <- seq(0, MaxTime, by = 0.01)
+  parameters <- c(u=u, c=c, v=v)
+  state <- c(X=InitialX)
+  out <- ode(y = state, times = times, func = AlleeGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type="l",xlab="time",ylab="Density of X", main=title))
+  # return(out)
+}
+
+RunAlleeGrowth()
+
+```
+
+#### (4) Levins model
+```{r}
+
+## This function takes a step in time
+LevinsGrowth<-function(t, state, parameters) { 
+  X <- state[1] ## the first element is the density of X at time t
+  c <- parameters[1] ## the first parameter is the growth rate
+  dX<- c*X*(1-X) - exp(1)*X
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunLevinsGrowth <- function(MaxTime=10, c=1, InitialX=1.0, title='Levins'){
+  times <- seq(0, MaxTime, by = 0.01)
+  parameters <- c(c=c)
+  state <- c(X=InitialX)
+  out <- ode(y = state, times = times, func = LevinsGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type="l",xlab="time",ylab="Density of X", main=title))
+  # return(out)
+}
+
+RunLevinsGrowth()
+
+```
+
+#### (5) theta-logistic ODE model
+```{r}
+## This function takes a step in time
+ThetaLogisticGrowth<-function(t, state, parameters) { 
+  X <- state[1] ## the first element is the density of X at time t
+  r <- parameters[1] ## the first parameter is the growth rate
+  K <- parameters[2]
+  theta <- parameters[3]
+  dX<- r*X*( 1 - (X/K)^theta)
+  return(list(dX)) ## for some reason, you have to return a list
+}
+
+## This function runs the model and produces the trajectory
+RunThetaLogisticGrowth <- function(MaxTime=30, r=.25, K=10, theta = 1, InitialX=1.0, title='ThetaLogistic'){
+  times <- seq(0, MaxTime, by = 0.01)
+  parameters <- c(r=r, K=K, theta=theta)
+  state <- c(X=InitialX)
+  out <- ode(y = state, times = times, func = ThetaLogisticGrowth, parms = parameters)
+  print(plot(out[,2]~out[,1],type="l",xlab="time",ylab="Density of X", main=title))
+  # return(out)
+}
+
+# plot for 3 different theta value as Exercise 3
+par(mfrow=c(3,1))
+for (th in c(0.5, 1, 1.5)){
+  RunThetaLogisticGrowth(theta=th)
+}
+
+```
+
+
