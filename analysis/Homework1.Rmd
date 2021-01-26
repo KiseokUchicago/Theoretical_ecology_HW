@@ -105,6 +105,9 @@ Plot the error at time t = 10 as a function of the step-size (using delta t = (0
 
 This is the provided script to make Euler method approximations on dN/dt = rN (exponential growth)
 ```{r}
+library(ggplot2)
+library(ggthemes)
+
 ExponentialGrowth<-function(x,lambda){
    return (lambda*x)
 }
@@ -136,6 +139,28 @@ for (Deltat in c(0.05,0.1,0.2)){
    points(RealSol~PointsToEstimate,col="black",type="l")
    points(Approx~PointsToEstimate,col=mycol,type="l")
 }
+
+# error at time t=10 as a function of step-size
+get_error <- function(Deltat=0.05, t=10){
+  PointsToEstimate<-seq(0,10,by=Deltat)
+  Iterations<-length(PointsToEstimate)-1
+  Approx<-rep(0,Iterations+1)
+  RealSol<-rep(0,Iterations+1)
+  Approx[1]<-RealSol[1]<-N0
+  for (i in 1:Iterations){
+    RealSol[i+1]<-ExponentialSolution(N0,Deltat*i,lambda)		
+    Approx[i+1]<-Euler(Approx[i],Deltat,ExponentialGrowth,lambda)		
+  }
+  return (RealSol[t] - Approx[t])
+}
+
+get_error(0.05, 10)
+df_1 <- data.frame(deltat=c(0.05, 0.1, 0.2), error=NA)
+df_1$error <- sapply(df_1$deltat,get_error)
+df_1
+
+ggplot(df_1, aes(x=deltat, y=error)) + geom_point() + theme_hc() +
+    ggtitle("Error at t=10 in different stepsizes(0.05, 0.1, 0.2)")
 
 ```
 
