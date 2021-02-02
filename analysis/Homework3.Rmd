@@ -15,7 +15,7 @@ knitr::opts_chunk$set(fig.width=9, fig.height=9,
 
 ### Homework3
 ## Coding assignment for ECEV 42900
-Professor: **Sarah Cobey** **Greg Dwyer** \
+Professor: **Sarah Cobey**, **Greg Dwyer** \
 Student: **Kiseok Lee**  
 
 ### Exercise 2. Community stability
@@ -73,9 +73,9 @@ of stability for the two cases.
 library(schoolmath)
 
 # Testing with May matrix
-MayMatrix(S=250, 0.01, sigma=0.3)
+# MayMatrix(S=250, 0.01, sigma=0.3)
 # Getting eigenvalues 
-eigen(MayMatrix(S=250, 0.01, sigma=0.3), only.values = T)$values
+eig_valu_es <- eigen(MayMatrix(S=250, 0.01, sigma=0.3), only.values = T)$values
 # Real part of the complex number (eigen value)
 Re(eig_values)
 # are all real part of the eigenvalues negative?
