@@ -11,3 +11,4 @@ editor_options:
 Welcome to my research website.
 
 * [Theoretical_ecology_homework1](Homework1.html)
+* [Theoretical_ecology_homework3](Homework3.html)
