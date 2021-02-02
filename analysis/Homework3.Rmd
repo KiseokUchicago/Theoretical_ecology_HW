@@ -1,0 +1,162 @@
+---
+title: "Homework3"
+author: "KiseokUChicago"
+date: "2021-02-02"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=9, fig.height=9,
+                      error=TRUE, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE)
+```
+
+### Homework3
+## Coding assignment for ECEV 42900
+Professor: **Sarah Cobey** **Greg Dwyer** \
+Student: **Kiseok Lee**  
+
+### Exercise 2. Community stability
+(1) For S = 250, sigma = 0.3, and C between 0.01 and 0.5, compute the
+probability of observing a stable random and a stable predator-prey matrix. \
+(2) To estimate the value, simulate at least 100 matrices
+for each level of C. Draw a profile of C vs. the probability
+of stability for the two cases. \
+(3) Which critical value of C would May’s theorem produce? Are the simulations consistent with
+this value?
+
+### Given code
+```{r}
+## Community_matrices.R
+## Stefano Allesina and Sarah Cobey 
+## Code for Theoretical Ecology
+
+MayMatrix<-function(S,C,sigma){
+  ## This matrix determines the connections
+  A<-matrix(runif(S*S),S,S)
+  ## Contains the values for the connections
+  B<-matrix(rnorm(S*S,0.0,sigma),S,S)
+  A<-(A<= C)*1 # A matrix contains 1 when A[i,j] <= C
+  M<-A*B
+  diag(M)<- -1
+  return(M)
+}
+
+PPMatrix<-function(S,C,sigma){
+  ## Determine the signs for the connections
+  MyS<-sign(rnorm(S*(S-1)/2))
+  A<-matrix(0,S,S)
+  A[upper.tri(A,diag=F)]<-MyS
+  D<-matrix(runif(S*S),S,S)
+  D<-(D <= C)*1
+  A<-D*A
+  A<- A-t(A)
+  ## Contains the  values for the connections
+  B<-matrix(abs(rnorm(S*S,0.0,sigma)),S,S)
+  M<-A*B
+  diag(M)<- -1
+  return(M)
+}
+
+```
+
+### Getting the critical value C (probability) in May's matrix 
+For S = 250, sigma = 0.3, and C between 0.01 and 0.5, compute the
+probability of observing a stable random matrix.
+To estimate the value, simulate at least 100 matrices
+for each level of C. Draw a profile of C vs. the probability
+of stability for the two cases.
+
+```{r}
+library(schoolmath)
+
+# Testing with May matrix
+MayMatrix(S=250, 0.01, sigma=0.3)
+# Getting eigenvalues 
+eigen(MayMatrix(S=250, 0.01, sigma=0.3), only.values = T)$values
+# Real part of the complex number (eigen value)
+Re(eig_values)
+# are all real part of the eigenvalues negative?
+all(is.negative(Re(eig_values))) # all negative eigenvalues indicate stable
+
+
+# Getting probabilities for May's matrix
+df_c_may <- data.frame(C=NA, prob=NA)
+
+for (C in seq(0.01, 0.5, by=0.01)){ # 0.01, 0.02, 0.03,...., 0.50
+  counter=0
+  for (i in c(1:100)){
+    # get the eigenvalues of the community matrix
+    eig_values <- eigen(MayMatrix(S=250, C, sigma=0.3), only.values = T)$values
+    # real part of the complex number
+    Re(eig_values)
+    # negative eigenvalue
+    if(all(is.negative(Re(eig_values)))){ # all negative eigenvalues indicate stable community
+      counter = counter +1
+    } 
+  }
+  df_c_may <- rbind(df_c_may, c(C, counter/100))
+}
+
+df_c_may1 <- df_c_may[-1,]
+
+library(ggplot2)
+p1 <- ggplot(df_c_may1,aes(x = C,y = prob)) + geom_line(col="magenta") + geom_point(color='maroon') + theme_bw() +
+  labs(title="Probability of matrix being stable (May's matrix) \n", x="\n C (probability of drawing 1)",y="probability of having stable community \n")
+p1
+```
+
+Threshold of C for May's case is 0.04. After 0.04, probability of the community matrix being stable plummets. \
+
+```{r}
+# May's critical value
+# C = ((1/sigma)^2 ) / S
+(1/0.3)^2 / 250
+
+```
+
+May's theorem produces critical C value of 0.044. This is very close to value of 0.04 from the simulation.
+
+
+### Getting the critical value C (probability) in Prey-predator's matrix 
+For S = 250, sigma = 0.3, and C between 0.01 and 0.5, compute the
+probability of observing a stable predator-prey matrix.
+To estimate the value, simulate at least 100 matrices
+for each level of C. Draw a profile of C vs. the probability
+of stability for the two cases.
+
+```{r}
+# Getting probabilities for Prey-predator's matrix
+df_c_pp <- data.frame(C=NA, prob=NA)
+
+for (C in seq(0.01, 0.5, by=0.01)){
+  counter=0
+  for (i in c(1:100)){
+    # get the eigenvalues of the community matrix
+    eig_values <- eigen(PPMatrix(S=250, C, sigma=0.3), only.values = T)$values
+    # real part of the complex number
+    Re(eig_values)
+    # negative eigenvalue
+    if(all(is.negative(Re(eig_values)))){ # all negative eigenvalues indicate stable community
+      counter = counter +1
+    } 
+  }
+  df_c_pp <- rbind(df_c_pp, c(C, counter/100))
+}
+
+df_c_pp1 <- df_c_pp[-1,]
+
+library(ggplot2)
+p2 <- ggplot(df_c_pp1,aes(x = C,y = prob)) + geom_line(col="magenta") + geom_point(color='maroon') + theme_bw() +
+  labs(title="Probability of matrix being stable (Prey-predator's matrix) \n", x="\n C (probability of drawing 1)",y="probability of having stable community \n")
+p2
+
+```
+
+Threshold of C for Allesina & Pascual's case is between 0.25 to 0.35. Gradually after 0.25, probability of the community matrix being stable plummets.
+
+
+
+
