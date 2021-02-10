@@ -1,0 +1,122 @@
+---
+title: "Homework4"
+author: "KiseokUChicago"
+date: "2021-02-10"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=9, fig.height=9,
+                      error=TRUE, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE)
+```
+
+### Homework4 (for Chapter 5)
+## Coding assignment for ECEV 42900
+Professor: **Sarah Cobey**, **Greg Dwyer** \
+Student: **Kiseok Lee**  
+
+### Exercise 1. Approximating epidemic sizes using Newton’s method.
+(1) Use the templates to plot the fraction of recovered population R(infinity) as a function of R0. Values for R0 change from disease to disease and from host population to host population. 
+For example, estimates for influenza are R0 = [1.2, 3]; for rubella,
+we have R0 = [6, 7]; and for measles, R0 = [16, 18]. 
+(2) What fraction of a completely susceptible population will be infected
+by measles? rubella? influenza? Change the code above to compute the values.
+(3) Please also plot the herd immunity threshold on the same graph. The curves differ. 
+(4) Please explain the implications for managing pandemics.
+
+### given code
+```{r}
+## Newtons_method.R
+## Stefano Allesina and Sarah Cobey
+## Code for "Theoretical Ecology"
+
+## Prototype example of the method
+xn<-1000000 # a very large number
+xnp1<-1 # a guesstimate of the root
+Eps<-10^(-3) # tolerance
+while(abs(xn-xnp1)>Eps){
+	xn<-xnp1
+	xnp1<-xn-Funct(xn,par1,par2)/DeriFunct(xn,par1,par2)
+}
+
+## Template for you to change
+# Funct<-function(x,R0){
+# 	# return(???????)
+# }
+# DeriFunct<-function(x,R0){
+# 	return(???????)
+# }
+
+## Implementation to plot fraction recovered
+RInf<-function(R0,Funct,DeriFunct){
+	xn<-1000000 # a very large number
+	xnp1<-0.5 # a guesstimate of the root
+	Eps<-10^{-3} # tolerance
+	while(abs(xn-xnp1)>Eps){
+		xn<-xnp1
+		xnp1<-xn-Funct(xn,R0)/DeriFunct(xn,R0)
+	}
+	return(xnp1)
+}
+
+R0s<-seq(0,5,length.out=500)
+RecFracs<-rep(0,500)
+for (i in 1:500){
+    RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered")
+abline(h=1,col="red")
+```
+
+(1) Use the templates to plot the fraction of recovered population R(infinity) as a function of R0. Values for R0 change from disease to disease and from host population to host population. 
+For example, estimates for influenza are R0 = [1.2, 3]; for rubella,
+we have R0 = [6, 7]; and for measles, R0 = [16, 18]. 
+
+```{r}
+
+## Prototype example of the method
+xn<-1000000 # a very large number
+xnp1<-1 # a guesstimate of the root
+Eps<-10^(-3) # tolerance
+while(abs(xn-xnp1)>Eps){
+	xn<-xnp1
+	xnp1<-xn-Funct(xn,par1,par2)/DeriFunct(xn,par1,par2)
+}
+
+## Template for you to change
+# Funct<-function(x,R0){
+# 	return(???????)
+# }
+# DeriFunct<-function(x,R0){
+# 	return(???????)
+# }
+
+## Implementation to plot fraction recovered
+RInf<-function(R0,Funct,DeriFunct){
+	xn<-1000000 # a very large number
+	xnp1<-0.5 # a guesstimate of the root
+	Eps<-10^{-3} # tolerance
+	while(abs(xn-xnp1)>Eps){
+		xn<-xnp1
+		xnp1<-xn-Funct(xn,R0)/DeriFunct(xn,R0)
+	}
+	return(xnp1)
+}
+
+R0s<-seq(0,5,length.out=500)
+RecFracs<-rep(0,500)
+for (i in 1:500){
+    RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered")
+abline(h=1,col="red")
+
+
+```
+
+
+
+
+
