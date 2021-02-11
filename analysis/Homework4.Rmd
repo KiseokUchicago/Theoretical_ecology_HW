@@ -26,89 +26,53 @@ by measles? rubella? influenza? Change the code above to compute the values.
 (3) Please also plot the herd immunity threshold on the same graph. The curves differ. 
 (4) Please explain the implications for managing pandemics.
 
-### given code
 ```{r}
-## Newtons_method.R
-## Stefano Allesina and Sarah Cobey
-## Code for "Theoretical Ecology"
+## This is for SIR model
+Funct<-function(x,R0){
+	return(1-exp(-R0*x))
+}
+DeriFunct<-function(x,R0){
+	return(R0*exp(-R0*x))
+}
 
 ## Prototype example of the method
 xn<-1000000 # a very large number
 xnp1<-1 # a guesstimate of the root
 Eps<-10^(-3) # tolerance
+R0 <- 0.5
+print(abs(xn-xnp1)>Eps)
 while(abs(xn-xnp1)>Eps){
 	xn<-xnp1
-	xnp1<-xn-Funct(xn,par1,par2)/DeriFunct(xn,par1,par2)
+	xnp1<-xn-Funct(xn,R0)/DeriFunct(xn,R0)
+	print(abs(xn-xnp1)>Eps)
+	print(xnp1)
 }
 
-## Template for you to change
-# Funct<-function(x,R0){
-# 	# return(???????)
-# }
-# DeriFunct<-function(x,R0){
-# 	return(???????)
-# }
 
 ## Implementation to plot fraction recovered
 RInf<-function(R0,Funct,DeriFunct){
 	xn<-1000000 # a very large number
-	xnp1<-0.5 # a guesstimate of the root
+	xnp1<-1 # a guesstimate of the root
 	Eps<-10^{-3} # tolerance
-	while(abs(xn-xnp1)>Eps){
+	# RO <- 0.5
+	while(abs(xn-xnp1) > Eps){
 		xn<-xnp1
-		xnp1<-xn-Funct(xn,R0)/DeriFunct(xn,R0)
+		xnp1<-xn - (Funct(xn,R0)/DeriFunct(xn,R0))
+		print(paste0('abs(xn-xnp1) ',abs(xn-xnp1)))
+		print(paste0('T or F is ',abs(xn-xnp1) > Eps))
+		print(paste0('xn is ',xn))
+	  print(paste0('xnp1 is ',xnp1))
 	}
+
 	return(xnp1)
 }
 
-R0s<-seq(0,5,length.out=500)
+R0s<-seq(0.01,5,length.out=500)
 RecFracs<-rep(0,500)
-for (i in 1:500){
-    RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
-}
-plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered")
-abline(h=1,col="red")
-```
-
-(1) Use the templates to plot the fraction of recovered population R(infinity) as a function of R0. Values for R0 change from disease to disease and from host population to host population. 
-For example, estimates for influenza are R0 = [1.2, 3]; for rubella,
-we have R0 = [6, 7]; and for measles, R0 = [16, 18]. 
-
-```{r}
-
-## Prototype example of the method
-xn<-1000000 # a very large number
-xnp1<-1 # a guesstimate of the root
-Eps<-10^(-3) # tolerance
-while(abs(xn-xnp1)>Eps){
-	xn<-xnp1
-	xnp1<-xn-Funct(xn,par1,par2)/DeriFunct(xn,par1,par2)
-}
-
-## Template for you to change
-# Funct<-function(x,R0){
-# 	return(???????)
-# }
-# DeriFunct<-function(x,R0){
-# 	return(???????)
-# }
-
-## Implementation to plot fraction recovered
-RInf<-function(R0,Funct,DeriFunct){
-	xn<-1000000 # a very large number
-	xnp1<-0.5 # a guesstimate of the root
-	Eps<-10^{-3} # tolerance
-	while(abs(xn-xnp1)>Eps){
-		xn<-xnp1
-		xnp1<-xn-Funct(xn,R0)/DeriFunct(xn,R0)
-	}
-	return(xnp1)
-}
-
-R0s<-seq(0,5,length.out=500)
-RecFracs<-rep(0,500)
-for (i in 1:500){
-    RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
+for (i in 1:length(R0s)){
+  print(i)
+  print(paste0('RO is ',R0s[i]))
+  RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
 }
 plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered")
 abline(h=1,col="red")
