@@ -58,12 +58,12 @@ RInf<-function(R0,Funct,DeriFunct){
 	while(abs(xn-xnp1) > Eps){
 		xn<-xnp1
 		xnp1<-xn - (Funct(xn,R0)/DeriFunct(xn,R0))
-		print(paste0('abs(xn-xnp1) ',abs(xn-xnp1)))
-		print(paste0('T or F is ',abs(xn-xnp1) > Eps))
-		print(paste0('xn is ',xn))
-	  print(paste0('xnp1 is ',xnp1))
+		# printing output
+	# 	print(paste0('abs(xn-xnp1) ',abs(xn-xnp1)))
+	# 	print(paste0('T or F is ',abs(xn-xnp1) > Eps))
+	# 	print(paste0('xn is ',xn))
+	#   print(paste0('xnp1 is ',xnp1))
 	}
-
 	return(xnp1)
 }
 
@@ -79,6 +79,102 @@ abline(h=1,col="red")
 
 
 ```
+
+### Excercise 2. Visualizing epidemic dynamics
+For measles, it has been estimated that # ⇡ 0.2/day and that R0 ⇡ 18.
+Use the Runge-Kutta 4th-order ODE solver from the R package
+deSolve to integrate the equation above for the disease in a
+population for which S(0) = 0.9999, R(0) = 0, I(0) = 0.0001.
+Run the model for 30 days with N = 100, 000. How many people
+have recovered after 5 days? How many after 10? Plot the
+curves of S, I, and R. Gain experience points by experimenting
+with di↵erent solvers to see if they have an e↵ect.
+
+#### Plotting SIR curves for 30 days
+```{r}
+library(deSolve)
+library(dplyr)
+
+## the derivative of the logistic
+SIR_R<-function(t, state, parameters) { 
+  X <- state[1] ## the first element is the density of X at time t
+  r <- parameters[1] ## the first parameter is the recovery rate
+  R0 <- parameters[2] ## R0
+  S0 <- parameters[3] ## S0
+  dR<- r*(1- S0*exp(-R0*X) - X)
+  return(list(dR)) ## for some reason, you have to return a list
+}
+
+SIR_S<-function(t, state, parameters) { 
+  X <- state[1] ## the first element is the density of X at time t
+  r <- parameters[1] ## the first parameter is the recovery rate
+  R0 <- parameters[2] ## R0
+  S0 <- parameters[3] ## S0
+  dS<- -r*R0*X*(1-X-(1/R0)*(log(S0)-log(X)))
+  return(list(dS)) ## for some reason, you have to return a list
+}
+
+t  <- seq(0,30,0.5)
+r <- 0.2; R0 <- 18; S0 <- 0.9999;
+parameters <- c(r = r, R0 = R0, S0 = S0)
+x <- c(R = 0)
+y <- c(S = 0.9999)
+
+## reasonable numerical solution with rk4
+out_R <- as.data.frame(rk4(x, t, SIR_R, parameters))
+out_S <- as.data.frame(rk4(y, t, SIR_S, parameters)) ; out_S$S[is.nan(out_S$S)]<-0  # replace NaN with 0
+out_I <- left_join(out_R,out_S, by=c('time'='time')) %>% mutate(I=1-R-S)
+#
+
+# plot SIR graphs (time step is adjusted to 0.5)
+# plot R
+plot(out_R$t, out_R$R, type='l', col = "blue", cex = 0.5,  ylim=c(0,1), xlab='time', ylab='fraction of total population', main = 'Plotting S, I, R curves')
+# plot S
+points(out_S$t, out_S$S, type='l', col = "black", cex = 0.5)
+# plot I
+points(out_I$t, out_I$I, type='l', col = "red", cex = 0.5)
+# legend
+legend(27,0.9,legend=c("R", "S","I"),
+       col=c("blue", "black",'red'), lty=1, cex=0.8)
+  
+```
+
+#### Converting y axis into number of people 
+Run the model for 30 days with N = 100, 000. How many people
+have recovered after 5 days? How many after 10? Plot the
+curves of S, I, and R. 
+
+```{r}
+
+## reasonable numerical solution with rk4
+N <- 100000
+out_SIR <- left_join(out_R,out_S, by=c('time'='time')) %>% mutate(I=1-R-S) %>% 
+  mutate(n_R=R*N) %>% mutate(n_S=S*N) %>% mutate(n_I=I*N)
+
+# plot SIR graphs (time step is adjusted to 0.5)
+# plot R
+plot(out_SIR$t, out_SIR$n_R, type='l', col = "blue", cex = 0.5, ylim=c(0,N), xlab='time', ylab='# of people', main = 'Plotting SIR curves with number of people')
+# plot S
+points(out_SIR$t, out_SIR$n_S, type='l', col = "black", cex = 0.5)
+# plot I
+points(out_SIR$t, out_SIR$n_I, type='l', col = "red", cex = 0.5)
+# legend
+legend(27,N-10000,legend=c("R", "S","I"),
+       col=c("blue", "black",'red'), lty=1, cex=0.8)
+
+# people recovered in day 5 and 10
+out_SIR %>% filter(time %in% c(5,10)) %>% select(time,n_R)
+```
+Day 5: 35784 people \
+Day 10: 76370 people
+
+#### Different solver testing
+Gain experience points by experimenting
+with different solvers to see if they have an effect.
+```{r}
+
+```
+
 
 
 
