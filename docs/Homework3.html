@@ -423,7 +423,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-02-02
+<strong>Last updated:</strong> 2021-02-11
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -514,16 +514,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree8d956a58b0bd374f709ed54d562d380ae4ad2dcatargetblank8d956a5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/8d956a58b0bd374f709ed54d562d380ae4ad2dca" target="_blank">8d956a5</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtreea9caa51bc7d7c0930226108f391ae8cf00fb788ctargetblanka9caa51a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/a9caa51bc7d7c0930226108f391ae8cf00fb788c" target="_blank">a9caa51</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree8d956a58b0bd374f709ed54d562d380ae4ad2dcatargetblank8d956a5a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtreea9caa51bc7d7c0930226108f391ae8cf00fb788ctargetblanka9caa51a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/8d956a58b0bd374f709ed54d562d380ae4ad2dca" target="_blank">8d956a5</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/a9caa51bc7d7c0930226108f391ae8cf00fb788c" target="_blank">a9caa51</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -532,9 +532,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Unstaged changes:
-    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -573,6 +570,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/blob/a9caa51bc7d7c0930226108f391ae8cf00fb788c/analysis/Homework3.Rmd" target="_blank">a9caa51</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-02-11
+</td>
+<td>
+added
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/KiseokUchicago/Theoretical_ecology_HW/b15e78153ae40b5285c26fd9e9bc524b25eedce6/docs/Homework3.html" target="_blank">b15e781</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-02-02
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -689,13 +720,54 @@ PPMatrix&lt;-function(S,C,sigma){
 # Testing with May matrix
 # MayMatrix(S=250, 0.01, sigma=0.3)
 # Getting eigenvalues 
-eig_valu_es &lt;- eigen(MayMatrix(S=250, 0.01, sigma=0.3), only.values = T)$values
+eig_values &lt;- eigen(MayMatrix(S=250, 0.01, sigma=0.3), only.values = T)$values
 # Real part of the complex number (eigen value)
 Re(eig_values)</code></pre>
-<pre><code>Error in eval(expr, envir, enclos): object &#39;eig_values&#39; not found</code></pre>
+<pre><code>  [1] -1.4707388 -1.4448603 -1.4448603 -1.4251995 -1.4251995 -1.4109859
+  [7] -1.3964065 -1.3964065 -1.3423586 -1.3423586 -1.3299811 -1.3299811
+ [13] -1.3137210 -1.3137210 -1.3445180 -1.3239455 -1.3239455 -1.3288434
+ [19] -1.3288434 -1.2453899 -1.2453899 -1.2644718 -1.2644718 -1.2867589
+ [25] -1.2867589 -1.2343229 -1.2343229 -1.2461170 -1.2461170 -1.2143184
+ [31] -1.2143184 -1.1475676 -1.1475676 -1.2128671 -1.2128671 -1.2155498
+ [37] -1.2155498 -1.1698335 -1.1698335 -1.1845145 -1.1845145 -1.1023991
+ [43] -1.1023991 -1.1685593 -1.1685593 -1.1430226 -1.1430226 -1.1494354
+ [49] -1.1343599 -1.1343599 -1.1280253 -1.1280253 -1.0681045 -1.0681045
+ [55] -1.0968136 -1.0968136 -1.1162249 -1.1064779 -1.1064779 -1.0713018
+ [61] -1.0713018 -1.0510712 -1.0510712 -1.0687708 -1.0687708 -1.0627400
+ [67] -1.0627400 -0.9636749 -0.9636749 -1.0356728 -1.0356728 -1.0617585
+ [73] -1.0617585 -0.9803553 -0.9803553 -1.0452789 -1.0452789 -1.0361777
+ [79] -1.0361777 -0.9845625 -0.9845625 -1.0381228 -1.0381228 -1.0328316
+ [85] -0.9866483 -0.9866483 -1.0262123 -1.0262123 -1.0116480 -1.0116480
+ [91] -1.0095437 -1.0095437 -0.9985755 -0.9985755 -1.0019483 -1.0019483
+ [97] -1.0006278 -1.0006278 -1.0000067 -1.0000067 -1.0000007 -1.0000000
+[103] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[109] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[115] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[121] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[127] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[133] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[139] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[145] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[151] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[157] -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000 -1.0000000
+[163] -1.0000000 -1.0000000 -0.9999920 -0.9999920 -0.9986144 -0.9949904
+[169] -0.9949904 -0.9753389 -0.9753389 -0.9928438 -0.9928438 -0.9865102
+[175] -0.9865102 -0.9894516 -0.9840820 -0.9840820 -0.9652870 -0.9652870
+[181] -0.9689035 -0.9689035 -0.9225757 -0.9225757 -0.9311496 -0.9311496
+[187] -0.9575276 -0.9417220 -0.9417220 -0.8724393 -0.8724393 -0.9284313
+[193] -0.9284313 -0.9208013 -0.9153726 -0.9153726 -0.8901400 -0.8901400
+[199] -0.8948231 -0.8948231 -0.8449743 -0.8449743 -0.7827514 -0.7827514
+[205] -0.8705453 -0.8705453 -0.8561562 -0.8561562 -0.7626404 -0.7626404
+[211] -0.8584929 -0.8584929 -0.8608654 -0.7740087 -0.7740087 -0.8307103
+[217] -0.8270490 -0.8270490 -0.7366232 -0.7366232 -0.8064138 -0.8064138
+[223] -0.7571062 -0.7571062 -0.7200266 -0.7200266 -0.7750974 -0.7563495
+[229] -0.7563495 -0.7458061 -0.7458061 -0.7135613 -0.7135613 -0.7505002
+[235] -0.7505002 -0.6950387 -0.6950387 -0.6577654 -0.6577654 -0.6591350
+[241] -0.6591350 -0.5976634 -0.5976634 -0.6287125 -0.6287125 -0.6111200
+[247] -0.6111200 -0.5455739 -0.5117823 -0.5117823</code></pre>
 <pre class="r"><code># are all real part of the eigenvalues negative?
 all(is.negative(Re(eig_values))) # all negative eigenvalues indicate stable</code></pre>
-<pre><code>Error in is.negative(Re(eig_values)): object &#39;eig_values&#39; not found</code></pre>
+<pre><code>[1] TRUE</code></pre>
 <pre class="r"><code># Getting probabilities for May&#39;s matrix
 df_c_may &lt;- data.frame(C=NA, prob=NA)
 
@@ -758,6 +830,52 @@ p2 &lt;- ggplot(df_c_pp1,aes(x = C,y = prob)) + geom_line(col=&quot;magenta&quot
 p2</code></pre>
 <p><img src="figure/Homework3.Rmd/unnamed-chunk-4-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p>Threshold of C for Allesina &amp; Pascual’s case is between 0.25 to 0.35. Gradually after 0.25, probability of the community matrix being stable plummets.</p>
+</div>
+<div id="examples-of-population-dynamics" class="section level3">
+<h3>(2) Examples of population dynamics</h3>
+<p>Lotka-Volterra model: two species x and y dx/dt = lambda * x - epsilon * x * y dy/dt = eta * x * y - delta * y</p>
+<pre class="r"><code>library(phaseR)
+
+lotkaVolterra &lt;- function(t, y, parameters) {
+x &lt;- y[1]
+y &lt;- y[2]
+lambda &lt;- parameters[1]
+epsilon &lt;- parameters[2]
+eta &lt;- parameters[3]
+delta &lt;- parameters[4]
+dy &lt;- numeric(2)
+dy[1] &lt;- lambda*x - epsilon*x*y
+dy[2] &lt;- eta*x*y - delta*y
+list(dy)
+}
+
+# When (lambda, epsilon, eta, delta) = (2, 1, 3, 2)
+lotkaVolterra.flowField &lt;- flowField(lotkaVolterra, xlim = c(0, 5), ylim = c(0, 10),parameters = c(2, 1, 3, 2), points = 19, add = FALSE)
+grid()
+lotkaVolterra.nullclines &lt;- nullclines(lotkaVolterra, xlim = c(-1, 5), ylim = c(-1, 10),parameters = c(2, 1, 3, 2), points = 500)
+y0 &lt;- matrix(c(1, 2, 2, 2, 3, 4), ncol = 2, nrow = 3, byrow = TRUE)
+lotkaVolterra.trajectory &lt;- trajectory(lotkaVolterra, y0 = y0, tlim =c(0,10), parameters = c(2, 1, 3, 2), col = rep(&quot;black&quot;, 5))</code></pre>
+<p><img src="figure/Homework3.Rmd/unnamed-chunk-5-1.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>model &lt;- function(t, y, parameters) {
+x &lt;- y[1]
+y &lt;- y[2]
+lambda &lt;- parameters[1]
+epsilon &lt;- parameters[2]
+eta &lt;- parameters[3]
+delta &lt;- parameters[4]
+dy &lt;- numeric(2)
+dy[1] &lt;- lambda*x + epsilon*y
+dy[2] &lt;- eta*x + delta*y
+list(dy)
+}
+
+# When (lambda, epsilon, eta, delta) = (2, 1, 3, 2)
+model.flowField &lt;- flowField(model, xlim = c(0, 10), ylim = c(0, 10),parameters = c(-1, -1, 1, -3), points = 19, add = FALSE)
+grid()
+model.nullclines &lt;- nullclines(model, xlim = c(-1, 5), ylim = c(-1, 10),parameters = c(-1, -1, 1, -3), points = 500)
+y0 &lt;- matrix(c(1, 2, 2, 2, 3, 4), ncol = 2, nrow = 3, byrow = TRUE)
+model.trajectory &lt;- trajectory(model, y0 = y0, tlim =c(0,10), parameters = c(-1, -1, 1, -3), col = rep(&quot;black&quot;, 5))</code></pre>
+<p><img src="figure/Homework3.Rmd/unnamed-chunk-6-1.png" width="864" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -783,7 +901,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_3.3.3   schoolmath_0.4  workflowr_1.6.2
+[1] phaseR_2.1.3    ggplot2_3.3.3   schoolmath_0.4  workflowr_1.6.2
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.5       highr_0.8        pillar_1.4.7     compiler_4.0.3  
@@ -792,11 +910,12 @@ loaded via a namespace (and not attached):
 [13] pkgconfig_2.0.3  rlang_0.4.10     rstudioapi_0.13  yaml_2.2.1      
 [17] xfun_0.20        withr_2.4.1      stringr_1.4.0    dplyr_1.0.2     
 [21] knitr_1.31       generics_0.1.0   fs_1.5.0         vctrs_0.3.6     
-[25] tidyselect_1.1.0 rprojroot_2.0.2  grid_4.0.3       glue_1.4.2      
-[29] R6_2.5.0         rmarkdown_2.6    farver_2.0.3     purrr_0.3.4     
-[33] magrittr_2.0.1   whisker_0.4      scales_1.1.1     promises_1.1.1  
-[37] ellipsis_0.3.1   htmltools_0.5.0  colorspace_2.0-0 httpuv_1.5.4    
-[41] labeling_0.4.2   stringi_1.5.3    munsell_0.5.0    crayon_1.3.4    </code></pre>
+[25] tidyselect_1.1.0 rprojroot_2.0.2  grid_4.0.3       deSolve_1.28    
+[29] glue_1.4.2       R6_2.5.0         rmarkdown_2.6    farver_2.0.3    
+[33] purrr_0.3.4      magrittr_2.0.1   whisker_0.4      scales_1.1.1    
+[37] promises_1.1.1   ellipsis_0.3.1   htmltools_0.5.0  colorspace_2.0-0
+[41] httpuv_1.5.4     labeling_0.4.2   stringi_1.5.3    munsell_0.5.0   
+[45] crayon_1.3.4    </code></pre>
 </div>
 </div>
 </div>
