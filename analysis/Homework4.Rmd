@@ -71,7 +71,6 @@ for (i in 1:length(R0s)){
 plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered")
 abline(h=1,col="red")
 
-
 ```
 
 
