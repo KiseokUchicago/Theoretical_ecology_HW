@@ -423,7 +423,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-02-11
+<strong>Last updated:</strong> 2021-02-16
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -514,16 +514,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree4a95f85eef0b64b2b3b628cc91285bd7164fdd8atargetblank4a95f85a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/4a95f85eef0b64b2b3b628cc91285bd7164fdd8a" target="_blank">4a95f85</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree8746855674ec4515d95e780e33a5869e8195a763targetblank8746855a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/8746855674ec4515d95e780e33a5869e8195a763" target="_blank">8746855</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree4a95f85eef0b64b2b3b628cc91285bd7164fdd8atargetblank4a95f85a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree8746855674ec4515d95e780e33a5869e8195a763targetblank8746855a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/4a95f85eef0b64b2b3b628cc91285bd7164fdd8a" target="_blank">4a95f85</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/8746855674ec4515d95e780e33a5869e8195a763" target="_blank">8746855</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -532,6 +532,12 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  analysis/Homework5.Rmd
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -570,6 +576,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/blob/8746855674ec4515d95e780e33a5869e8195a763/analysis/Homework4.Rmd" target="_blank">8746855</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-02-16
+</td>
+<td>
+updated exercise 1
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/KiseokUchicago/Theoretical_ecology_HW/b64c9f61a0952ed570e02d87809d2b961613ee4b/docs/Homework4.html" target="_blank">b64c9f6</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-02-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -740,17 +780,14 @@ Student: <strong>Kiseok Lee</strong></p>
 <div id="exercise-1.-approximating-epidemic-sizes-using-newtons-method." class="section level3">
 <h3>Exercise 1. Approximating epidemic sizes using Newton’s method.</h3>
 <ol style="list-style-type: decimal">
-<li>Use the templates to plot the fraction of recovered population R(infinity) as a function of R0. Values for R0 change from disease to disease and from host population to host population. For example, estimates for influenza are R0 = [1.2, 3]; for rubella, we have R0 = [6, 7]; and for measles, R0 = [16, 18].</li>
-<li>What fraction of a completely susceptible population will be infected by measles? rubella? influenza? Change the code above to compute the values.</li>
-<li>Please also plot the herd immunity threshold on the same graph. The curves differ.</li>
-<li>Please explain the implications for managing pandemics.</li>
+<li>Use the templates to plot the fraction of recovered population R(infinity) as a function of R0. Values for R0 change from disease to disease and from host population to host population.</li>
 </ol>
 <pre class="r"><code>## This is for SIR model
 Funct&lt;-function(x,R0){
-    return(1-exp(-R0*x))
+    return(1-exp(-R0*x)-x)
 }
 DeriFunct&lt;-function(x,R0){
-    return(R0*exp(-R0*x))
+    return(R0*exp(-R0*x)-1)
 }
 
 ## Prototype example of the method
@@ -767,13 +804,13 @@ print(abs(xn-xnp1)&gt;Eps)</code></pre>
     print(xnp1)
 }</code></pre>
 <pre><code>[1] TRUE
-[1] -0.2974425
+[1] 0.1294668
 [1] TRUE
-[1] -0.02106113
+[1] 0.003777128
 [1] TRUE
-[1] -0.0001105045
+[1] 3.555478e-06
 [1] FALSE
-[1] -3.052757e-09</code></pre>
+[1] 3.160454e-12</code></pre>
 <pre class="r"><code>## Implementation to plot fraction recovered
 RInf&lt;-function(R0,Funct,DeriFunct){
     xn&lt;-1000000 # a very large number
@@ -802,6 +839,74 @@ for (i in 1:length(R0s)){
 plot(RecFracs~R0s,t=&quot;l&quot;,xlab=&quot;R0&quot;,ylab=&quot;Fraction Recovered&quot;)
 abline(h=1,col=&quot;red&quot;)</code></pre>
 <p><img src="figure/Homework4.Rmd/unnamed-chunk-1-1.png" width="864" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>What fraction of a completely susceptible population will be infected by measles? rubella? influenza? Change the code above to compute the values. For example, estimates for influenza are R0 = [1.2, 3]; for rubella, we have R0 = [6, 7]; and for measles, R0 = [16, 18].</li>
+</ol>
+<pre class="r"><code># influenza
+R0s&lt;-seq(0,3,length.out=500)
+RecFracs&lt;-rep(0,500)
+for (i in 1:length(R0s)){
+  # print(i)
+  # print(paste0(&#39;RO is &#39;,R0s[i]))
+  RecFracs[i]&lt;-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t=&quot;l&quot;,xlab=&quot;R0&quot;,ylab=&quot;Fraction Recovered&quot;, ylim=c(0,1),
+     main=&#39;Influenza&#39;)
+abline(h=1,col=&quot;red&quot;)
+
+
+# calculating R for herd immunity threshold
+R0 &lt;- 1.2
+R &lt;- log(1/R0)/(-R0)
+abline(h=R, col=&#39;blue&#39;)</code></pre>
+<p><img src="figure/Homework4.Rmd/unnamed-chunk-2-1.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># rubella; R0 = [6, 7]
+R0s&lt;-seq(0,7,length.out=500)
+RecFracs&lt;-rep(0,500)
+for (i in 1:length(R0s)){
+  # print(i)
+  # print(paste0(&#39;RO is &#39;,R0s[i]))
+  RecFracs[i]&lt;-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t=&quot;l&quot;,xlab=&quot;R0&quot;,ylab=&quot;Fraction Recovered&quot;, ylim=c(0,1),
+     main=&#39;Rubella&#39;)
+abline(h=1,col=&quot;red&quot;)
+
+# calculating R for herd immunity threshold
+R0 &lt;- 6
+R &lt;- log(1/R0)/(-R0)
+abline(h=R, col=&#39;blue&#39;)</code></pre>
+<p><img src="figure/Homework4.Rmd/unnamed-chunk-2-2.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># measles; R0 = [16, 18]
+R0s&lt;-seq(0,18,length.out=500)
+RecFracs&lt;-rep(0,500)
+for (i in 1:length(R0s)){
+  # print(i)
+  # print(paste0(&#39;RO is &#39;,R0s[i]))
+  RecFracs[i]&lt;-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t=&quot;l&quot;,xlab=&quot;R0&quot;,ylab=&quot;Fraction Recovered&quot;, ylim=c(0,1),
+     main=&#39;Measles&#39;)
+abline(h=1,col=&quot;red&quot;)
+
+# calculating R for herd immunity threshold
+R0 &lt;- 16
+R &lt;- log(1/R0)/(-R0)
+abline(h=R, col=&#39;blue&#39;)</code></pre>
+<p><img src="figure/Homework4.Rmd/unnamed-chunk-2-3.png" width="864" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Please also plot the herd immunity threshold on the same graph. The curves differ.</li>
+</ol>
+<p>The herd immunity threshold is when dI/dt is 0. This happens when S<em>=1/R0.<br />
+S=exp(-R0 </em> R)<br />
+lnS=-R0*R<br />
+R=1ns/(-R0)=ln(1/R0)/(-R0)<br />
+These threshold are plotted blue on the graph above.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Please explain the implications for managing pandemics.<br />
+</li>
+</ol>
+<p>This implies the threshold of how many people should be vaccinated in order to deter the spread (dI/dt=0)</p>
 </div>
 <div id="excercise-2.-visualizing-epidemic-dynamics" class="section level3">
 <h3>Excercise 2. Visualizing epidemic dynamics</h3>
@@ -852,7 +957,7 @@ points(out_I$t, out_I$I, type=&#39;l&#39;, col = &quot;red&quot;, cex = 0.5)
 # legend
 legend(27,0.9,legend=c(&quot;R&quot;, &quot;S&quot;,&quot;I&quot;),
        col=c(&quot;blue&quot;, &quot;black&quot;,&#39;red&#39;), lty=1, cex=0.8)</code></pre>
-<p><img src="figure/Homework4.Rmd/unnamed-chunk-2-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="figure/Homework4.Rmd/unnamed-chunk-3-1.png" width="864" style="display: block; margin: auto;" /></p>
 </div>
 <div id="converting-y-axis-into-number-of-people" class="section level4">
 <h4>Converting y axis into number of people</h4>
@@ -872,7 +977,7 @@ points(out_SIR$t, out_SIR$n_I, type=&#39;l&#39;, col = &quot;red&quot;, cex = 0.
 # legend
 legend(27,N-10000,legend=c(&quot;R&quot;, &quot;S&quot;,&quot;I&quot;),
        col=c(&quot;blue&quot;, &quot;black&quot;,&#39;red&#39;), lty=1, cex=0.8)</code></pre>
-<p><img src="figure/Homework4.Rmd/unnamed-chunk-3-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="figure/Homework4.Rmd/unnamed-chunk-4-1.png" width="864" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># people recovered in day 5 and 10
 out_SIR %&gt;% filter(time %in% c(5,10)) %&gt;% select(time,n_R)</code></pre>
 <pre><code>  time      n_R
@@ -907,7 +1012,7 @@ points(out_I$t, out_I$I, type=&#39;l&#39;, col = &quot;red&quot;, cex = 0.5)
 # legend
 legend(25,0.9,legend=c(&quot;R_euler&quot;, &quot;S_euler&quot;,&quot;I_euler&quot;,&quot;R_rk4&quot;, &quot;S_rk4&quot;,&quot;I_rk4&quot; ),
        col=c(&quot;blue&quot;, &quot;black&quot;,&#39;red&#39;), lty=c(3,3,3, 1,1,1), cex=0.8)</code></pre>
-<p><img src="figure/Homework4.Rmd/unnamed-chunk-4-1.png" width="864" style="display: block; margin: auto;" /> Euler method and Runge-Kutta 4th order method has some difference in their estimates. Runge-Kutta 4th order method is proved to be more accurate than the Euler method.</p>
+<p><img src="figure/Homework4.Rmd/unnamed-chunk-5-1.png" width="864" style="display: block; margin: auto;" /> Euler method and Runge-Kutta 4th order method has some difference in their estimates. Runge-Kutta 4th order method is proved to be more accurate than the Euler method.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
