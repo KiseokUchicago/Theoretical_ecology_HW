@@ -19,20 +19,14 @@ Student: **Kiseok Lee**
 
 ### Exercise 1. Approximating epidemic sizes using Newton’s method.
 (1) Use the templates to plot the fraction of recovered population R(infinity) as a function of R0. Values for R0 change from disease to disease and from host population to host population. 
-For example, estimates for influenza are R0 = [1.2, 3]; for rubella,
-we have R0 = [6, 7]; and for measles, R0 = [16, 18]. 
-(2) What fraction of a completely susceptible population will be infected
-by measles? rubella? influenza? Change the code above to compute the values.
-(3) Please also plot the herd immunity threshold on the same graph. The curves differ. 
-(4) Please explain the implications for managing pandemics.
 
 ```{r}
 ## This is for SIR model
 Funct<-function(x,R0){
-	return(1-exp(-R0*x))
+	return(1-exp(-R0*x)-x)
 }
 DeriFunct<-function(x,R0){
-	return(R0*exp(-R0*x))
+	return(R0*exp(-R0*x)-1)
 }
 
 ## Prototype example of the method
@@ -79,6 +73,82 @@ abline(h=1,col="red")
 
 
 ```
+
+
+(2) What fraction of a completely susceptible population will be infected
+by measles? rubella? influenza? Change the code above to compute the values.
+For example, estimates for influenza are R0 = [1.2, 3]; for rubella,
+we have R0 = [6, 7]; and for measles, R0 = [16, 18]. 
+
+```{r}
+
+# influenza
+R0s<-seq(0,3,length.out=500)
+RecFracs<-rep(0,500)
+for (i in 1:length(R0s)){
+  # print(i)
+  # print(paste0('RO is ',R0s[i]))
+  RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered", ylim=c(0,1),
+     main='Influenza')
+abline(h=1,col="red")
+
+
+# calculating R for herd immunity threshold
+R0 <- 1.2
+R <- log(1/R0)/(-R0)
+abline(h=R, col='blue')
+
+# rubella; R0 = [6, 7]
+R0s<-seq(0,7,length.out=500)
+RecFracs<-rep(0,500)
+for (i in 1:length(R0s)){
+  # print(i)
+  # print(paste0('RO is ',R0s[i]))
+  RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered", ylim=c(0,1),
+     main='Rubella')
+abline(h=1,col="red")
+
+# calculating R for herd immunity threshold
+R0 <- 6
+R <- log(1/R0)/(-R0)
+abline(h=R, col='blue')
+
+
+# measles; R0 = [16, 18]
+R0s<-seq(0,18,length.out=500)
+RecFracs<-rep(0,500)
+for (i in 1:length(R0s)){
+  # print(i)
+  # print(paste0('RO is ',R0s[i]))
+  RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
+}
+plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered", ylim=c(0,1),
+     main='Measles')
+abline(h=1,col="red")
+
+# calculating R for herd immunity threshold
+R0 <- 16
+R <- log(1/R0)/(-R0)
+abline(h=R, col='blue')
+
+```
+
+(3) Please also plot the herd immunity threshold on the same graph. The curves differ.
+
+The herd immunity threshold is when dI/dt is 0. This happens when S*=1/R0. \
+S=exp(-R0 * R) \
+lnS=-R0*R \
+R=1ns/(-R0)=ln(1/R0)/(-R0) \
+These threshold are plotted blue on the graph above.
+
+(4) Please explain the implications for managing pandemics. \
+
+This implies the threshold of how many people should be vaccinated in order to deter the spread (dI/dt=0)
+
 
 ### Excercise 2. Visualizing epidemic dynamics
 For measles, it has been estimated that # ⇡ 0.2/day and that R0 ⇡ 18.
