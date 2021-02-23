@@ -1,0 +1,19 @@
+---
+title: "Homework6"
+author: "KiseokUChicago"
+date: "2021-02-22"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=9, fig.height=9,
+                      error=TRUE, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE)
+```
+
+### Homework6
+## Coding assignment for ECEV 42900
+Professor: **Sarah Cobey**, **Greg Dwyer** \
+Student: **Kiseok Lee**  
+
