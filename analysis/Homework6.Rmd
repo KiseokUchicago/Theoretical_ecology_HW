@@ -17,3 +17,9 @@ knitr::opts_chunk$set(fig.width=9, fig.height=9,
 Professor: **Sarah Cobey**, **Greg Dwyer** \
 Student: **Kiseok Lee**  
 
+In this assignment, you must simulate the birth-death model, to reproduce figure 2.
+This code is conceptually similar to the code for the environmental-stochasticity model, in
+that it also loops over realizations and time. This code is a little different, however, in that it
+records the population size at a range of times, but that part of the code is written for you.
+The conceptually challenging part of the code is instead understanding the algorithm. Roughly
+speaking, it works like this:
