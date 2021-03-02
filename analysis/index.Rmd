@@ -15,3 +15,4 @@ Welcome to my research website.
 * [Theoretical_ecology_homework4](Homework4.html)
 * [Theoretical_ecology_homework5](Homework5.html)
 * [Theoretical_ecology_homework6](Homework6.html)
+* [Theoretical_ecology_homework7](Homework7.html)
