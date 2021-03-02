@@ -17,8 +17,16 @@ knitr::opts_chunk$set(fig.width=9, fig.height=9,
 Professor: **Sarah Cobey**, **Greg Dwyer** \
 Student: **Kiseok Lee**  
 
+This week's assignment is to carry out an AIC calculation, and to produce figures that look
+like figs. 5 and 6. The data are from the dissertation of Mark Novak, a student of Tim
+Wootton. Mark collected time series of mussel densities in the rocky intertidal in New Zealand.
+He was interested in determining which of several models best explained his data. The mussels
+are attacked by a predatory snail, and part of Mark's work involved comparing plots in which
+snails were removed to plots in which snails were not removed. His larger goal was to consider
+different models of predation, but considering more complicated models is beyond what we can
+manage here.
 
-### Given code
+### Working on filling Given code
 ```{r}
 
 #reading in the Data
