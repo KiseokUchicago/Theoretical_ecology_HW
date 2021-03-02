@@ -12,7 +12,7 @@ knitr::opts_chunk$set(fig.width=9, fig.height=9,
                       error=TRUE, echo=TRUE, eval=TRUE, warning=FALSE, message=FALSE)
 ```
 
-### Homework6
+### Homework6 (Demographic stochasicity)
 ## Coding assignment for ECEV 42900
 Professor: **Sarah Cobey**, **Greg Dwyer** \
 Student: **Kiseok Lee**  
@@ -23,3 +23,281 @@ that it also loops over realizations and time. This code is a little different, 
 records the population size at a range of times, but that part of the code is written for you.
 The conceptually challenging part of the code is instead understanding the algorithm. Roughly
 speaking, it works like this:
+
+
+
+### Given code
+```{r}
+#Parameters
+MaxRlzns = 100; #NOTICE THAT THIS IS A SMALL NUMBER OF REALIZATIONS
+NumExtinct = 0;
+InitN = 2;
+lambda = 6.0;
+mu = 4.0;
+TimePoints = c(0.1,0.5,1,2,3); #lambda = 6.0, mu = 3.6
+NumTimePoints = length(TimePoints);
+NStor <- array(0,c(NumTimePoints,MaxRlzns));
+par(mfrow=c(2,1));
+par(mai = c(0.85,0.8,0.3,0.25));#bottom,left,top,right
+
+
+for(Rlzn in 1:MaxRlzns){
+
+	N = numeric();
+	t = numeric();
+
+	N[1] = InitN;
+	t[1] = 0.0;
+	i = 1;
+	Point = 1;
+	while((N[i]>0)&&(t[i]<=TimePoints[NumTimePoints])){
+
+		#################################
+		# I. The first chunk of code that you must fix starts here: the simulation
+		#################################
+		AvgTimeToNextEvent = ((lambda+mu)*N[i]); #1. Fill in the average time to the next event
+		NextTime = rexp(1,AvgTimeToNextEvent); 
+		i = i + 1;
+		t[i] = t[i-1]+NextTime; #2. Update the time by adding NextTime to the previous value of t (look at the preceding line if you are confused)
+
+		rand = runif(1); #3. Here you must draw a single, uniformly distributed random variate, between 0 and 1
+		BirthRate = lambda/(lambda+mu); #4.  This is the probability of a birth
+		if(rand < BirthRate){ #5. If rand is less than the probability of a birth...
+			N[i] = N[i-1]+1; #6. ...then a birth occurs, otherwise...
+		} else{
+			N[i] = N[i-1]-1; #7. ...a death occurs
+		}
+		if(N[i]<1){NumExtinct = NumExtinct + 1}; #8.  If the population has gone extinct, increase the number of extinctions by 1
+			
+		stop = 0;
+		while((Point<=NumTimePoints)&&(stop!=1)){ #This while statement saves the population size at predetermined time points
+			if(t[i]>TimePoints[Point]){
+				
+				NStor[Point,Rlzn] = N[i-1];
+				Point = Point + 1;
+			} else { stop = 1;}
+
+		}
+		
+		#i = i + 1;
+		
+
+	} # while loop
+
+	if(Rlzn==1){
+		plot(t,log(N),type="l",xlab="Time",ylab="log Population Size",ylim=c(0,9),xlim=c(0,TimePoints[NumTimePoints]));
+	}else{
+		if(Rlzn<=20){
+			if(min(N)<1){
+				lines(t,log(N),col="RED");
+			}else{
+				lines(t,log(N));
+			}
+		}
+
+	}
+	
+} # rlzn loop
+
+#############################
+#II. The second piece of code that you must fix starts here: the theory calculations
+#############################
+TheoryProb = (mu/lambda)^InitN; #9. This should the theoretical probability of extinction
+ObsvdProb = NumExtinct/MaxRlzns; #10. This should be the observed frequency of extinctions 
+PctError = (TheoryProb - ObsvdProb)/ObsvdProb; 
+TheoryCV = sqrt((lambda+mu)/(InitN*(lambda-mu))) ; #11. This should be the theoretical, long-term C.V. from lecture, for the lambda > mu case
+
+
+#Graphics stuff
+TheoryName = "Theor. Ext. Prob.:";
+TheoryLgnd = paste(TheoryName,round(TheoryProb*100.0)/100.0);
+ObsvdName = "Obsvd. Ext. Prob.:";
+ObsvdLgnd = paste(ObsvdName,ObsvdProb);
+text(1,7,TheoryLgnd);
+text(1,6,ObsvdLgnd);
+
+#Printing out the theoretical and observed probabilities of extinction, along with the percent error
+cat("TheoryProb:",round(100*TheoryProb)/100," ObsvdProb:",ObsvdProb," PctError:",PctError,"\n");
+
+#Calculating the observed C.V.
+ObsvdCV = numeric();
+for(Point in 1:NumTimePoints){
+	ObsvdCV[Point] = sd(NStor[Point,])/mean(NStor[Point,]);
+
+}
+
+
+#The second graph plots the observed and theoretical C.V.
+yHi = max(TheoryCV,ObsvdCV);
+cat("TheoryCV:",TheoryCV," ObsvdCV:",ObsvdCV,"\n");
+plot(TimePoints,ObsvdCV,type="o",ylim=c(0,yHi),xlab="Time", ylab = "C.V. of Pop. Size");
+abline(h=TheoryCV,lwd=2);
+
+
+
+```
+
+Thinking: Questions to be answered
+
+1. A key feature of the birth-death model is that, when lambda > mu, almost all of the variability in
+population size is due to the behavior of the model when time t is small. Briefly explain why.
+
+When t is big, the variability (CV) of the population becomes very small that is because the demographic stochasticity of birth and death becomes less important compared to when t is small. By less important, it means that when N(t) is big, variation of birth and death does not impact the population as much and there is lower change of becoming extinct due to demographic stochasticity.
+
+
+2. Try increasing and decreasing first the number of realizations and second the number of time
+steps, to see the effect on the agreement between the observed and theoretical coefficient of
+variation. You should see that increasing the number of realizations has a bigger effect than
+increasing the number of time steps. Use your answer to question 1 to explain why increasing
+the time for which the model is run has only a weak effect on the agreement between the the-
+oretical C.V. and the observed C.V., while increasing the number of realizations has a strong
+effect.
+
+```{r}
+
+plot_dom <- function(MaxRlzns=100, TimePoints=c(0.1,0.5,1,2,3)){
+  #Parameters
+  MaxRlzns = MaxRlzns; #NOTICE THAT THIS IS A SMALL NUMBER OF REALIZATIONS
+  NumExtinct = 0;
+  InitN = 2;
+  lambda = 6.0;
+  mu = 4.0;
+  TimePoints = TimePoints; #lambda = 6.0, mu = 3.6
+  NumTimePoints = length(TimePoints);
+  NStor <- array(0,c(NumTimePoints,MaxRlzns));
+  par(mfrow=c(2,1));
+  par(mai = c(0.85,0.8,0.3,0.25));#bottom,left,top,right
+
+
+  for(Rlzn in 1:MaxRlzns){
+
+  	N = numeric();
+  	t = numeric();
+  
+  	N[1] = InitN;
+  	t[1] = 0.0;
+  	i = 1;
+  	Point = 1;
+  	while((N[i]>0)&&(t[i]<=TimePoints[NumTimePoints])){
+  
+  		#################################
+  		# I. The first chunk of code that you must fix starts here: the simulation
+  		#################################
+  		AvgTimeToNextEvent = ((lambda+mu)*N[i]); #1. Fill in the average time to the next event
+  		NextTime = rexp(1,AvgTimeToNextEvent); 
+  		i = i + 1;
+  		t[i] = t[i-1]+NextTime; #2. Update the time by adding NextTime to the previous value of t (look at the preceding line if you are confused)
+  
+  		rand = runif(1); #3. Here you must draw a single, uniformly distributed random variate, between 0 and 1
+  		BirthRate = lambda/(lambda+mu); #4.  This is the probability of a birth
+  		if(rand < BirthRate){ #5. If rand is less than the probability of a birth...
+  			N[i] = N[i-1]+1; #6. ...then a birth occurs, otherwise...
+  		} else{
+  			N[i] = N[i-1]-1; #7. ...a death occurs
+  		}
+  		if(N[i]<1){NumExtinct = NumExtinct + 1}; #8.  If the population has gone extinct, increase the number of extinctions by 1
+  			
+  		stop = 0;
+  		while((Point<=NumTimePoints)&&(stop!=1)){ #This while statement saves the population size at predetermined time points
+  			if(t[i]>TimePoints[Point]){
+  				
+  				NStor[Point,Rlzn] = N[i-1];
+  				Point = Point + 1;
+  			} else { stop = 1;}
+  
+  		  }
+  		
+  	 } # while loop
+
+	if(Rlzn==1){
+		plot(t,log(N),type="l",xlab="Time",ylab="log Population Size",ylim=c(0,9),xlim=c(0,TimePoints[NumTimePoints]));
+	}else{
+		if(Rlzn<=20){
+			if(min(N)<1){
+				lines(t,log(N),col="RED");
+			}else{
+				lines(t,log(N));
+			}
+		}
+
+	}
+	
+  } # rlzn loop
+
+  #############################
+  #II. The second piece of code that you must fix starts here: the theory calculations
+  #############################
+  TheoryProb = (mu/lambda)^InitN; #9. This should the theoretical probability of extinction
+  ObsvdProb = NumExtinct/MaxRlzns; #10. This should be the observed frequency of extinctions 
+  PctError = (TheoryProb - ObsvdProb)/ObsvdProb; 
+  TheoryCV = sqrt((lambda+mu)/(InitN*(lambda-mu))) ; #11. This should be the theoretical, long-term C.V. from lecture, for the lambda > mu case
+  
+  
+  #Graphics stuff
+  TheoryName = "Theor. Ext. Prob.:";
+  TheoryLgnd = paste(TheoryName,round(TheoryProb*100.0)/100.0);
+  ObsvdName = "Obsvd. Ext. Prob.:";
+  ObsvdLgnd = paste(ObsvdName,ObsvdProb);
+  text(1,7,TheoryLgnd);
+  text(1,6,ObsvdLgnd);
+  
+  #Printing out the theoretical and observed probabilities of extinction, along with the percent error
+  cat("TheoryProb:",round(100*TheoryProb)/100," ObsvdProb:",ObsvdProb," PctError:",PctError,"\n");
+  
+  #Calculating the observed C.V.
+  ObsvdCV = numeric();
+  for(Point in 1:NumTimePoints){
+	ObsvdCV[Point] = sd(NStor[Point,])/mean(NStor[Point,]);
+
+  }
+
+  #The second graph plots the observed and theoretical C.V.
+  yHi = max(TheoryCV,ObsvdCV);
+  cat("TheoryCV:",TheoryCV," ObsvdCV:",ObsvdCV,"\n");
+  plot(TimePoints,ObsvdCV,type="o",ylim=c(0,yHi),xlab="Time", ylab = "C.V. of Pop. Size");
+  abline(h=TheoryCV,lwd=2);
+    
+}
+
+
+```
+
+Increase and decrease the number of realizations
+
+```{r}
+# the original
+plot_dom(100)
+
+# increase
+plot_dom(200)
+
+# decrease
+plot_dom(20)
+
+```
+
+Increase and decrease the number of time steps
+
+```{r}
+# original
+plot_dom(20, c(0.1,0.3,0.5,1,2,3))
+
+# increase
+plot_dom(20, seq(0.1,3,by=0.1))
+
+# decrease
+plot_dom(20, seq(0.1,3,by=1.4))
+
+```
+
+I don't see a palpable trend that increasing the Realization number outperforms increasing the number of time steps, when comparing plot_dom(200, c(0.1,0.3,0.5,1,2,3)) vs plot_dom(20, seq(0.1,3,by=0.1)) \
+However, theoretically by central limit theorem, when the number of realization increases it will make the CV of each time point (from simulation) closer to the real(theoretical) CV of each time point. \
+In question number 1, we concluded that variation of the population decreased as t increased. Increase in time steps does not necessarily mean increase in t. Therefore, increasing time steps does not decrease the variation of the population. 
+
+
+
+
+
+
+
+
