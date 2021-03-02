@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="KiseokUChicago" />
+
+<meta name="date" content="2021-03-02" />
+
+<title>Homework7</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Theoretical_ecology</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW">
+    <span class="fas fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework7</h1>
+<h4 class="author">KiseokUChicago</h4>
+<h4 class="date">2021-03-02</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-03-02
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>Theoretical_ecology_HW/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210122code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210122)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210122code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210122)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree4fe27a831f7f8d3085c06893c08c20759e76ff00targetblank4fe27a8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/4fe27a831f7f8d3085c06893c08c20759e76ff00" target="_blank">4fe27a8</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree4fe27a831f7f8d3085c06893c08c20759e76ff00targetblank4fe27a8a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/4fe27a831f7f8d3085c06893c08c20759e76ff00" target="_blank">4fe27a8</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  data/GregsVer4.csv
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/Homework7.Rmd</code>) and HTML (<code>docs/Homework7.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/blob/4fe27a831f7f8d3085c06893c08c20759e76ff00/analysis/Homework7.Rmd" target="_blank">4fe27a8</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-03-02
+</td>
+<td>
+HW7
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="homework7-aic" class="section level3">
+<h3>Homework7 (AIC)</h3>
+</div>
+<div id="coding-assignment-for-ecev-42900" class="section level2">
+<h2>Coding assignment for ECEV 42900</h2>
+<p>Professor: <strong>Sarah Cobey</strong>, <strong>Greg Dwyer</strong><br />
+Student: <strong>Kiseok Lee</strong></p>
+<div id="given-code" class="section level3">
+<h3>Given code</h3>
+<pre class="r"><code>#reading in the Data
+Data = read.csv(&quot;data/GregsVer4.csv&quot;);
+
+
+########################PLOTTER()###########################################
+#Plotter() is a function that plots the model predictions against the data.
+#It is a bit complicated, so I wrote it for you.
+#We need it because whenever you use a nonlinear fitting routine,
+#you should always visually compare the model to the data, if you can.
+############################################################################
+Plotter&lt;-function(params){
+    MaxPlots = length(unique(Data$Plot));
+    x = numeric(); y = numeric();
+    m = params[1]; I = params[2]; alpha = params[3];
+    for(plt in 1:MaxPlots){
+
+        Data2 = Data[Data$Plot==plt,];
+        
+        PredNoPred = &quot;&quot;;
+        if(Data2$Tmt[1]==&quot;Pred&quot;){
+            mhat = m + alpha;
+            if(plt==2){
+                PredNoPred = &quot;Predator&quot;;
+            }
+        }else{
+            mhat = m;
+            if(plt==8){
+                PredNoPred = &quot;No Predator&quot;;
+            }
+
+        }
+        plot(Data2$Time,Data2$N,ylim=c(0,1200),xlab=&quot;Time&quot;,ylab=&quot;Number&quot;,main=PredNoPred,pch=19);
+        Theory = Model(N=Data2,pars=c(mhat,I));
+        #lines(Data3$Time,Theory);
+        Times = unique(Data2$Time);
+        tnum = length(Times) - 1; #subtract 1 becuz no theory prediction at last time point
+        for(t in 1:tnum){
+            y[1] = Data2$N[t];
+            y[2] = Theory[t];
+            x[1] = Times[t];
+            x[2] = Times[t+1];
+            lines(x,y);
+            points(x,y,cex=2.0);
+        }
+    }
+    return(1);
+}
+
+#####################End of Plotter()##########################################
+
+
+
+########## Part 1. Fix up the model function.
+Model&lt;-function(N,pars){
+    m = pars[1]; I = pars[2];
+  Model = numeric();
+  Model[1]=N$N[1]
+  maxt = length(N$Time) - 1;
+  for(t in 1:maxt){
+    TimeDiff = N$Time[t+1]-N$Time[t]; #1.1 This is the difference between one sampling time and the next
+    Model[t+1] = N$N[t]*exp(m*(-TimeDiff))+(I/m)*(1-exp(m*(-TimeDiff)))
+  } #1.2 The model goes here
+    return(Model);
+}
+
+# understanding dataframe and model function
+Data$Time</code></pre>
+<pre><code> [1]   0   0   0   0   0   0   0   0   0   0   0   0 178 178 178 178 178 178 178
+[20] 178 178 178 178 178 280 280 280 280 280 280 280 280 280 280 280 280 338 338
+[39] 338 338 338 338 338 338 338 338 338 338</code></pre>
+<pre class="r"><code>Data$Plot</code></pre>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12  1  2  3  4  5  6  7  8  9 10 11 12  1
+[26]  2  3  4  5  6  7  8  9 10 11 12  1  2  3  4  5  6  7  8  9 10 11 12</code></pre>
+<pre class="r"><code>Data$Tmt</code></pre>
+<pre><code> [1] &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;NoPred&quot; &quot;NoPred&quot;
+ [9] &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;  
+[17] &quot;Pred&quot;   &quot;Pred&quot;   &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot;
+[25] &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;NoPred&quot; &quot;NoPred&quot;
+[33] &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;   &quot;Pred&quot;  
+[41] &quot;Pred&quot;   &quot;Pred&quot;   &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot; &quot;NoPred&quot;</code></pre>
+<pre class="r"><code>Data2 = Data[Data$Plot==2,]
+N = Data2
+pars=c(1e-4,1.3)
+Model(N=Data2,pars)</code></pre>
+<pre><code>[1] 612.0000 830.5555 772.3602 644.8680</code></pre>
+<pre class="r"><code># understanding model function step by step
+# m = pars[1]; I = pars[2];
+# Model = numeric();
+# Model[1]=N$N[1]
+# maxt = length(N$Time) - 1;
+# for(t in 1:maxt){
+#   TimeDiff = N$Time[t+1]-N$Time[t]; #1.1 This is the difference between one sampling time and the next
+#   Model[t+1] = N$N[t]*exp(m*(-TimeDiff))+(I/m)*(1-exp(m*(-TimeDiff)))
+# } #1.2 The model goes here
+# Model
+
+
+########## Task 2. Fix up the code for the likelihood function without predation.
+LHoodNoPred&lt;-function(pars){
+
+    MaxPlots = length(unique(Data$Plot));
+    SSE = 0.0; 
+    for(plt in 1:MaxPlots){
+
+        Data2 = Data[Data$Plot==plt,];
+        Theory = Model(N=Data2,pars=pars);
+        Data3 = Data2[2:nrow(Data2),];
+        SSE = sum((Theory[2:4]-Data3$N)^2);  #2.1 Here you update the sum of squared errors between the data and the model
+    }
+    return(SSE);
+}
+
+
+############## Task 3. Fix up the code for the likelihood function with predation 
+LHoodPred&lt;-function(params){
+
+    MaxPlots = length(unique(Data$Plot));
+    SSE = 0.0; 
+    m = params[1]; I = params[2]; alpha = params[3];
+    for(plt in 1:MaxPlots){
+
+        Data2 = Data[Data$Plot==plt,];
+        if(Data2$Tmt[1]==&quot;Pred&quot;){
+            mhat = m+alpha; #3.1 This is the death rate in the predation plots, which includes alpha
+        }else{
+            mhat = m; #3.2 This is the death rate in the predator-exclusion plots, which does not include alpha
+        }
+        pars = c(mhat,I); #Model parameters, to pass to the Model() function
+        Theory = Model(N=Data2,pars=pars); #3.3 Calculate the model prediction here
+        Data3 = Data2[2:nrow(Data2),];
+        SSE = sum((Theory[2:4]-Data3$N)^2); #3.4 Update the sum of squared errors
+    }
+    return(SSE);
+}
+
+################# Task 4. Write an AIC function
+AICCalc&lt;-function(n,K,LHood){
+    
+    return(n*log(LHood/n)+2*K*(n/(n-K-1))); #4.1 Type in the AIC equation here
+
+}
+
+################# Task 5.  Using optim() and finishing the calculation
+#Now we calculate the AICc, which is n*log(SSE/n) = 2*K*n/(n-K-1)
+#First we calculate n, then we calculate the likelihoods, and we use the 2 to calc. the AICc
+#The initial population sizes don&#39;t count as samples, so n is the number of samples minus the inits
+InitPops = length(Data$Time[Data$Time==0]);
+n = nrow(Data) - InitPops; 
+
+#Calculate the sum of squares for the no-predation model
+Output = optim(par=c(1e-4,1.3),fn=LHoodNoPred);
+#Calculate the AIC for the no-predation model
+K1 = length(Output$par);
+AIC1 = AICCalc(n=n,K=K1,LHood=Output$value) #AICCalc() is the function that calculates the AIC
+
+#Calculate the sum of squares for the predation model
+Output2 = optim(par=c(1e-4,1.3,1e-4),fn=LHoodPred); #5.1 Use the calculation for the no-predation model as a template here
+#Calculate the AIC for the predation model
+K2 = length(Output2$par);
+AIC2 = AICCalc(n=n,K=K2,LHood=Output2$value); #5.2 Again use the calculation for the no-predation model as a template here
+
+
+#Print out the AIC scores for each model, along with the AIC difference
+cat(&quot;AIC1:&quot;,AIC1,&quot; AIC2:&quot;,AIC2,&quot; Delta AIC:&quot;,AIC1-AIC2,&quot;\n&quot;);</code></pre>
+<pre><code>AIC1: 109.3313  AIC2: 111.7176  Delta AIC: -2.38635 </code></pre>
+<pre class="r"><code>#plot the data and the model prediction
+par(mfrow=c(2,3));
+par(ask=1);
+Plotter(params=Output2$par);</code></pre>
+<p><img src="figure/Homework7.Rmd/unnamed-chunk-1-1.png" width="864" style="display: block; margin: auto;" /><img src="figure/Homework7.Rmd/unnamed-chunk-1-2.png" width="864" style="display: block; margin: auto;" /></p>
+<pre><code>[1] 1</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.3 (2020-10-10)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19042)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.6.2
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5      whisker_0.4     knitr_1.31      magrittr_2.0.1 
+ [5] R6_2.5.0        rlang_0.4.10    highr_0.8       stringr_1.4.0  
+ [9] tools_4.0.3     xfun_0.20       git2r_0.27.1    htmltools_0.5.0
+[13] ellipsis_0.3.1  yaml_2.2.1      digest_0.6.27   rprojroot_2.0.2
+[17] tibble_3.0.4    lifecycle_1.0.0 crayon_1.4.1    later_1.1.0.1  
+[21] vctrs_0.3.6     promises_1.1.1  fs_1.5.0        glue_1.4.2     
+[25] evaluate_0.14   rmarkdown_2.6   stringi_1.5.3   compiler_4.0.3 
+[29] pillar_1.4.7    httpuv_1.5.4    pkgconfig_2.0.3</code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
