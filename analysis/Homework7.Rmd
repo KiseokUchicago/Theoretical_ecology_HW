@@ -89,19 +89,30 @@ Model<-function(N,pars){
   maxt = length(N$Time) - 1;
   for(t in 1:maxt){
   	TimeDiff = N$Time[t+1]-N$Time[t]; #1.1 This is the difference between one sampling time and the next
-  	Model[t+1] = N$N[t]*exp(m*(-TimeDiff))+(I/m)*(1-exp(m*(-TimeDiff)))
+  	Model[t+1] = Model[t]*exp(m*(-TimeDiff))+(I/m)*(1-exp(m*(-TimeDiff)))
   } #1.2 The model goes here
 	return(Model);
 }
 
 # understanding dataframe and model function
-Data$Time
-Data$Plot
-Data$Tmt
-Data2 = Data[Data$Plot==2,]
-N = Data2
-pars=c(1e-4,1.3)
-Model(N=Data2,pars)
+# Data$Time
+# Data$Plot
+# Data$Tmt
+# Data2 = Data[Data$Plot==2,]
+# N = Data2
+# pars=c(1e-4,1.3)
+# Model(N=Data2,pars)
+# 
+# m = pars[1]; I = pars[2]
+# Model = numeric()
+# Model[1]=N$N[1]
+# t <- 1
+# TimeDiff = N$Time[t+1]-N$Time[t]
+# Model[t+1] = N$N[t]*exp(m*(-TimeDiff))+(I/m)*(1-exp(m*(-TimeDiff)))
+# Model[t+1] = Model[t]*exp(m*(-TimeDiff))+(I/m)*(1-exp(m*(-TimeDiff)))
+# Model[2]
+# t <- 2
+# Model[3]
 
 # understanding model function step by step
 # m = pars[1]; I = pars[2];
@@ -125,11 +136,10 @@ LHoodNoPred<-function(pars){
 		Data2 = Data[Data$Plot==plt,];
 		Theory = Model(N=Data2,pars=pars);
 		Data3 = Data2[2:nrow(Data2),];
-		SSE = sum((Theory[2:4]-Data3$N)^2);  #2.1 Here you update the sum of squared errors between the data and the model
+		SSE = sum((Theory[2:4]-Data3$N)^2) + SSE;  #2.1 Here you update the sum of squared errors between the data and the model
 	}
 	return(SSE);
 }
-
 
 ############## Task 3. Fix up the code for the likelihood function with predation 
 LHoodPred<-function(params){
@@ -148,7 +158,7 @@ LHoodPred<-function(params){
 		pars = c(mhat,I); #Model parameters, to pass to the Model() function
 		Theory = Model(N=Data2,pars=pars); #3.3 Calculate the model prediction here
 		Data3 = Data2[2:nrow(Data2),];
-		SSE = sum((Theory[2:4]-Data3$N)^2); #3.4 Update the sum of squared errors
+		SSE = sum((Theory[2:4]-Data3$N)^2)+SSE; #3.4 Update the sum of squared errors
 	}
 	return(SSE);
 }
@@ -174,7 +184,7 @@ K1 = length(Output$par);
 AIC1 = AICCalc(n=n,K=K1,LHood=Output$value) #AICCalc() is the function that calculates the AIC
 
 #Calculate the sum of squares for the predation model
-Output2 = optim(par=c(1e-4,1.3,1e-4),fn=LHoodPred); #5.1 Use the calculation for the no-predation model as a template here
+Output2 = optim(par=c(1e-4,1.3,1.3),fn=LHoodPred); #5.1 Use the calculation for the no-predation model as a template here
 #Calculate the AIC for the predation model
 K2 = length(Output2$par);
 AIC2 = AICCalc(n=n,K=K2,LHood=Output2$value); #5.2 Again use the calculation for the no-predation model as a template here
@@ -188,6 +198,14 @@ par(mfrow=c(2,3));
 par(ask=1);
 Plotter(params=Output2$par);
 
-
 ```
+
+Interpretation of the AIC score:
+
+AIC1: 351.5261  AIC2: 343.8302  Delta AIC: 7.695922 
+Lower AIC means better fit. Therefore, predation model better fits the data compared to the no-predation model.
+
+
+
+
 
