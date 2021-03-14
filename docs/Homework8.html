@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="KiseokUChicago" />
+
+<meta name="date" content="2021-03-11" />
+
+<title>Homework8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Theoretical_ecology</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW">
+    <span class="fas fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Homework8</h1>
+<h4 class="author">KiseokUChicago</h4>
+<h4 class="date">2021-03-11</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-03-13
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>Theoretical_ecology_HW/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210122code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210122)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210122code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210122)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree93ac74e11724aee80b955dd404238aa35dcfeb2dtargetblank93ac74ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/93ac74e11724aee80b955dd404238aa35dcfeb2d" target="_blank">93ac74e</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree93ac74e11724aee80b955dd404238aa35dcfeb2dtargetblank93ac74ea" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/93ac74e11724aee80b955dd404238aa35dcfeb2d" target="_blank">93ac74e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  data/GregsVer4.csv
+    Untracked:  data/VirusData6.csv
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/Homework8.Rmd</code>) and HTML (<code>docs/Homework8.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/blob/93ac74e11724aee80b955dd404238aa35dcfeb2d/analysis/Homework8.Rmd" target="_blank">93ac74e</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-03-13
+</td>
+<td>
+HW8
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="homework8-bayesian" class="section level3">
+<h3>Homework8 (Bayesian)</h3>
+</div>
+<div id="coding-assignment-for-ecev-42900" class="section level2">
+<h2>Coding assignment for ECEV 42900</h2>
+<p>Professor: <strong>Sarah Cobey</strong>, <strong>Greg Dwyer</strong><br />
+Student: <strong>Kiseok Lee</strong></p>
+<pre class="r"><code>#A function for plotting error bars
+ErrBars&lt;-function(x,y,SE){
+    NumPts = length(x);
+    for(Pts in 1:NumPts){
+        xvals = c(x[Pts],x[Pts]);
+        Upper = y[Pts]+SE[Pts];
+        Lower = y[Pts]-SE[Pts];
+        yvals = c(Upper,Lower);
+        lines(xvals,yvals);
+    }
+}
+
+
+#Reading in the data
+Data = read.csv(&quot;data/VirusData6.csv&quot;);
+
+######### Downhill Simplex to Generate Proposal Means
+
+# Examining the data
+colnames(Data)</code></pre>
+<pre><code>[1] &quot;Density&quot;    &quot;Infected&quot;   &quot;Total&quot;      &quot;Uninfected&quot;</code></pre>
+<pre class="r"><code>head(Data)</code></pre>
+<pre><code>  Density Infected Total Uninfected
+1    0.25        6    25         19
+2    0.25        4    25         21
+3    0.25       12    24         12
+4    0.25        6    23         17
+5    0.25        4    23         19
+6    0.25        6    24         18</code></pre>
+<pre class="r"><code># combination function
+comb = function(n, x) {
+  factorial(n) / factorial(n-x) / factorial(x)
+}
+
+#The log-likelihood function with heterogeneity
+logLHoodHtg&lt;-function(par){
+
+    betaBar = par[1];
+    V  = par[2];
+
+    timeT = 7.0;
+    qoft = (1+ betaBar*V*(Data$Density)*timeT)^(-1/V) ; #1. Type in the model that describes the probability of surviving to time T
+    n0 = Data$Total; #n0 is the total number of insects in each treatment
+    N = Data$Uninfected; #N is the number uninfected
+    logLHood = log(comb(n0,N))+N*log(qoft)+(n0-N)*log(1-qoft); #2. Type in the log-likelihood function for the pure death model
+    return(-sum(logLHood));  #We are looking for the negative sum of the log likelihoods across experimental units, because optim is a minimizer
+
+}
+
+# test the function
+par=c(0.1,0.1)
+logLHoodHtg(par) # success</code></pre>
+<pre><code>[1] 243.9101</code></pre>
+<pre class="r"><code>#Finding the best-fit parameter values
+HtgOptOut = optim(par=c(0.1,0.1),fn=logLHoodHtg);
+BestBeta = HtgOptOut$par[1]; 
+BestVee = HtgOptOut$par[2];
+
+Tmts = unique(Data$Density); #Figure out what the treatments were
+AvgTransmn = tapply(-log(Data$Uninfected/Data$Total),Data$Density,mean); #Use tapply to calculate the mean transmission rateat each treatment
+SDTransmn = tapply(-log(Data$Uninfected/Data$Total),Data$Density,sd); #Use tapply to calculate the standard deviation of the transmission rate
+
+par(mfrow=c(1,1));
+par(mai=c(1,1,1,1));
+plot(Tmts,AvgTransmn,ylim=c(0,2),xlim=c(0,max(Tmts)),xlab=&quot;Cadavers per branch&quot;,ylab=&quot;Transmission&quot;); #Plot the model prediction against the data
+
+
+NumReps = nrow(Data)/length(Tmts); #Count how many replicates there were, for the standard-error calculation
+ErrBars(x=Tmts,y=AvgTransmn,SDTransmn/sqrt(NumReps-1)); #Plot the error bars - standard error is sd/sqrt(n-1)
+
+
+Cadavers = seq(from=0,to=4,by=0.1);
+time = 7;
+BestHtgModel = (1/BestVee)*log(1 + BestBeta*time*BestVee*Cadavers);
+lines(Cadavers,BestHtgModel,col=&quot;RED&quot;,lwd=2.5);
+
+
+
+
+############## MCMC: running the chains #####################
+
+maxitn = 2e5; maxchain = 5;
+LH = c(); MaxPars = 2;
+
+ThinStop = 1000;
+ThinStor = maxitn/ThinStop;
+StorPars = array(dim=c(maxchain,ThinStor,MaxPars));
+
+PropMean = c(); PropSD = c(); Prior = c()
+#2. Fix the proposals.  Do the means on a log scale.
+PropMean[1] = log(BestBeta); 
+PropMean[2] = log(BestVee); 
+PropSD[2] = 2.0;  
+PropSD[1] = 2.0; 
+
+
+Prior[1] = 1000.0;
+Prior[2] = 1000.0;
+ScaleSD = 1.2;
+
+for(chain in 1:maxchain){
+    CurrentPars = c(); #the current values of the parameters
+    NewPars = c(); #the proposed values of the parameters
+    for(i in 1:MaxPars){ #starting values for the parameters
+        CurrentPars[i] = exp(rnorm(1,mean=PropMean[i],sd = ScaleSD*PropSD[i]));
+    }
+    #Calculating the posterior of the initial parameter set
+    OldLH = -1.0*logLHoodHtg(par=CurrentPars); #-1 because logLHoodHtg returns -log lhood, and we want log lhood
+    OldPost = OldLH;
+    for(i2 in 1:MaxPars){
+        OldPost = OldPost + log(dunif(x=(CurrentPars[i2]),max=Prior[i2]));
+    }
+    #parHtg = c(exp(BestBeta),exp(BestVee));
+    #logLHoodHtg(parHtg);
+
+    AcceptCount = 0;
+    itnStor = 1;
+    for(itn in 1:maxitn){
+      
+    
+        if(itn==1){
+            ScaleSD = 1.2;
+        }else{
+            ScaleSD = 1.0;
+        }
+        for(i in 1:MaxPars){
+            # print(paste0(&#39;i&#39;,i))
+            for(i2 in 1:MaxPars){
+                 NewPars[i2] = CurrentPars[i2];
+            }
+            #3.  Propose a new parameter value, and calculate its posterior.
+          # i=1
+          # i=2
+            NewPars[i] = exp(rnorm(1,mean=PropMean[i],sd = ScaleSD*PropSD[i]));
+            NewLH = -1.0*logLHoodHtg(par=NewPars); 
+            NewPost = NewLH;
+            for(i2 in 1:MaxPars){
+                NewPost = NewPost + log(dunif(x=(NewPars[i2]),max=Prior[i2])) ;
+            }
+
+            #Here is the adjustment for the proposal for the current parameter value
+            OldPropAdj = log(dnorm(x=log(CurrentPars[i]),mean=PropMean[i],sd=ScaleSD*PropSD[i]));
+        
+            #4.  Now do the adjustment for the proposal, based on the new parameter value
+            NewPropAdj = log(dnorm(x=log(NewPars[i]),mean=PropMean[i],sd=ScaleSD*PropSD[i]))
+            
+            # print(paste0(&#39;NewPost&#39;,NewPost))
+            # print(paste0(&#39;NewPropAdj&#39;,NewPropAdj))
+            
+            # print(paste0(&#39;OldPost&#39;,OldPost))
+            # print(paste0(&#39;OldPropAdj&#39;,OldPropAdj))
+
+            if(itn&gt;1){
+                #6. Write out the acceptance criterion, and decide whether to accept or not 
+                #6a. First, calculate the acceptance criterion
+                Criterion = exp(NewPost-NewPropAdj-(OldPost-OldPropAdj));
+                # print(paste0(&#39;Criterion &#39;,Criterion))
+
+                #6b. Second, draw a U(0,1) random variate.
+                temp = runif(1, min=0, max=1);
+                # print(paste0(&#39;temp &#39;,temp))
+
+                #6c. If statement for whether or not to accept
+                if(Criterion &gt;= temp){
+                  # print(paste0(&#39;Chain: &#39;,chain,&#39; / itn: &#39;,itn,&quot; / &quot;,Criterion &gt;= temp, &quot; / NewPars: &quot;,NewPars))
+                    AcceptCount = AcceptCount + 1;
+                    OldPost = NewPost;
+                    OldLH = NewLH;
+                    #7. Acceptance means setting current parameters equal to proposed parameters
+                    for(i2 in 1:MaxPars){
+                         CurrentPars[i2] = NewPars[i2]  ;
+                    }#for i2
+                } #if Criterion
+            } #itn&gt;1
+        } #for i in 1:MaxPars
+
+        #We only want to keep some of the iterations
+        if((itn %% ThinStop)==0){
+            cat(&quot;chain:&quot;,chain,&quot;itn:&quot;,itn,&quot;itnStor:&quot;,itnStor);
+            for(i2 in 1:MaxPars){
+                StorPars[chain,itnStor,i2] = CurrentPars[i2];
+                cat(&quot; i2:&quot;,i2,&quot;StorPars:&quot;,StorPars[chain,itnStor,i2]);
+        }
+        itnStor = itnStor + 1;
+        cat(&quot;\n&quot;); #line = readline();
+        
+        } #Thin
+
+                    
+    } #itn
+
+} #chain</code></pre>
+<pre><code>chain: 1 itn: 1000 itnStor: 1 i2: 1 StorPars: 0.1613784 i2: 2 StorPars: 1.791893
+chain: 1 itn: 2000 itnStor: 2 i2: 1 StorPars: 0.1563373 i2: 2 StorPars: 1.720362
+chain: 1 itn: 3000 itnStor: 3 i2: 1 StorPars: 0.1458802 i2: 2 StorPars: 1.764553
+chain: 1 itn: 4000 itnStor: 4 i2: 1 StorPars: 0.1753188 i2: 2 StorPars: 1.908178
+chain: 1 itn: 5000 itnStor: 5 i2: 1 StorPars: 0.2211959 i2: 2 StorPars: 2.521792
+chain: 1 itn: 6000 itnStor: 6 i2: 1 StorPars: 0.1895268 i2: 2 StorPars: 2.027786
+chain: 1 itn: 7000 itnStor: 7 i2: 1 StorPars: 0.1577217 i2: 2 StorPars: 1.7985
+chain: 1 itn: 8000 itnStor: 8 i2: 1 StorPars: 0.1787933 i2: 2 StorPars: 1.87545
+chain: 1 itn: 9000 itnStor: 9 i2: 1 StorPars: 0.1461231 i2: 2 StorPars: 2.004615
+chain: 1 itn: 10000 itnStor: 10 i2: 1 StorPars: 0.217027 i2: 2 StorPars: 2.237727
+chain: 1 itn: 11000 itnStor: 11 i2: 1 StorPars: 0.1742022 i2: 2 StorPars: 1.709325
+chain: 1 itn: 12000 itnStor: 12 i2: 1 StorPars: 0.183843 i2: 2 StorPars: 2.058474
+chain: 1 itn: 13000 itnStor: 13 i2: 1 StorPars: 0.1724124 i2: 2 StorPars: 1.895872
+chain: 1 itn: 14000 itnStor: 14 i2: 1 StorPars: 0.1735698 i2: 2 StorPars: 1.759807
+chain: 1 itn: 15000 itnStor: 15 i2: 1 StorPars: 0.2078936 i2: 2 StorPars: 1.913017
+chain: 1 itn: 16000 itnStor: 16 i2: 1 StorPars: 0.3053184 i2: 2 StorPars: 2.856036
+chain: 1 itn: 17000 itnStor: 17 i2: 1 StorPars: 0.1900379 i2: 2 StorPars: 2.148893
+chain: 1 itn: 18000 itnStor: 18 i2: 1 StorPars: 0.2312768 i2: 2 StorPars: 2.192678
+chain: 1 itn: 19000 itnStor: 19 i2: 1 StorPars: 0.2008709 i2: 2 StorPars: 2.429483
+chain: 1 itn: 20000 itnStor: 20 i2: 1 StorPars: 0.1513921 i2: 2 StorPars: 1.616142
+chain: 1 itn: 21000 itnStor: 21 i2: 1 StorPars: 0.1532151 i2: 2 StorPars: 1.625768
+chain: 1 itn: 22000 itnStor: 22 i2: 1 StorPars: 0.1883056 i2: 2 StorPars: 2.041963
+chain: 1 itn: 23000 itnStor: 23 i2: 1 StorPars: 0.2010252 i2: 2 StorPars: 2.107676
+chain: 1 itn: 24000 itnStor: 24 i2: 1 StorPars: 0.1648217 i2: 2 StorPars: 1.881448
+chain: 1 itn: 25000 itnStor: 25 i2: 1 StorPars: 0.1565892 i2: 2 StorPars: 1.691285
+chain: 1 itn: 26000 itnStor: 26 i2: 1 StorPars: 0.1694812 i2: 2 StorPars: 2.095386
+chain: 1 itn: 27000 itnStor: 27 i2: 1 StorPars: 0.2238864 i2: 2 StorPars: 2.415841
+chain: 1 itn: 28000 itnStor: 28 i2: 1 StorPars: 0.2016668 i2: 2 StorPars: 2.094444
+chain: 1 itn: 29000 itnStor: 29 i2: 1 StorPars: 0.1784175 i2: 2 StorPars: 1.993381
+chain: 1 itn: 30000 itnStor: 30 i2: 1 StorPars: 0.1669828 i2: 2 StorPars: 1.980118
+chain: 1 itn: 31000 itnStor: 31 i2: 1 StorPars: 0.1686301 i2: 2 StorPars: 1.973224
+chain: 1 itn: 32000 itnStor: 32 i2: 1 StorPars: 0.1612726 i2: 2 StorPars: 1.711496
+chain: 1 itn: 33000 itnStor: 33 i2: 1 StorPars: 0.1698896 i2: 2 StorPars: 1.772398
+chain: 1 itn: 34000 itnStor: 34 i2: 1 StorPars: 0.1673215 i2: 2 StorPars: 1.777162
+chain: 1 itn: 35000 itnStor: 35 i2: 1 StorPars: 0.1534435 i2: 2 StorPars: 1.850535
+chain: 1 itn: 36000 itnStor: 36 i2: 1 StorPars: 0.1678168 i2: 2 StorPars: 1.819171
+chain: 1 itn: 37000 itnStor: 37 i2: 1 StorPars: 0.1842661 i2: 2 StorPars: 2.1445
+chain: 1 itn: 38000 itnStor: 38 i2: 1 StorPars: 0.2072161 i2: 2 StorPars: 2.397468
+chain: 1 itn: 39000 itnStor: 39 i2: 1 StorPars: 0.1795295 i2: 2 StorPars: 1.743817
+chain: 1 itn: 40000 itnStor: 40 i2: 1 StorPars: 0.1633808 i2: 2 StorPars: 1.981142
+chain: 1 itn: 41000 itnStor: 41 i2: 1 StorPars: 0.1510223 i2: 2 StorPars: 1.574118
+chain: 1 itn: 42000 itnStor: 42 i2: 1 StorPars: 0.1397455 i2: 2 StorPars: 1.351159
+chain: 1 itn: 43000 itnStor: 43 i2: 1 StorPars: 0.1852194 i2: 2 StorPars: 1.805703
+chain: 1 itn: 44000 itnStor: 44 i2: 1 StorPars: 0.1704276 i2: 2 StorPars: 1.790829
+chain: 1 itn: 45000 itnStor: 45 i2: 1 StorPars: 0.1631738 i2: 2 StorPars: 1.897021
+chain: 1 itn: 46000 itnStor: 46 i2: 1 StorPars: 0.1781361 i2: 2 StorPars: 2.183724
+chain: 1 itn: 47000 itnStor: 47 i2: 1 StorPars: 0.1784398 i2: 2 StorPars: 1.864274
+chain: 1 itn: 48000 itnStor: 48 i2: 1 StorPars: 0.1769675 i2: 2 StorPars: 1.863709
+chain: 1 itn: 49000 itnStor: 49 i2: 1 StorPars: 0.2068515 i2: 2 StorPars: 2.288736
+chain: 1 itn: 50000 itnStor: 50 i2: 1 StorPars: 0.1726889 i2: 2 StorPars: 1.822422
+chain: 1 itn: 51000 itnStor: 51 i2: 1 StorPars: 0.1955162 i2: 2 StorPars: 1.91974
+chain: 1 itn: 52000 itnStor: 52 i2: 1 StorPars: 0.1974541 i2: 2 StorPars: 2.129001
+chain: 1 itn: 53000 itnStor: 53 i2: 1 StorPars: 0.1696213 i2: 2 StorPars: 1.874887
+chain: 1 itn: 54000 itnStor: 54 i2: 1 StorPars: 0.2186396 i2: 2 StorPars: 2.351617
+chain: 1 itn: 55000 itnStor: 55 i2: 1 StorPars: 0.2540386 i2: 2 StorPars: 2.639967
+chain: 1 itn: 56000 itnStor: 56 i2: 1 StorPars: 0.1794133 i2: 2 StorPars: 1.977344
+chain: 1 itn: 57000 itnStor: 57 i2: 1 StorPars: 0.165771 i2: 2 StorPars: 1.870166
+chain: 1 itn: 58000 itnStor: 58 i2: 1 StorPars: 0.1622019 i2: 2 StorPars: 1.789594
+chain: 1 itn: 59000 itnStor: 59 i2: 1 StorPars: 0.2186567 i2: 2 StorPars: 2.412229
+chain: 1 itn: 60000 itnStor: 60 i2: 1 StorPars: 0.1702124 i2: 2 StorPars: 1.757448
+chain: 1 itn: 61000 itnStor: 61 i2: 1 StorPars: 0.1899361 i2: 2 StorPars: 2.082014
+chain: 1 itn: 62000 itnStor: 62 i2: 1 StorPars: 0.2147906 i2: 2 StorPars: 2.033894
+chain: 1 itn: 63000 itnStor: 63 i2: 1 StorPars: 0.1549147 i2: 2 StorPars: 1.690216
+chain: 1 itn: 64000 itnStor: 64 i2: 1 StorPars: 0.2255948 i2: 2 StorPars: 2.333862
+chain: 1 itn: 65000 itnStor: 65 i2: 1 StorPars: 0.1512523 i2: 2 StorPars: 1.765492
+chain: 1 itn: 66000 itnStor: 66 i2: 1 StorPars: 0.1684058 i2: 2 StorPars: 2.127659
+chain: 1 itn: 67000 itnStor: 67 i2: 1 StorPars: 0.1670498 i2: 2 StorPars: 1.990556
+chain: 1 itn: 68000 itnStor: 68 i2: 1 StorPars: 0.1886702 i2: 2 StorPars: 1.963322
+chain: 1 itn: 69000 itnStor: 69 i2: 1 StorPars: 0.1480105 i2: 2 StorPars: 1.47214
+chain: 1 itn: 70000 itnStor: 70 i2: 1 StorPars: 0.207736 i2: 2 StorPars: 2.247926
+chain: 1 itn: 71000 itnStor: 71 i2: 1 StorPars: 0.1985711 i2: 2 StorPars: 2.182305
+chain: 1 itn: 72000 itnStor: 72 i2: 1 StorPars: 0.1731086 i2: 2 StorPars: 1.719479
+chain: 1 itn: 73000 itnStor: 73 i2: 1 StorPars: 0.179759 i2: 2 StorPars: 1.973832
+chain: 1 itn: 74000 itnStor: 74 i2: 1 StorPars: 0.2014287 i2: 2 StorPars: 2.025547
+chain: 1 itn: 75000 itnStor: 75 i2: 1 StorPars: 0.1671125 i2: 2 StorPars: 2.090951
+chain: 1 itn: 76000 itnStor: 76 i2: 1 StorPars: 0.1672285 i2: 2 StorPars: 1.644246
+chain: 1 itn: 77000 itnStor: 77 i2: 1 StorPars: 0.1844794 i2: 2 StorPars: 1.846498
+chain: 1 itn: 78000 itnStor: 78 i2: 1 StorPars: 0.1658132 i2: 2 StorPars: 1.724441
+chain: 1 itn: 79000 itnStor: 79 i2: 1 StorPars: 0.1560402 i2: 2 StorPars: 2.015049
+chain: 1 itn: 80000 itnStor: 80 i2: 1 StorPars: 0.1454693 i2: 2 StorPars: 1.488676
+chain: 1 itn: 81000 itnStor: 81 i2: 1 StorPars: 0.1898908 i2: 2 StorPars: 1.979182
+chain: 1 itn: 82000 itnStor: 82 i2: 1 StorPars: 0.2091639 i2: 2 StorPars: 2.353984
+chain: 1 itn: 83000 itnStor: 83 i2: 1 StorPars: 0.2343543 i2: 2 StorPars: 2.252984
+chain: 1 itn: 84000 itnStor: 84 i2: 1 StorPars: 0.1639434 i2: 2 StorPars: 1.949837
+chain: 1 itn: 85000 itnStor: 85 i2: 1 StorPars: 0.1740059 i2: 2 StorPars: 1.859842
+chain: 1 itn: 86000 itnStor: 86 i2: 1 StorPars: 0.168043 i2: 2 StorPars: 1.84203
+chain: 1 itn: 87000 itnStor: 87 i2: 1 StorPars: 0.1882212 i2: 2 StorPars: 2.167756
+chain: 1 itn: 88000 itnStor: 88 i2: 1 StorPars: 0.1721235 i2: 2 StorPars: 1.987069
+chain: 1 itn: 89000 itnStor: 89 i2: 1 StorPars: 0.1606762 i2: 2 StorPars: 1.730022
+chain: 1 itn: 90000 itnStor: 90 i2: 1 StorPars: 0.2264222 i2: 2 StorPars: 2.155711
+chain: 1 itn: 91000 itnStor: 91 i2: 1 StorPars: 0.1746914 i2: 2 StorPars: 1.944223
+chain: 1 itn: 92000 itnStor: 92 i2: 1 StorPars: 0.1847882 i2: 2 StorPars: 1.851798
+chain: 1 itn: 93000 itnStor: 93 i2: 1 StorPars: 0.1612575 i2: 2 StorPars: 1.557429
+chain: 1 itn: 94000 itnStor: 94 i2: 1 StorPars: 0.2035141 i2: 2 StorPars: 1.825515
+chain: 1 itn: 95000 itnStor: 95 i2: 1 StorPars: 0.2000359 i2: 2 StorPars: 2.044897
+chain: 1 itn: 96000 itnStor: 96 i2: 1 StorPars: 0.1654096 i2: 2 StorPars: 1.718961
+chain: 1 itn: 97000 itnStor: 97 i2: 1 StorPars: 0.186872 i2: 2 StorPars: 1.810825
+chain: 1 itn: 98000 itnStor: 98 i2: 1 StorPars: 0.1505386 i2: 2 StorPars: 1.817823
+chain: 1 itn: 99000 itnStor: 99 i2: 1 StorPars: 0.175806 i2: 2 StorPars: 2.062855
+chain: 1 itn: 100000 itnStor: 100 i2: 1 StorPars: 0.2579112 i2: 2 StorPars: 2.742921
+chain: 1 itn: 101000 itnStor: 101 i2: 1 StorPars: 0.1855799 i2: 2 StorPars: 1.762044
+chain: 1 itn: 102000 itnStor: 102 i2: 1 StorPars: 0.1910165 i2: 2 StorPars: 1.878138
+chain: 1 itn: 103000 itnStor: 103 i2: 1 StorPars: 0.1627445 i2: 2 StorPars: 1.668212
+chain: 1 itn: 104000 itnStor: 104 i2: 1 StorPars: 0.1916306 i2: 2 StorPars: 1.954535
+chain: 1 itn: 105000 itnStor: 105 i2: 1 StorPars: 0.2013722 i2: 2 StorPars: 2.241334
+chain: 1 itn: 106000 itnStor: 106 i2: 1 StorPars: 0.1894377 i2: 2 StorPars: 2.246869
+chain: 1 itn: 107000 itnStor: 107 i2: 1 StorPars: 0.2087893 i2: 2 StorPars: 2.215408
+chain: 1 itn: 108000 itnStor: 108 i2: 1 StorPars: 0.1657863 i2: 2 StorPars: 1.793411
+chain: 1 itn: 109000 itnStor: 109 i2: 1 StorPars: 0.3119641 i2: 2 StorPars: 2.527953
+chain: 1 itn: 110000 itnStor: 110 i2: 1 StorPars: 0.1542405 i2: 2 StorPars: 1.712277
+chain: 1 itn: 111000 itnStor: 111 i2: 1 StorPars: 0.1771766 i2: 2 StorPars: 2.187293
+chain: 1 itn: 112000 itnStor: 112 i2: 1 StorPars: 0.2081311 i2: 2 StorPars: 2.297268
+chain: 1 itn: 113000 itnStor: 113 i2: 1 StorPars: 0.1525942 i2: 2 StorPars: 1.327097
+chain: 1 itn: 114000 itnStor: 114 i2: 1 StorPars: 0.1813136 i2: 2 StorPars: 1.868272
+chain: 1 itn: 115000 itnStor: 115 i2: 1 StorPars: 0.2431406 i2: 2 StorPars: 2.434642
+chain: 1 itn: 116000 itnStor: 116 i2: 1 StorPars: 0.1666986 i2: 2 StorPars: 1.821285
+chain: 1 itn: 117000 itnStor: 117 i2: 1 StorPars: 0.2609272 i2: 2 StorPars: 2.596165
+chain: 1 itn: 118000 itnStor: 118 i2: 1 StorPars: 0.1982125 i2: 2 StorPars: 2.34506
+chain: 1 itn: 119000 itnStor: 119 i2: 1 StorPars: 0.1641815 i2: 2 StorPars: 1.77912
+chain: 1 itn: 120000 itnStor: 120 i2: 1 StorPars: 0.1951914 i2: 2 StorPars: 2.286306
+chain: 1 itn: 121000 itnStor: 121 i2: 1 StorPars: 0.1933411 i2: 2 StorPars: 2.101123
+chain: 1 itn: 122000 itnStor: 122 i2: 1 StorPars: 0.1899055 i2: 2 StorPars: 1.84121
+chain: 1 itn: 123000 itnStor: 123 i2: 1 StorPars: 0.1912705 i2: 2 StorPars: 1.931176
+chain: 1 itn: 124000 itnStor: 124 i2: 1 StorPars: 0.1629363 i2: 2 StorPars: 1.852901
+chain: 1 itn: 125000 itnStor: 125 i2: 1 StorPars: 0.1808806 i2: 2 StorPars: 1.862393
+chain: 1 itn: 126000 itnStor: 126 i2: 1 StorPars: 0.1782077 i2: 2 StorPars: 2.253913
+chain: 1 itn: 127000 itnStor: 127 i2: 1 StorPars: 0.2397233 i2: 2 StorPars: 2.293008
+chain: 1 itn: 128000 itnStor: 128 i2: 1 StorPars: 0.2174526 i2: 2 StorPars: 2.263889
+chain: 1 itn: 129000 itnStor: 129 i2: 1 StorPars: 0.2204824 i2: 2 StorPars: 2.4705
+chain: 1 itn: 130000 itnStor: 130 i2: 1 StorPars: 0.2332164 i2: 2 StorPars: 2.070073
+chain: 1 itn: 131000 itnStor: 131 i2: 1 StorPars: 0.1884472 i2: 2 StorPars: 1.984183
+chain: 1 itn: 132000 itnStor: 132 i2: 1 StorPars: 0.1656211 i2: 2 StorPars: 1.794327
+chain: 1 itn: 133000 itnStor: 133 i2: 1 StorPars: 0.199313 i2: 2 StorPars: 1.995444
+chain: 1 itn: 134000 itnStor: 134 i2: 1 StorPars: 0.203837 i2: 2 StorPars: 2.166035
+chain: 1 itn: 135000 itnStor: 135 i2: 1 StorPars: 0.2642846 i2: 2 StorPars: 2.546063
+chain: 1 itn: 136000 itnStor: 136 i2: 1 StorPars: 0.1809131 i2: 2 StorPars: 1.900527
+chain: 1 itn: 137000 itnStor: 137 i2: 1 StorPars: 0.2132867 i2: 2 StorPars: 1.976663
+chain: 1 itn: 138000 itnStor: 138 i2: 1 StorPars: 0.1704854 i2: 2 StorPars: 2.076045
+chain: 1 itn: 139000 itnStor: 139 i2: 1 StorPars: 0.1979807 i2: 2 StorPars: 2.065898
+chain: 1 itn: 140000 itnStor: 140 i2: 1 StorPars: 0.2368052 i2: 2 StorPars: 2.678479
+chain: 1 itn: 141000 itnStor: 141 i2: 1 StorPars: 0.1911898 i2: 2 StorPars: 2.004503
+chain: 1 itn: 142000 itnStor: 142 i2: 1 StorPars: 0.2005786 i2: 2 StorPars: 2.130687
+chain: 1 itn: 143000 itnStor: 143 i2: 1 StorPars: 0.1468179 i2: 2 StorPars: 1.447353
+chain: 1 itn: 144000 itnStor: 144 i2: 1 StorPars: 0.2209837 i2: 2 StorPars: 2.265898
+chain: 1 itn: 145000 itnStor: 145 i2: 1 StorPars: 0.189721 i2: 2 StorPars: 1.953326
+chain: 1 itn: 146000 itnStor: 146 i2: 1 StorPars: 0.1859842 i2: 2 StorPars: 2.05454
+chain: 1 itn: 147000 itnStor: 147 i2: 1 StorPars: 0.16056 i2: 2 StorPars: 1.52778
+chain: 1 itn: 148000 itnStor: 148 i2: 1 StorPars: 0.1503056 i2: 2 StorPars: 1.48969
+chain: 1 itn: 149000 itnStor: 149 i2: 1 StorPars: 0.2015046 i2: 2 StorPars: 2.16101
+chain: 1 itn: 150000 itnStor: 150 i2: 1 StorPars: 0.2123027 i2: 2 StorPars: 2.282876
+chain: 1 itn: 151000 itnStor: 151 i2: 1 StorPars: 0.1655155 i2: 2 StorPars: 1.832582
+chain: 1 itn: 152000 itnStor: 152 i2: 1 StorPars: 0.1825257 i2: 2 StorPars: 1.918649
+chain: 1 itn: 153000 itnStor: 153 i2: 1 StorPars: 0.1662919 i2: 2 StorPars: 1.893135
+chain: 1 itn: 154000 itnStor: 154 i2: 1 StorPars: 0.2453966 i2: 2 StorPars: 2.799206
+chain: 1 itn: 155000 itnStor: 155 i2: 1 StorPars: 0.2058519 i2: 2 StorPars: 2.109015
+chain: 1 itn: 156000 itnStor: 156 i2: 1 StorPars: 0.2050915 i2: 2 StorPars: 2.08098
+chain: 1 itn: 157000 itnStor: 157 i2: 1 StorPars: 0.2051004 i2: 2 StorPars: 2.29806
+chain: 1 itn: 158000 itnStor: 158 i2: 1 StorPars: 0.2035845 i2: 2 StorPars: 1.977285
+chain: 1 itn: 159000 itnStor: 159 i2: 1 StorPars: 0.146962 i2: 2 StorPars: 1.670211
+chain: 1 itn: 160000 itnStor: 160 i2: 1 StorPars: 0.2240426 i2: 2 StorPars: 2.362293
+chain: 1 itn: 161000 itnStor: 161 i2: 1 StorPars: 0.1894185 i2: 2 StorPars: 2.130717
+chain: 1 itn: 162000 itnStor: 162 i2: 1 StorPars: 0.1483548 i2: 2 StorPars: 1.599707
+chain: 1 itn: 163000 itnStor: 163 i2: 1 StorPars: 0.1663586 i2: 2 StorPars: 1.879021
+chain: 1 itn: 164000 itnStor: 164 i2: 1 StorPars: 0.1677245 i2: 2 StorPars: 1.967541
+chain: 1 itn: 165000 itnStor: 165 i2: 1 StorPars: 0.2136234 i2: 2 StorPars: 2.226006
+chain: 1 itn: 166000 itnStor: 166 i2: 1 StorPars: 0.1889601 i2: 2 StorPars: 2.04521
+chain: 1 itn: 167000 itnStor: 167 i2: 1 StorPars: 0.2051587 i2: 2 StorPars: 2.06309
+chain: 1 itn: 168000 itnStor: 168 i2: 1 StorPars: 0.1378058 i2: 2 StorPars: 1.421246
+chain: 1 itn: 169000 itnStor: 169 i2: 1 StorPars: 0.1641159 i2: 2 StorPars: 1.796972
+chain: 1 itn: 170000 itnStor: 170 i2: 1 StorPars: 0.1968824 i2: 2 StorPars: 1.923476
+chain: 1 itn: 171000 itnStor: 171 i2: 1 StorPars: 0.2200403 i2: 2 StorPars: 2.463326
+chain: 1 itn: 172000 itnStor: 172 i2: 1 StorPars: 0.1277067 i2: 2 StorPars: 1.310442
+chain: 1 itn: 173000 itnStor: 173 i2: 1 StorPars: 0.1844886 i2: 2 StorPars: 1.920106
+chain: 1 itn: 174000 itnStor: 174 i2: 1 StorPars: 0.193275 i2: 2 StorPars: 2.247439
+chain: 1 itn: 175000 itnStor: 175 i2: 1 StorPars: 0.1585273 i2: 2 StorPars: 1.954579
+chain: 1 itn: 176000 itnStor: 176 i2: 1 StorPars: 0.1901429 i2: 2 StorPars: 2.246804
+chain: 1 itn: 177000 itnStor: 177 i2: 1 StorPars: 0.2085171 i2: 2 StorPars: 2.030993
+chain: 1 itn: 178000 itnStor: 178 i2: 1 StorPars: 0.1840193 i2: 2 StorPars: 1.862007
+chain: 1 itn: 179000 itnStor: 179 i2: 1 StorPars: 0.208377 i2: 2 StorPars: 2.074385
+chain: 1 itn: 180000 itnStor: 180 i2: 1 StorPars: 0.1722758 i2: 2 StorPars: 2.048036
+chain: 1 itn: 181000 itnStor: 181 i2: 1 StorPars: 0.1254059 i2: 2 StorPars: 1.558264
+chain: 1 itn: 182000 itnStor: 182 i2: 1 StorPars: 0.1802714 i2: 2 StorPars: 2.050605
+chain: 1 itn: 183000 itnStor: 183 i2: 1 StorPars: 0.2274453 i2: 2 StorPars: 2.154665
+chain: 1 itn: 184000 itnStor: 184 i2: 1 StorPars: 0.1790502 i2: 2 StorPars: 2.19396
+chain: 1 itn: 185000 itnStor: 185 i2: 1 StorPars: 0.2238014 i2: 2 StorPars: 2.226792
+chain: 1 itn: 186000 itnStor: 186 i2: 1 StorPars: 0.2017249 i2: 2 StorPars: 2.248597
+chain: 1 itn: 187000 itnStor: 187 i2: 1 StorPars: 0.1801701 i2: 2 StorPars: 1.668355
+chain: 1 itn: 188000 itnStor: 188 i2: 1 StorPars: 0.2187437 i2: 2 StorPars: 2.401706
+chain: 1 itn: 189000 itnStor: 189 i2: 1 StorPars: 0.1767455 i2: 2 StorPars: 1.926272
+chain: 1 itn: 190000 itnStor: 190 i2: 1 StorPars: 0.2149159 i2: 2 StorPars: 2.442637
+chain: 1 itn: 191000 itnStor: 191 i2: 1 StorPars: 0.2082578 i2: 2 StorPars: 2.164301
+chain: 1 itn: 192000 itnStor: 192 i2: 1 StorPars: 0.205526 i2: 2 StorPars: 2.114581
+chain: 1 itn: 193000 itnStor: 193 i2: 1 StorPars: 0.2008923 i2: 2 StorPars: 2.074916
+chain: 1 itn: 194000 itnStor: 194 i2: 1 StorPars: 0.2026335 i2: 2 StorPars: 2.142209
+chain: 1 itn: 195000 itnStor: 195 i2: 1 StorPars: 0.2004852 i2: 2 StorPars: 2.08097
+chain: 1 itn: 196000 itnStor: 196 i2: 1 StorPars: 0.1820136 i2: 2 StorPars: 2.093095
+chain: 1 itn: 197000 itnStor: 197 i2: 1 StorPars: 0.1277588 i2: 2 StorPars: 0.9762408
+chain: 1 itn: 198000 itnStor: 198 i2: 1 StorPars: 0.1553296 i2: 2 StorPars: 1.97521
+chain: 1 itn: 199000 itnStor: 199 i2: 1 StorPars: 0.1816419 i2: 2 StorPars: 2.104395
+chain: 1 itn: 200000 itnStor: 200 i2: 1 StorPars: 0.1618722 i2: 2 StorPars: 1.706064
+chain: 2 itn: 1000 itnStor: 1 i2: 1 StorPars: 0.1620335 i2: 2 StorPars: 1.651556
+chain: 2 itn: 2000 itnStor: 2 i2: 1 StorPars: 0.2050136 i2: 2 StorPars: 2.349844
+chain: 2 itn: 3000 itnStor: 3 i2: 1 StorPars: 0.1571476 i2: 2 StorPars: 1.791325
+chain: 2 itn: 4000 itnStor: 4 i2: 1 StorPars: 0.2304673 i2: 2 StorPars: 2.36714
+chain: 2 itn: 5000 itnStor: 5 i2: 1 StorPars: 0.172384 i2: 2 StorPars: 1.932819
+chain: 2 itn: 6000 itnStor: 6 i2: 1 StorPars: 0.1705528 i2: 2 StorPars: 1.68389
+chain: 2 itn: 7000 itnStor: 7 i2: 1 StorPars: 0.1847224 i2: 2 StorPars: 2.138389
+chain: 2 itn: 8000 itnStor: 8 i2: 1 StorPars: 0.1778049 i2: 2 StorPars: 1.620222
+chain: 2 itn: 9000 itnStor: 9 i2: 1 StorPars: 0.1769558 i2: 2 StorPars: 1.892337
+chain: 2 itn: 10000 itnStor: 10 i2: 1 StorPars: 0.2223911 i2: 2 StorPars: 2.172409
+chain: 2 itn: 11000 itnStor: 11 i2: 1 StorPars: 0.2037251 i2: 2 StorPars: 1.986775
+chain: 2 itn: 12000 itnStor: 12 i2: 1 StorPars: 0.2181843 i2: 2 StorPars: 2.305114
+chain: 2 itn: 13000 itnStor: 13 i2: 1 StorPars: 0.1679003 i2: 2 StorPars: 1.750231
+chain: 2 itn: 14000 itnStor: 14 i2: 1 StorPars: 0.1372098 i2: 2 StorPars: 1.347868
+chain: 2 itn: 15000 itnStor: 15 i2: 1 StorPars: 0.1628148 i2: 2 StorPars: 1.400681
+chain: 2 itn: 16000 itnStor: 16 i2: 1 StorPars: 0.2205148 i2: 2 StorPars: 2.114192
+chain: 2 itn: 17000 itnStor: 17 i2: 1 StorPars: 0.2164703 i2: 2 StorPars: 2.199772
+chain: 2 itn: 18000 itnStor: 18 i2: 1 StorPars: 0.1983821 i2: 2 StorPars: 1.708576
+chain: 2 itn: 19000 itnStor: 19 i2: 1 StorPars: 0.2173097 i2: 2 StorPars: 2.349021
+chain: 2 itn: 20000 itnStor: 20 i2: 1 StorPars: 0.2480696 i2: 2 StorPars: 2.674174
+chain: 2 itn: 21000 itnStor: 21 i2: 1 StorPars: 0.1557844 i2: 2 StorPars: 1.493469
+chain: 2 itn: 22000 itnStor: 22 i2: 1 StorPars: 0.172633 i2: 2 StorPars: 2.052043
+chain: 2 itn: 23000 itnStor: 23 i2: 1 StorPars: 0.1740565 i2: 2 StorPars: 1.819563
+chain: 2 itn: 24000 itnStor: 24 i2: 1 StorPars: 0.1879466 i2: 2 StorPars: 2.129221
+chain: 2 itn: 25000 itnStor: 25 i2: 1 StorPars: 0.2181012 i2: 2 StorPars: 2.196132
+chain: 2 itn: 26000 itnStor: 26 i2: 1 StorPars: 0.2106375 i2: 2 StorPars: 1.899891
+chain: 2 itn: 27000 itnStor: 27 i2: 1 StorPars: 0.1906654 i2: 2 StorPars: 1.783645
+chain: 2 itn: 28000 itnStor: 28 i2: 1 StorPars: 0.181798 i2: 2 StorPars: 1.969763
+chain: 2 itn: 29000 itnStor: 29 i2: 1 StorPars: 0.1741232 i2: 2 StorPars: 1.907942
+chain: 2 itn: 30000 itnStor: 30 i2: 1 StorPars: 0.1354005 i2: 2 StorPars: 1.654149
+chain: 2 itn: 31000 itnStor: 31 i2: 1 StorPars: 0.1352526 i2: 2 StorPars: 1.617134
+chain: 2 itn: 32000 itnStor: 32 i2: 1 StorPars: 0.194284 i2: 2 StorPars: 2.137164
+chain: 2 itn: 33000 itnStor: 33 i2: 1 StorPars: 0.1669645 i2: 2 StorPars: 1.643412
+chain: 2 itn: 34000 itnStor: 34 i2: 1 StorPars: 0.2010349 i2: 2 StorPars: 2.099407
+chain: 2 itn: 35000 itnStor: 35 i2: 1 StorPars: 0.1559393 i2: 2 StorPars: 1.627096
+chain: 2 itn: 36000 itnStor: 36 i2: 1 StorPars: 0.2080226 i2: 2 StorPars: 2.138362
+chain: 2 itn: 37000 itnStor: 37 i2: 1 StorPars: 0.1964945 i2: 2 StorPars: 1.716606
+chain: 2 itn: 38000 itnStor: 38 i2: 1 StorPars: 0.2113723 i2: 2 StorPars: 2.325077
+chain: 2 itn: 39000 itnStor: 39 i2: 1 StorPars: 0.2053841 i2: 2 StorPars: 2.269313
+chain: 2 itn: 40000 itnStor: 40 i2: 1 StorPars: 0.1928868 i2: 2 StorPars: 1.925233
+chain: 2 itn: 41000 itnStor: 41 i2: 1 StorPars: 0.2314472 i2: 2 StorPars: 2.463936
+chain: 2 itn: 42000 itnStor: 42 i2: 1 StorPars: 0.2273112 i2: 2 StorPars: 2.515575
+chain: 2 itn: 43000 itnStor: 43 i2: 1 StorPars: 0.2303347 i2: 2 StorPars: 2.450423
+chain: 2 itn: 44000 itnStor: 44 i2: 1 StorPars: 0.1591358 i2: 2 StorPars: 1.63597
+chain: 2 itn: 45000 itnStor: 45 i2: 1 StorPars: 0.1624814 i2: 2 StorPars: 1.780774
+chain: 2 itn: 46000 itnStor: 46 i2: 1 StorPars: 0.1610201 i2: 2 StorPars: 1.804349
+chain: 2 itn: 47000 itnStor: 47 i2: 1 StorPars: 0.1907195 i2: 2 StorPars: 2.307688
+chain: 2 itn: 48000 itnStor: 48 i2: 1 StorPars: 0.241675 i2: 2 StorPars: 2.410906
+chain: 2 itn: 49000 itnStor: 49 i2: 1 StorPars: 0.1771847 i2: 2 StorPars: 1.746718
+chain: 2 itn: 50000 itnStor: 50 i2: 1 StorPars: 0.2100107 i2: 2 StorPars: 2.195364
+chain: 2 itn: 51000 itnStor: 51 i2: 1 StorPars: 0.2450934 i2: 2 StorPars: 2.51397
+chain: 2 itn: 52000 itnStor: 52 i2: 1 StorPars: 0.2254043 i2: 2 StorPars: 2.178343
+chain: 2 itn: 53000 itnStor: 53 i2: 1 StorPars: 0.171165 i2: 2 StorPars: 1.699809
+chain: 2 itn: 54000 itnStor: 54 i2: 1 StorPars: 0.1492926 i2: 2 StorPars: 1.569131
+chain: 2 itn: 55000 itnStor: 55 i2: 1 StorPars: 0.2133274 i2: 2 StorPars: 2.240138
+chain: 2 itn: 56000 itnStor: 56 i2: 1 StorPars: 0.2048549 i2: 2 StorPars: 2.279765
+chain: 2 itn: 57000 itnStor: 57 i2: 1 StorPars: 0.2470117 i2: 2 StorPars: 2.820683
+chain: 2 itn: 58000 itnStor: 58 i2: 1 StorPars: 0.1958946 i2: 2 StorPars: 2.094883
+chain: 2 itn: 59000 itnStor: 59 i2: 1 StorPars: 0.1605838 i2: 2 StorPars: 1.619308
+chain: 2 itn: 60000 itnStor: 60 i2: 1 StorPars: 0.1977864 i2: 2 StorPars: 1.804684
+chain: 2 itn: 61000 itnStor: 61 i2: 1 StorPars: 0.2095581 i2: 2 StorPars: 2.337067
+chain: 2 itn: 62000 itnStor: 62 i2: 1 StorPars: 0.1894875 i2: 2 StorPars: 1.675348
+chain: 2 itn: 63000 itnStor: 63 i2: 1 StorPars: 0.2404414 i2: 2 StorPars: 2.141578
+chain: 2 itn: 64000 itnStor: 64 i2: 1 StorPars: 0.2131508 i2: 2 StorPars: 2.38749
+chain: 2 itn: 65000 itnStor: 65 i2: 1 StorPars: 0.1810189 i2: 2 StorPars: 1.878502
+chain: 2 itn: 66000 itnStor: 66 i2: 1 StorPars: 0.1918085 i2: 2 StorPars: 2.003137
+chain: 2 itn: 67000 itnStor: 67 i2: 1 StorPars: 0.1446047 i2: 2 StorPars: 1.478456
+chain: 2 itn: 68000 itnStor: 68 i2: 1 StorPars: 0.1818678 i2: 2 StorPars: 1.621948
+chain: 2 itn: 69000 itnStor: 69 i2: 1 StorPars: 0.2089312 i2: 2 StorPars: 2.230375
+chain: 2 itn: 70000 itnStor: 70 i2: 1 StorPars: 0.1841076 i2: 2 StorPars: 2.055318
+chain: 2 itn: 71000 itnStor: 71 i2: 1 StorPars: 0.2347015 i2: 2 StorPars: 2.301004
+chain: 2 itn: 72000 itnStor: 72 i2: 1 StorPars: 0.1741307 i2: 2 StorPars: 1.980486
+chain: 2 itn: 73000 itnStor: 73 i2: 1 StorPars: 0.1360657 i2: 2 StorPars: 1.529164
+chain: 2 itn: 74000 itnStor: 74 i2: 1 StorPars: 0.2080072 i2: 2 StorPars: 2.292632
+chain: 2 itn: 75000 itnStor: 75 i2: 1 StorPars: 0.2082328 i2: 2 StorPars: 2.116361
+chain: 2 itn: 76000 itnStor: 76 i2: 1 StorPars: 0.1431826 i2: 2 StorPars: 1.689784
+chain: 2 itn: 77000 itnStor: 77 i2: 1 StorPars: 0.2786234 i2: 2 StorPars: 2.755242
+chain: 2 itn: 78000 itnStor: 78 i2: 1 StorPars: 0.1881545 i2: 2 StorPars: 2.008687
+chain: 2 itn: 79000 itnStor: 79 i2: 1 StorPars: 0.1783384 i2: 2 StorPars: 1.863916
+chain: 2 itn: 80000 itnStor: 80 i2: 1 StorPars: 0.1450278 i2: 2 StorPars: 1.72534
+chain: 2 itn: 81000 itnStor: 81 i2: 1 StorPars: 0.2126056 i2: 2 StorPars: 2.113382
+chain: 2 itn: 82000 itnStor: 82 i2: 1 StorPars: 0.2411119 i2: 2 StorPars: 2.62403
+chain: 2 itn: 83000 itnStor: 83 i2: 1 StorPars: 0.1661931 i2: 2 StorPars: 1.672855
+chain: 2 itn: 84000 itnStor: 84 i2: 1 StorPars: 0.1474492 i2: 2 StorPars: 1.690227
+chain: 2 itn: 85000 itnStor: 85 i2: 1 StorPars: 0.1946536 i2: 2 StorPars: 2.230438
+chain: 2 itn: 86000 itnStor: 86 i2: 1 StorPars: 0.172967 i2: 2 StorPars: 1.722088
+chain: 2 itn: 87000 itnStor: 87 i2: 1 StorPars: 0.1759563 i2: 2 StorPars: 2.151446
+chain: 2 itn: 88000 itnStor: 88 i2: 1 StorPars: 0.1737828 i2: 2 StorPars: 1.744433
+chain: 2 itn: 89000 itnStor: 89 i2: 1 StorPars: 0.1798844 i2: 2 StorPars: 2.007751
+chain: 2 itn: 90000 itnStor: 90 i2: 1 StorPars: 0.1906811 i2: 2 StorPars: 2.324999
+chain: 2 itn: 91000 itnStor: 91 i2: 1 StorPars: 0.1901798 i2: 2 StorPars: 2.236701
+chain: 2 itn: 92000 itnStor: 92 i2: 1 StorPars: 0.2090783 i2: 2 StorPars: 2.341593
+chain: 2 itn: 93000 itnStor: 93 i2: 1 StorPars: 0.1587906 i2: 2 StorPars: 1.439469
+chain: 2 itn: 94000 itnStor: 94 i2: 1 StorPars: 0.1652929 i2: 2 StorPars: 1.492747
+chain: 2 itn: 95000 itnStor: 95 i2: 1 StorPars: 0.2211189 i2: 2 StorPars: 2.258452
+chain: 2 itn: 96000 itnStor: 96 i2: 1 StorPars: 0.1897617 i2: 2 StorPars: 2.00589
+chain: 2 itn: 97000 itnStor: 97 i2: 1 StorPars: 0.2861992 i2: 2 StorPars: 2.660745
+chain: 2 itn: 98000 itnStor: 98 i2: 1 StorPars: 0.24904 i2: 2 StorPars: 2.49074
+chain: 2 itn: 99000 itnStor: 99 i2: 1 StorPars: 0.1695632 i2: 2 StorPars: 2.041728
+chain: 2 itn: 100000 itnStor: 100 i2: 1 StorPars: 0.1630587 i2: 2 StorPars: 1.824762
+chain: 2 itn: 101000 itnStor: 101 i2: 1 StorPars: 0.1861336 i2: 2 StorPars: 2.006385
+chain: 2 itn: 102000 itnStor: 102 i2: 1 StorPars: 0.1737907 i2: 2 StorPars: 2.063157
+chain: 2 itn: 103000 itnStor: 103 i2: 1 StorPars: 0.1623151 i2: 2 StorPars: 1.700891
+chain: 2 itn: 104000 itnStor: 104 i2: 1 StorPars: 0.2348087 i2: 2 StorPars: 2.568457
+chain: 2 itn: 105000 itnStor: 105 i2: 1 StorPars: 0.2150953 i2: 2 StorPars: 2.12586
+chain: 2 itn: 106000 itnStor: 106 i2: 1 StorPars: 0.1854573 i2: 2 StorPars: 2.008176
+chain: 2 itn: 107000 itnStor: 107 i2: 1 StorPars: 0.2181342 i2: 2 StorPars: 2.168208
+chain: 2 itn: 108000 itnStor: 108 i2: 1 StorPars: 0.2150388 i2: 2 StorPars: 2.171278
+chain: 2 itn: 109000 itnStor: 109 i2: 1 StorPars: 0.1429232 i2: 2 StorPars: 1.499996
+chain: 2 itn: 110000 itnStor: 110 i2: 1 StorPars: 0.155993 i2: 2 StorPars: 1.581328
+chain: 2 itn: 111000 itnStor: 111 i2: 1 StorPars: 0.2985277 i2: 2 StorPars: 3.254397
+chain: 2 itn: 112000 itnStor: 112 i2: 1 StorPars: 0.133102 i2: 2 StorPars: 1.634219
+chain: 2 itn: 113000 itnStor: 113 i2: 1 StorPars: 0.2327011 i2: 2 StorPars: 2.714614
+chain: 2 itn: 114000 itnStor: 114 i2: 1 StorPars: 0.2108895 i2: 2 StorPars: 1.937231
+chain: 2 itn: 115000 itnStor: 115 i2: 1 StorPars: 0.1916387 i2: 2 StorPars: 2.032261
+chain: 2 itn: 116000 itnStor: 116 i2: 1 StorPars: 0.1671846 i2: 2 StorPars: 1.759051
+chain: 2 itn: 117000 itnStor: 117 i2: 1 StorPars: 0.1752615 i2: 2 StorPars: 2.352858
+chain: 2 itn: 118000 itnStor: 118 i2: 1 StorPars: 0.1733062 i2: 2 StorPars: 1.808618
+chain: 2 itn: 119000 itnStor: 119 i2: 1 StorPars: 0.163635 i2: 2 StorPars: 1.809436
+chain: 2 itn: 120000 itnStor: 120 i2: 1 StorPars: 0.1666866 i2: 2 StorPars: 1.838917
+chain: 2 itn: 121000 itnStor: 121 i2: 1 StorPars: 0.2087541 i2: 2 StorPars: 2.164994
+chain: 2 itn: 122000 itnStor: 122 i2: 1 StorPars: 0.1705896 i2: 2 StorPars: 1.948393
+chain: 2 itn: 123000 itnStor: 123 i2: 1 StorPars: 0.2958031 i2: 2 StorPars: 2.958198
+chain: 2 itn: 124000 itnStor: 124 i2: 1 StorPars: 0.1834903 i2: 2 StorPars: 1.930713
+chain: 2 itn: 125000 itnStor: 125 i2: 1 StorPars: 0.1623911 i2: 2 StorPars: 1.726158
+chain: 2 itn: 126000 itnStor: 126 i2: 1 StorPars: 0.2324516 i2: 2 StorPars: 2.331776
+chain: 2 itn: 127000 itnStor: 127 i2: 1 StorPars: 0.2655767 i2: 2 StorPars: 2.455696
+chain: 2 itn: 128000 itnStor: 128 i2: 1 StorPars: 0.1627018 i2: 2 StorPars: 1.77734
+chain: 2 itn: 129000 itnStor: 129 i2: 1 StorPars: 0.1929882 i2: 2 StorPars: 2.160028
+chain: 2 itn: 130000 itnStor: 130 i2: 1 StorPars: 0.1588024 i2: 2 StorPars: 1.729846
+chain: 2 itn: 131000 itnStor: 131 i2: 1 StorPars: 0.1654914 i2: 2 StorPars: 1.681673
+chain: 2 itn: 132000 itnStor: 132 i2: 1 StorPars: 0.1641212 i2: 2 StorPars: 1.694377
+chain: 2 itn: 133000 itnStor: 133 i2: 1 StorPars: 0.20705 i2: 2 StorPars: 2.217068
+chain: 2 itn: 134000 itnStor: 134 i2: 1 StorPars: 0.1943825 i2: 2 StorPars: 2.006052
+chain: 2 itn: 135000 itnStor: 135 i2: 1 StorPars: 0.2008947 i2: 2 StorPars: 2.094474
+chain: 2 itn: 136000 itnStor: 136 i2: 1 StorPars: 0.149649 i2: 2 StorPars: 1.497148
+chain: 2 itn: 137000 itnStor: 137 i2: 1 StorPars: 0.1742522 i2: 2 StorPars: 1.79389
+chain: 2 itn: 138000 itnStor: 138 i2: 1 StorPars: 0.2336741 i2: 2 StorPars: 2.494813
+chain: 2 itn: 139000 itnStor: 139 i2: 1 StorPars: 0.219548 i2: 2 StorPars: 2.045181
+chain: 2 itn: 140000 itnStor: 140 i2: 1 StorPars: 0.1576357 i2: 2 StorPars: 1.508254
+chain: 2 itn: 141000 itnStor: 141 i2: 1 StorPars: 0.1990235 i2: 2 StorPars: 1.924667
+chain: 2 itn: 142000 itnStor: 142 i2: 1 StorPars: 0.2137865 i2: 2 StorPars: 2.282392
+chain: 2 itn: 143000 itnStor: 143 i2: 1 StorPars: 0.2012953 i2: 2 StorPars: 2.552183
+chain: 2 itn: 144000 itnStor: 144 i2: 1 StorPars: 0.2167916 i2: 2 StorPars: 2.224455
+chain: 2 itn: 145000 itnStor: 145 i2: 1 StorPars: 0.1763829 i2: 2 StorPars: 1.957888
+chain: 2 itn: 146000 itnStor: 146 i2: 1 StorPars: 0.1626054 i2: 2 StorPars: 1.687819
+chain: 2 itn: 147000 itnStor: 147 i2: 1 StorPars: 0.171954 i2: 2 StorPars: 1.783999
+chain: 2 itn: 148000 itnStor: 148 i2: 1 StorPars: 0.1910617 i2: 2 StorPars: 2.399143
+chain: 2 itn: 149000 itnStor: 149 i2: 1 StorPars: 0.1484281 i2: 2 StorPars: 1.555802
+chain: 2 itn: 150000 itnStor: 150 i2: 1 StorPars: 0.1090833 i2: 2 StorPars: 1.190478
+chain: 2 itn: 151000 itnStor: 151 i2: 1 StorPars: 0.1788323 i2: 2 StorPars: 1.761456
+chain: 2 itn: 152000 itnStor: 152 i2: 1 StorPars: 0.16625 i2: 2 StorPars: 1.90581
+chain: 2 itn: 153000 itnStor: 153 i2: 1 StorPars: 0.1895506 i2: 2 StorPars: 2.352814
+chain: 2 itn: 154000 itnStor: 154 i2: 1 StorPars: 0.178491 i2: 2 StorPars: 2.099336
+chain: 2 itn: 155000 itnStor: 155 i2: 1 StorPars: 0.2005985 i2: 2 StorPars: 1.843473
+chain: 2 itn: 156000 itnStor: 156 i2: 1 StorPars: 0.2183511 i2: 2 StorPars: 2.39626
+chain: 2 itn: 157000 itnStor: 157 i2: 1 StorPars: 0.159427 i2: 2 StorPars: 1.859165
+chain: 2 itn: 158000 itnStor: 158 i2: 1 StorPars: 0.2202192 i2: 2 StorPars: 2.350273
+chain: 2 itn: 159000 itnStor: 159 i2: 1 StorPars: 0.1650644 i2: 2 StorPars: 1.899915
+chain: 2 itn: 160000 itnStor: 160 i2: 1 StorPars: 0.1888385 i2: 2 StorPars: 2.064276
+chain: 2 itn: 161000 itnStor: 161 i2: 1 StorPars: 0.1886245 i2: 2 StorPars: 2.013579
+chain: 2 itn: 162000 itnStor: 162 i2: 1 StorPars: 0.1794433 i2: 2 StorPars: 2.001573
+chain: 2 itn: 163000 itnStor: 163 i2: 1 StorPars: 0.2104433 i2: 2 StorPars: 2.297641
+chain: 2 itn: 164000 itnStor: 164 i2: 1 StorPars: 0.2288086 i2: 2 StorPars: 2.277896
+chain: 2 itn: 165000 itnStor: 165 i2: 1 StorPars: 0.2155904 i2: 2 StorPars: 2.126973
+chain: 2 itn: 166000 itnStor: 166 i2: 1 StorPars: 0.2014106 i2: 2 StorPars: 2.489374
+chain: 2 itn: 167000 itnStor: 167 i2: 1 StorPars: 0.166107 i2: 2 StorPars: 1.594584
+chain: 2 itn: 168000 itnStor: 168 i2: 1 StorPars: 0.1746595 i2: 2 StorPars: 1.839267
+chain: 2 itn: 169000 itnStor: 169 i2: 1 StorPars: 0.1559495 i2: 2 StorPars: 1.846404
+chain: 2 itn: 170000 itnStor: 170 i2: 1 StorPars: 0.156219 i2: 2 StorPars: 1.648079
+chain: 2 itn: 171000 itnStor: 171 i2: 1 StorPars: 0.1514726 i2: 2 StorPars: 1.53567
+chain: 2 itn: 172000 itnStor: 172 i2: 1 StorPars: 0.1561148 i2: 2 StorPars: 1.815824
+chain: 2 itn: 173000 itnStor: 173 i2: 1 StorPars: 0.1522335 i2: 2 StorPars: 1.862452
+chain: 2 itn: 174000 itnStor: 174 i2: 1 StorPars: 0.1682398 i2: 2 StorPars: 1.859956
+chain: 2 itn: 175000 itnStor: 175 i2: 1 StorPars: 0.1991456 i2: 2 StorPars: 2.166943
+chain: 2 itn: 176000 itnStor: 176 i2: 1 StorPars: 0.1948292 i2: 2 StorPars: 1.927188
+chain: 2 itn: 177000 itnStor: 177 i2: 1 StorPars: 0.1753752 i2: 2 StorPars: 1.899702
+chain: 2 itn: 178000 itnStor: 178 i2: 1 StorPars: 0.1928223 i2: 2 StorPars: 2.040517
+chain: 2 itn: 179000 itnStor: 179 i2: 1 StorPars: 0.2291859 i2: 2 StorPars: 2.267806
+chain: 2 itn: 180000 itnStor: 180 i2: 1 StorPars: 0.2143636 i2: 2 StorPars: 2.237081
+chain: 2 itn: 181000 itnStor: 181 i2: 1 StorPars: 0.1809792 i2: 2 StorPars: 1.979556
+chain: 2 itn: 182000 itnStor: 182 i2: 1 StorPars: 0.2206609 i2: 2 StorPars: 2.30034
+chain: 2 itn: 183000 itnStor: 183 i2: 1 StorPars: 0.2052323 i2: 2 StorPars: 2.457113
+chain: 2 itn: 184000 itnStor: 184 i2: 1 StorPars: 0.2544294 i2: 2 StorPars: 2.598147
+chain: 2 itn: 185000 itnStor: 185 i2: 1 StorPars: 0.2424769 i2: 2 StorPars: 2.550269
+chain: 2 itn: 186000 itnStor: 186 i2: 1 StorPars: 0.1825832 i2: 2 StorPars: 1.988675
+chain: 2 itn: 187000 itnStor: 187 i2: 1 StorPars: 0.1802921 i2: 2 StorPars: 2.052648
+chain: 2 itn: 188000 itnStor: 188 i2: 1 StorPars: 0.2032823 i2: 2 StorPars: 2.190094
+chain: 2 itn: 189000 itnStor: 189 i2: 1 StorPars: 0.1962477 i2: 2 StorPars: 2.25843
+chain: 2 itn: 190000 itnStor: 190 i2: 1 StorPars: 0.1796793 i2: 2 StorPars: 1.818519
+chain: 2 itn: 191000 itnStor: 191 i2: 1 StorPars: 0.179726 i2: 2 StorPars: 1.954165
+chain: 2 itn: 192000 itnStor: 192 i2: 1 StorPars: 0.208743 i2: 2 StorPars: 2.265895
+chain: 2 itn: 193000 itnStor: 193 i2: 1 StorPars: 0.1720438 i2: 2 StorPars: 1.814525
+chain: 2 itn: 194000 itnStor: 194 i2: 1 StorPars: 0.2186326 i2: 2 StorPars: 2.279606
+chain: 2 itn: 195000 itnStor: 195 i2: 1 StorPars: 0.2068883 i2: 2 StorPars: 2.36916
+chain: 2 itn: 196000 itnStor: 196 i2: 1 StorPars: 0.2542952 i2: 2 StorPars: 2.5249
+chain: 2 itn: 197000 itnStor: 197 i2: 1 StorPars: 0.2009491 i2: 2 StorPars: 2.05627
+chain: 2 itn: 198000 itnStor: 198 i2: 1 StorPars: 0.1736298 i2: 2 StorPars: 2.137962
+chain: 2 itn: 199000 itnStor: 199 i2: 1 StorPars: 0.2995754 i2: 2 StorPars: 3.006439
+chain: 2 itn: 200000 itnStor: 200 i2: 1 StorPars: 0.1981775 i2: 2 StorPars: 1.922526
+chain: 3 itn: 1000 itnStor: 1 i2: 1 StorPars: 0.1794358 i2: 2 StorPars: 1.76105
+chain: 3 itn: 2000 itnStor: 2 i2: 1 StorPars: 0.1635043 i2: 2 StorPars: 1.541514
+chain: 3 itn: 3000 itnStor: 3 i2: 1 StorPars: 0.1625055 i2: 2 StorPars: 1.669409
+chain: 3 itn: 4000 itnStor: 4 i2: 1 StorPars: 0.1907264 i2: 2 StorPars: 1.968658
+chain: 3 itn: 5000 itnStor: 5 i2: 1 StorPars: 0.2008652 i2: 2 StorPars: 2.307334
+chain: 3 itn: 6000 itnStor: 6 i2: 1 StorPars: 0.1998209 i2: 2 StorPars: 1.898021
+chain: 3 itn: 7000 itnStor: 7 i2: 1 StorPars: 0.2204715 i2: 2 StorPars: 2.156657
+chain: 3 itn: 8000 itnStor: 8 i2: 1 StorPars: 0.1758351 i2: 2 StorPars: 1.818251
+chain: 3 itn: 9000 itnStor: 9 i2: 1 StorPars: 0.1936253 i2: 2 StorPars: 2.103221
+chain: 3 itn: 10000 itnStor: 10 i2: 1 StorPars: 0.1538018 i2: 2 StorPars: 1.409313
+chain: 3 itn: 11000 itnStor: 11 i2: 1 StorPars: 0.1992225 i2: 2 StorPars: 2.258333
+chain: 3 itn: 12000 itnStor: 12 i2: 1 StorPars: 0.1542632 i2: 2 StorPars: 1.767032
+chain: 3 itn: 13000 itnStor: 13 i2: 1 StorPars: 0.2128653 i2: 2 StorPars: 2.34322
+chain: 3 itn: 14000 itnStor: 14 i2: 1 StorPars: 0.2686627 i2: 2 StorPars: 2.535727
+chain: 3 itn: 15000 itnStor: 15 i2: 1 StorPars: 0.1960047 i2: 2 StorPars: 2.177091
+chain: 3 itn: 16000 itnStor: 16 i2: 1 StorPars: 0.1849996 i2: 2 StorPars: 1.830001
+chain: 3 itn: 17000 itnStor: 17 i2: 1 StorPars: 0.180454 i2: 2 StorPars: 1.872691
+chain: 3 itn: 18000 itnStor: 18 i2: 1 StorPars: 0.2095024 i2: 2 StorPars: 2.448186
+chain: 3 itn: 19000 itnStor: 19 i2: 1 StorPars: 0.2460154 i2: 2 StorPars: 2.495884
+chain: 3 itn: 20000 itnStor: 20 i2: 1 StorPars: 0.2240208 i2: 2 StorPars: 2.675531
+chain: 3 itn: 21000 itnStor: 21 i2: 1 StorPars: 0.2181212 i2: 2 StorPars: 2.754426
+chain: 3 itn: 22000 itnStor: 22 i2: 1 StorPars: 0.1825496 i2: 2 StorPars: 2.017054
+chain: 3 itn: 23000 itnStor: 23 i2: 1 StorPars: 0.2983379 i2: 2 StorPars: 2.686793
+chain: 3 itn: 24000 itnStor: 24 i2: 1 StorPars: 0.1576519 i2: 2 StorPars: 1.702181
+chain: 3 itn: 25000 itnStor: 25 i2: 1 StorPars: 0.177764 i2: 2 StorPars: 1.805207
+chain: 3 itn: 26000 itnStor: 26 i2: 1 StorPars: 0.1896049 i2: 2 StorPars: 2.218858
+chain: 3 itn: 27000 itnStor: 27 i2: 1 StorPars: 0.1947382 i2: 2 StorPars: 1.888641
+chain: 3 itn: 28000 itnStor: 28 i2: 1 StorPars: 0.1892531 i2: 2 StorPars: 2.204631
+chain: 3 itn: 29000 itnStor: 29 i2: 1 StorPars: 0.2146481 i2: 2 StorPars: 2.214046
+chain: 3 itn: 30000 itnStor: 30 i2: 1 StorPars: 0.17969 i2: 2 StorPars: 1.989002
+chain: 3 itn: 31000 itnStor: 31 i2: 1 StorPars: 0.1600943 i2: 2 StorPars: 1.833879
+chain: 3 itn: 32000 itnStor: 32 i2: 1 StorPars: 0.1948936 i2: 2 StorPars: 2.120617
+chain: 3 itn: 33000 itnStor: 33 i2: 1 StorPars: 0.1847637 i2: 2 StorPars: 1.940575
+chain: 3 itn: 34000 itnStor: 34 i2: 1 StorPars: 0.2430707 i2: 2 StorPars: 2.32362
+chain: 3 itn: 35000 itnStor: 35 i2: 1 StorPars: 0.1543981 i2: 2 StorPars: 1.761878
+chain: 3 itn: 36000 itnStor: 36 i2: 1 StorPars: 0.1635049 i2: 2 StorPars: 1.814737
+chain: 3 itn: 37000 itnStor: 37 i2: 1 StorPars: 0.1772243 i2: 2 StorPars: 2.033872
+chain: 3 itn: 38000 itnStor: 38 i2: 1 StorPars: 0.2103147 i2: 2 StorPars: 2.291496
+chain: 3 itn: 39000 itnStor: 39 i2: 1 StorPars: 0.1795593 i2: 2 StorPars: 2.186436
+chain: 3 itn: 40000 itnStor: 40 i2: 1 StorPars: 0.1416316 i2: 2 StorPars: 1.496705
+chain: 3 itn: 41000 itnStor: 41 i2: 1 StorPars: 0.2517335 i2: 2 StorPars: 2.593726
+chain: 3 itn: 42000 itnStor: 42 i2: 1 StorPars: 0.1399923 i2: 2 StorPars: 1.310146
+chain: 3 itn: 43000 itnStor: 43 i2: 1 StorPars: 0.2177533 i2: 2 StorPars: 2.309893
+chain: 3 itn: 44000 itnStor: 44 i2: 1 StorPars: 0.2265367 i2: 2 StorPars: 2.472983
+chain: 3 itn: 45000 itnStor: 45 i2: 1 StorPars: 0.1868097 i2: 2 StorPars: 1.941961
+chain: 3 itn: 46000 itnStor: 46 i2: 1 StorPars: 0.1654513 i2: 2 StorPars: 1.688919
+chain: 3 itn: 47000 itnStor: 47 i2: 1 StorPars: 0.251399 i2: 2 StorPars: 2.467897
+chain: 3 itn: 48000 itnStor: 48 i2: 1 StorPars: 0.2103875 i2: 2 StorPars: 2.084918
+chain: 3 itn: 49000 itnStor: 49 i2: 1 StorPars: 0.1845496 i2: 2 StorPars: 2.011303
+chain: 3 itn: 50000 itnStor: 50 i2: 1 StorPars: 0.1863723 i2: 2 StorPars: 1.887076
+chain: 3 itn: 51000 itnStor: 51 i2: 1 StorPars: 0.2015253 i2: 2 StorPars: 2.179116
+chain: 3 itn: 52000 itnStor: 52 i2: 1 StorPars: 0.1833577 i2: 2 StorPars: 2.241472
+chain: 3 itn: 53000 itnStor: 53 i2: 1 StorPars: 0.1492912 i2: 2 StorPars: 1.44807
+chain: 3 itn: 54000 itnStor: 54 i2: 1 StorPars: 0.1656664 i2: 2 StorPars: 1.760932
+chain: 3 itn: 55000 itnStor: 55 i2: 1 StorPars: 0.1590338 i2: 2 StorPars: 1.739103
+chain: 3 itn: 56000 itnStor: 56 i2: 1 StorPars: 0.2213244 i2: 2 StorPars: 2.19208
+chain: 3 itn: 57000 itnStor: 57 i2: 1 StorPars: 0.1714205 i2: 2 StorPars: 1.905264
+chain: 3 itn: 58000 itnStor: 58 i2: 1 StorPars: 0.1878316 i2: 2 StorPars: 2.033183
+chain: 3 itn: 59000 itnStor: 59 i2: 1 StorPars: 0.139159 i2: 2 StorPars: 1.468282
+chain: 3 itn: 60000 itnStor: 60 i2: 1 StorPars: 0.181234 i2: 2 StorPars: 2.016572
+chain: 3 itn: 61000 itnStor: 61 i2: 1 StorPars: 0.2188064 i2: 2 StorPars: 2.239292
+chain: 3 itn: 62000 itnStor: 62 i2: 1 StorPars: 0.206905 i2: 2 StorPars: 2.293212
+chain: 3 itn: 63000 itnStor: 63 i2: 1 StorPars: 0.1633377 i2: 2 StorPars: 1.922256
+chain: 3 itn: 64000 itnStor: 64 i2: 1 StorPars: 0.1842681 i2: 2 StorPars: 2.125533
+chain: 3 itn: 65000 itnStor: 65 i2: 1 StorPars: 0.2079602 i2: 2 StorPars: 2.234153
+chain: 3 itn: 66000 itnStor: 66 i2: 1 StorPars: 0.1607352 i2: 2 StorPars: 1.828445
+chain: 3 itn: 67000 itnStor: 67 i2: 1 StorPars: 0.2062539 i2: 2 StorPars: 2.063798
+chain: 3 itn: 68000 itnStor: 68 i2: 1 StorPars: 0.1431013 i2: 2 StorPars: 1.560958
+chain: 3 itn: 69000 itnStor: 69 i2: 1 StorPars: 0.2025398 i2: 2 StorPars: 2.025649
+chain: 3 itn: 70000 itnStor: 70 i2: 1 StorPars: 0.2188497 i2: 2 StorPars: 2.361954
+chain: 3 itn: 71000 itnStor: 71 i2: 1 StorPars: 0.165341 i2: 2 StorPars: 1.896725
+chain: 3 itn: 72000 itnStor: 72 i2: 1 StorPars: 0.1950754 i2: 2 StorPars: 1.992734
+chain: 3 itn: 73000 itnStor: 73 i2: 1 StorPars: 0.1939848 i2: 2 StorPars: 1.917842
+chain: 3 itn: 74000 itnStor: 74 i2: 1 StorPars: 0.1975208 i2: 2 StorPars: 1.871688
+chain: 3 itn: 75000 itnStor: 75 i2: 1 StorPars: 0.1820518 i2: 2 StorPars: 1.970252
+chain: 3 itn: 76000 itnStor: 76 i2: 1 StorPars: 0.1781363 i2: 2 StorPars: 2.018797
+chain: 3 itn: 77000 itnStor: 77 i2: 1 StorPars: 0.1626382 i2: 2 StorPars: 1.719979
+chain: 3 itn: 78000 itnStor: 78 i2: 1 StorPars: 0.1963797 i2: 2 StorPars: 1.869068
+chain: 3 itn: 79000 itnStor: 79 i2: 1 StorPars: 0.2094452 i2: 2 StorPars: 2.12565
+chain: 3 itn: 80000 itnStor: 80 i2: 1 StorPars: 0.1548351 i2: 2 StorPars: 1.605198
+chain: 3 itn: 81000 itnStor: 81 i2: 1 StorPars: 0.149773 i2: 2 StorPars: 1.413001
+chain: 3 itn: 82000 itnStor: 82 i2: 1 StorPars: 0.1745076 i2: 2 StorPars: 1.978494
+chain: 3 itn: 83000 itnStor: 83 i2: 1 StorPars: 0.1727813 i2: 2 StorPars: 2.064397
+chain: 3 itn: 84000 itnStor: 84 i2: 1 StorPars: 0.20556 i2: 2 StorPars: 2.148582
+chain: 3 itn: 85000 itnStor: 85 i2: 1 StorPars: 0.1795495 i2: 2 StorPars: 1.95001
+chain: 3 itn: 86000 itnStor: 86 i2: 1 StorPars: 0.1653217 i2: 2 StorPars: 1.782679
+chain: 3 itn: 87000 itnStor: 87 i2: 1 StorPars: 0.2362544 i2: 2 StorPars: 2.76953
+chain: 3 itn: 88000 itnStor: 88 i2: 1 StorPars: 0.2364794 i2: 2 StorPars: 2.730931
+chain: 3 itn: 89000 itnStor: 89 i2: 1 StorPars: 0.204962 i2: 2 StorPars: 2.314361
+chain: 3 itn: 90000 itnStor: 90 i2: 1 StorPars: 0.2021161 i2: 2 StorPars: 2.230253
+chain: 3 itn: 91000 itnStor: 91 i2: 1 StorPars: 0.1559074 i2: 2 StorPars: 1.568933
+chain: 3 itn: 92000 itnStor: 92 i2: 1 StorPars: 0.1975094 i2: 2 StorPars: 2.344744
+chain: 3 itn: 93000 itnStor: 93 i2: 1 StorPars: 0.1979584 i2: 2 StorPars: 2.303553
+chain: 3 itn: 94000 itnStor: 94 i2: 1 StorPars: 0.1892201 i2: 2 StorPars: 1.972925
+chain: 3 itn: 95000 itnStor: 95 i2: 1 StorPars: 0.213772 i2: 2 StorPars: 2.158679
+chain: 3 itn: 96000 itnStor: 96 i2: 1 StorPars: 0.1655088 i2: 2 StorPars: 1.985785
+chain: 3 itn: 97000 itnStor: 97 i2: 1 StorPars: 0.1645193 i2: 2 StorPars: 1.964712
+chain: 3 itn: 98000 itnStor: 98 i2: 1 StorPars: 0.1839759 i2: 2 StorPars: 2.128223
+chain: 3 itn: 99000 itnStor: 99 i2: 1 StorPars: 0.2318946 i2: 2 StorPars: 2.475968
+chain: 3 itn: 100000 itnStor: 100 i2: 1 StorPars: 0.1669362 i2: 2 StorPars: 1.834952
+chain: 3 itn: 101000 itnStor: 101 i2: 1 StorPars: 0.1802911 i2: 2 StorPars: 1.760288
+chain: 3 itn: 102000 itnStor: 102 i2: 1 StorPars: 0.2062408 i2: 2 StorPars: 2.037236
+chain: 3 itn: 103000 itnStor: 103 i2: 1 StorPars: 0.2785425 i2: 2 StorPars: 2.995489
+chain: 3 itn: 104000 itnStor: 104 i2: 1 StorPars: 0.1570191 i2: 2 StorPars: 1.865957
+chain: 3 itn: 105000 itnStor: 105 i2: 1 StorPars: 0.2260539 i2: 2 StorPars: 2.512755
+chain: 3 itn: 106000 itnStor: 106 i2: 1 StorPars: 0.1851867 i2: 2 StorPars: 2.54697
+chain: 3 itn: 107000 itnStor: 107 i2: 1 StorPars: 0.2025814 i2: 2 StorPars: 2.164995
+chain: 3 itn: 108000 itnStor: 108 i2: 1 StorPars: 0.1910012 i2: 2 StorPars: 2.321518
+chain: 3 itn: 109000 itnStor: 109 i2: 1 StorPars: 0.1815024 i2: 2 StorPars: 1.864034
+chain: 3 itn: 110000 itnStor: 110 i2: 1 StorPars: 0.1606347 i2: 2 StorPars: 1.770773
+chain: 3 itn: 111000 itnStor: 111 i2: 1 StorPars: 0.176559 i2: 2 StorPars: 1.854821
+chain: 3 itn: 112000 itnStor: 112 i2: 1 StorPars: 0.2277172 i2: 2 StorPars: 2.363585
+chain: 3 itn: 113000 itnStor: 113 i2: 1 StorPars: 0.2367931 i2: 2 StorPars: 2.396972
+chain: 3 itn: 114000 itnStor: 114 i2: 1 StorPars: 0.1616364 i2: 2 StorPars: 1.813164
+chain: 3 itn: 115000 itnStor: 115 i2: 1 StorPars: 0.1526183 i2: 2 StorPars: 1.626032
+chain: 3 itn: 116000 itnStor: 116 i2: 1 StorPars: 0.1996289 i2: 2 StorPars: 2.095389
+chain: 3 itn: 117000 itnStor: 117 i2: 1 StorPars: 0.2375272 i2: 2 StorPars: 2.380769
+chain: 3 itn: 118000 itnStor: 118 i2: 1 StorPars: 0.2041648 i2: 2 StorPars: 2.110649
+chain: 3 itn: 119000 itnStor: 119 i2: 1 StorPars: 0.2196155 i2: 2 StorPars: 2.167404
+chain: 3 itn: 120000 itnStor: 120 i2: 1 StorPars: 0.1854916 i2: 2 StorPars: 1.898897
+chain: 3 itn: 121000 itnStor: 121 i2: 1 StorPars: 0.1792446 i2: 2 StorPars: 2.017646
+chain: 3 itn: 122000 itnStor: 122 i2: 1 StorPars: 0.1676592 i2: 2 StorPars: 1.788634
+chain: 3 itn: 123000 itnStor: 123 i2: 1 StorPars: 0.2010004 i2: 2 StorPars: 2.139982
+chain: 3 itn: 124000 itnStor: 124 i2: 1 StorPars: 0.1789775 i2: 2 StorPars: 1.798124
+chain: 3 itn: 125000 itnStor: 125 i2: 1 StorPars: 0.1759726 i2: 2 StorPars: 2.034692
+chain: 3 itn: 126000 itnStor: 126 i2: 1 StorPars: 0.1734928 i2: 2 StorPars: 1.98499
+chain: 3 itn: 127000 itnStor: 127 i2: 1 StorPars: 0.216318 i2: 2 StorPars: 2.387676
+chain: 3 itn: 128000 itnStor: 128 i2: 1 StorPars: 0.2431073 i2: 2 StorPars: 2.355827
+chain: 3 itn: 129000 itnStor: 129 i2: 1 StorPars: 0.2041323 i2: 2 StorPars: 2.142496
+chain: 3 itn: 130000 itnStor: 130 i2: 1 StorPars: 0.2082476 i2: 2 StorPars: 2.160192
+chain: 3 itn: 131000 itnStor: 131 i2: 1 StorPars: 0.207719 i2: 2 StorPars: 2.332637
+chain: 3 itn: 132000 itnStor: 132 i2: 1 StorPars: 0.1784174 i2: 2 StorPars: 2.160965
+chain: 3 itn: 133000 itnStor: 133 i2: 1 StorPars: 0.2119005 i2: 2 StorPars: 2.15698
+chain: 3 itn: 134000 itnStor: 134 i2: 1 StorPars: 0.1895019 i2: 2 StorPars: 1.922007
+chain: 3 itn: 135000 itnStor: 135 i2: 1 StorPars: 0.1966048 i2: 2 StorPars: 2.105205
+chain: 3 itn: 136000 itnStor: 136 i2: 1 StorPars: 0.2259288 i2: 2 StorPars: 2.538148
+chain: 3 itn: 137000 itnStor: 137 i2: 1 StorPars: 0.1916579 i2: 2 StorPars: 2.040505
+chain: 3 itn: 138000 itnStor: 138 i2: 1 StorPars: 0.1861417 i2: 2 StorPars: 2.12352
+chain: 3 itn: 139000 itnStor: 139 i2: 1 StorPars: 0.1590887 i2: 2 StorPars: 1.940488
+chain: 3 itn: 140000 itnStor: 140 i2: 1 StorPars: 0.2559303 i2: 2 StorPars: 2.808436
+chain: 3 itn: 141000 itnStor: 141 i2: 1 StorPars: 0.1534234 i2: 2 StorPars: 1.708664
+chain: 3 itn: 142000 itnStor: 142 i2: 1 StorPars: 0.1860828 i2: 2 StorPars: 2.157665
+chain: 3 itn: 143000 itnStor: 143 i2: 1 StorPars: 0.2395751 i2: 2 StorPars: 2.403725
+chain: 3 itn: 144000 itnStor: 144 i2: 1 StorPars: 0.2760592 i2: 2 StorPars: 3.126244
+chain: 3 itn: 145000 itnStor: 145 i2: 1 StorPars: 0.1577071 i2: 2 StorPars: 1.960869
+chain: 3 itn: 146000 itnStor: 146 i2: 1 StorPars: 0.1725572 i2: 2 StorPars: 1.821554
+chain: 3 itn: 147000 itnStor: 147 i2: 1 StorPars: 0.2008277 i2: 2 StorPars: 2.213023
+chain: 3 itn: 148000 itnStor: 148 i2: 1 StorPars: 0.1674089 i2: 2 StorPars: 1.619618
+chain: 3 itn: 149000 itnStor: 149 i2: 1 StorPars: 0.1699046 i2: 2 StorPars: 1.939216
+chain: 3 itn: 150000 itnStor: 150 i2: 1 StorPars: 0.1874573 i2: 2 StorPars: 2.220147
+chain: 3 itn: 151000 itnStor: 151 i2: 1 StorPars: 0.2159788 i2: 2 StorPars: 2.453988
+chain: 3 itn: 152000 itnStor: 152 i2: 1 StorPars: 0.1692264 i2: 2 StorPars: 2.127948
+chain: 3 itn: 153000 itnStor: 153 i2: 1 StorPars: 0.1919482 i2: 2 StorPars: 1.956836
+chain: 3 itn: 154000 itnStor: 154 i2: 1 StorPars: 0.1643636 i2: 2 StorPars: 2.054761
+chain: 3 itn: 155000 itnStor: 155 i2: 1 StorPars: 0.1653808 i2: 2 StorPars: 1.885161
+chain: 3 itn: 156000 itnStor: 156 i2: 1 StorPars: 0.283439 i2: 2 StorPars: 2.761029
+chain: 3 itn: 157000 itnStor: 157 i2: 1 StorPars: 0.1582143 i2: 2 StorPars: 1.846252
+chain: 3 itn: 158000 itnStor: 158 i2: 1 StorPars: 0.218019 i2: 2 StorPars: 2.336707
+chain: 3 itn: 159000 itnStor: 159 i2: 1 StorPars: 0.178381 i2: 2 StorPars: 2.136666
+chain: 3 itn: 160000 itnStor: 160 i2: 1 StorPars: 0.1960228 i2: 2 StorPars: 2.064737
+chain: 3 itn: 161000 itnStor: 161 i2: 1 StorPars: 0.1800387 i2: 2 StorPars: 2.219552
+chain: 3 itn: 162000 itnStor: 162 i2: 1 StorPars: 0.2200711 i2: 2 StorPars: 2.434997
+chain: 3 itn: 163000 itnStor: 163 i2: 1 StorPars: 0.2053132 i2: 2 StorPars: 2.017899
+chain: 3 itn: 164000 itnStor: 164 i2: 1 StorPars: 0.1497796 i2: 2 StorPars: 1.626616
+chain: 3 itn: 165000 itnStor: 165 i2: 1 StorPars: 0.165641 i2: 2 StorPars: 1.632074
+chain: 3 itn: 166000 itnStor: 166 i2: 1 StorPars: 0.2188138 i2: 2 StorPars: 2.22716
+chain: 3 itn: 167000 itnStor: 167 i2: 1 StorPars: 0.1781262 i2: 2 StorPars: 2.104955
+chain: 3 itn: 168000 itnStor: 168 i2: 1 StorPars: 0.2888235 i2: 2 StorPars: 2.961988
+chain: 3 itn: 169000 itnStor: 169 i2: 1 StorPars: 0.1895829 i2: 2 StorPars: 2.092394
+chain: 3 itn: 170000 itnStor: 170 i2: 1 StorPars: 0.246477 i2: 2 StorPars: 2.636606
+chain: 3 itn: 171000 itnStor: 171 i2: 1 StorPars: 0.1934548 i2: 2 StorPars: 2.159437
+chain: 3 itn: 172000 itnStor: 172 i2: 1 StorPars: 0.1637407 i2: 2 StorPars: 1.515599
+chain: 3 itn: 173000 itnStor: 173 i2: 1 StorPars: 0.2353999 i2: 2 StorPars: 2.693522
+chain: 3 itn: 174000 itnStor: 174 i2: 1 StorPars: 0.2596329 i2: 2 StorPars: 2.600685
+chain: 3 itn: 175000 itnStor: 175 i2: 1 StorPars: 0.1907185 i2: 2 StorPars: 2.204284
+chain: 3 itn: 176000 itnStor: 176 i2: 1 StorPars: 0.1830769 i2: 2 StorPars: 2.342317
+chain: 3 itn: 177000 itnStor: 177 i2: 1 StorPars: 0.1740085 i2: 2 StorPars: 1.908931
+chain: 3 itn: 178000 itnStor: 178 i2: 1 StorPars: 0.2517056 i2: 2 StorPars: 2.394665
+chain: 3 itn: 179000 itnStor: 179 i2: 1 StorPars: 0.1810563 i2: 2 StorPars: 1.884487
+chain: 3 itn: 180000 itnStor: 180 i2: 1 StorPars: 0.2282582 i2: 2 StorPars: 2.302392
+chain: 3 itn: 181000 itnStor: 181 i2: 1 StorPars: 0.1898112 i2: 2 StorPars: 2.124684
+chain: 3 itn: 182000 itnStor: 182 i2: 1 StorPars: 0.1996282 i2: 2 StorPars: 2.091243
+chain: 3 itn: 183000 itnStor: 183 i2: 1 StorPars: 0.223143 i2: 2 StorPars: 2.872598
+chain: 3 itn: 184000 itnStor: 184 i2: 1 StorPars: 0.2097638 i2: 2 StorPars: 2.334144
+chain: 3 itn: 185000 itnStor: 185 i2: 1 StorPars: 0.1790171 i2: 2 StorPars: 1.948897
+chain: 3 itn: 186000 itnStor: 186 i2: 1 StorPars: 0.2168725 i2: 2 StorPars: 2.254192
+chain: 3 itn: 187000 itnStor: 187 i2: 1 StorPars: 0.1586021 i2: 2 StorPars: 1.867844
+chain: 3 itn: 188000 itnStor: 188 i2: 1 StorPars: 0.1990851 i2: 2 StorPars: 2.013923
+chain: 3 itn: 189000 itnStor: 189 i2: 1 StorPars: 0.1835623 i2: 2 StorPars: 1.853712
+chain: 3 itn: 190000 itnStor: 190 i2: 1 StorPars: 0.2169006 i2: 2 StorPars: 2.485996
+chain: 3 itn: 191000 itnStor: 191 i2: 1 StorPars: 0.2162453 i2: 2 StorPars: 2.129899
+chain: 3 itn: 192000 itnStor: 192 i2: 1 StorPars: 0.1518133 i2: 2 StorPars: 1.675276
+chain: 3 itn: 193000 itnStor: 193 i2: 1 StorPars: 0.1956996 i2: 2 StorPars: 1.974016
+chain: 3 itn: 194000 itnStor: 194 i2: 1 StorPars: 0.2201696 i2: 2 StorPars: 2.471831
+chain: 3 itn: 195000 itnStor: 195 i2: 1 StorPars: 0.205935 i2: 2 StorPars: 2.134199
+chain: 3 itn: 196000 itnStor: 196 i2: 1 StorPars: 0.155696 i2: 2 StorPars: 1.658257
+chain: 3 itn: 197000 itnStor: 197 i2: 1 StorPars: 0.1626439 i2: 2 StorPars: 1.404157
+chain: 3 itn: 198000 itnStor: 198 i2: 1 StorPars: 0.2258546 i2: 2 StorPars: 2.598558
+chain: 3 itn: 199000 itnStor: 199 i2: 1 StorPars: 0.1412956 i2: 2 StorPars: 1.332265
+chain: 3 itn: 200000 itnStor: 200 i2: 1 StorPars: 0.1853098 i2: 2 StorPars: 1.855173
+chain: 4 itn: 1000 itnStor: 1 i2: 1 StorPars: 0.1975841 i2: 2 StorPars: 2.109309
+chain: 4 itn: 2000 itnStor: 2 i2: 1 StorPars: 0.1568417 i2: 2 StorPars: 1.502575
+chain: 4 itn: 3000 itnStor: 3 i2: 1 StorPars: 0.2070042 i2: 2 StorPars: 2.170255
+chain: 4 itn: 4000 itnStor: 4 i2: 1 StorPars: 0.189992 i2: 2 StorPars: 2.195152
+chain: 4 itn: 5000 itnStor: 5 i2: 1 StorPars: 0.1586604 i2: 2 StorPars: 2.057288
+chain: 4 itn: 6000 itnStor: 6 i2: 1 StorPars: 0.2255523 i2: 2 StorPars: 2.510961
+chain: 4 itn: 7000 itnStor: 7 i2: 1 StorPars: 0.1744749 i2: 2 StorPars: 1.747519
+chain: 4 itn: 8000 itnStor: 8 i2: 1 StorPars: 0.18736 i2: 2 StorPars: 1.995069
+chain: 4 itn: 9000 itnStor: 9 i2: 1 StorPars: 0.1746846 i2: 2 StorPars: 1.873107
+chain: 4 itn: 10000 itnStor: 10 i2: 1 StorPars: 0.1888901 i2: 2 StorPars: 2.058901
+chain: 4 itn: 11000 itnStor: 11 i2: 1 StorPars: 0.1716202 i2: 2 StorPars: 1.588195
+chain: 4 itn: 12000 itnStor: 12 i2: 1 StorPars: 0.2058311 i2: 2 StorPars: 1.965017
+chain: 4 itn: 13000 itnStor: 13 i2: 1 StorPars: 0.2194623 i2: 2 StorPars: 2.544413
+chain: 4 itn: 14000 itnStor: 14 i2: 1 StorPars: 0.2313348 i2: 2 StorPars: 2.563528
+chain: 4 itn: 15000 itnStor: 15 i2: 1 StorPars: 0.26466 i2: 2 StorPars: 2.607076
+chain: 4 itn: 16000 itnStor: 16 i2: 1 StorPars: 0.1770375 i2: 2 StorPars: 2.136919
+chain: 4 itn: 17000 itnStor: 17 i2: 1 StorPars: 0.1861926 i2: 2 StorPars: 1.893201
+chain: 4 itn: 18000 itnStor: 18 i2: 1 StorPars: 0.2161152 i2: 2 StorPars: 2.604291
+chain: 4 itn: 19000 itnStor: 19 i2: 1 StorPars: 0.189394 i2: 2 StorPars: 1.946168
+chain: 4 itn: 20000 itnStor: 20 i2: 1 StorPars: 0.2130862 i2: 2 StorPars: 2.346563
+chain: 4 itn: 21000 itnStor: 21 i2: 1 StorPars: 0.1487295 i2: 2 StorPars: 1.791904
+chain: 4 itn: 22000 itnStor: 22 i2: 1 StorPars: 0.1544917 i2: 2 StorPars: 1.943653
+chain: 4 itn: 23000 itnStor: 23 i2: 1 StorPars: 0.1808858 i2: 2 StorPars: 1.755463
+chain: 4 itn: 24000 itnStor: 24 i2: 1 StorPars: 0.2006547 i2: 2 StorPars: 2.04749
+chain: 4 itn: 25000 itnStor: 25 i2: 1 StorPars: 0.2399118 i2: 2 StorPars: 2.644881
+chain: 4 itn: 26000 itnStor: 26 i2: 1 StorPars: 0.2303909 i2: 2 StorPars: 2.334453
+chain: 4 itn: 27000 itnStor: 27 i2: 1 StorPars: 0.2324906 i2: 2 StorPars: 2.498953
+chain: 4 itn: 28000 itnStor: 28 i2: 1 StorPars: 0.1633728 i2: 2 StorPars: 1.961283
+chain: 4 itn: 29000 itnStor: 29 i2: 1 StorPars: 0.1735204 i2: 2 StorPars: 1.785323
+chain: 4 itn: 30000 itnStor: 30 i2: 1 StorPars: 0.2059756 i2: 2 StorPars: 2.20414
+chain: 4 itn: 31000 itnStor: 31 i2: 1 StorPars: 0.1712128 i2: 2 StorPars: 1.891509
+chain: 4 itn: 32000 itnStor: 32 i2: 1 StorPars: 0.2015404 i2: 2 StorPars: 2.105283
+chain: 4 itn: 33000 itnStor: 33 i2: 1 StorPars: 0.1796306 i2: 2 StorPars: 1.908321
+chain: 4 itn: 34000 itnStor: 34 i2: 1 StorPars: 0.2055883 i2: 2 StorPars: 2.269442
+chain: 4 itn: 35000 itnStor: 35 i2: 1 StorPars: 0.1784917 i2: 2 StorPars: 1.89547
+chain: 4 itn: 36000 itnStor: 36 i2: 1 StorPars: 0.2705569 i2: 2 StorPars: 2.589095
+chain: 4 itn: 37000 itnStor: 37 i2: 1 StorPars: 0.2255376 i2: 2 StorPars: 2.419954
+chain: 4 itn: 38000 itnStor: 38 i2: 1 StorPars: 0.207116 i2: 2 StorPars: 2.340081
+chain: 4 itn: 39000 itnStor: 39 i2: 1 StorPars: 0.1814176 i2: 2 StorPars: 2.026923
+chain: 4 itn: 40000 itnStor: 40 i2: 1 StorPars: 0.1639017 i2: 2 StorPars: 1.839574
+chain: 4 itn: 41000 itnStor: 41 i2: 1 StorPars: 0.2657022 i2: 2 StorPars: 2.613184
+chain: 4 itn: 42000 itnStor: 42 i2: 1 StorPars: 0.2092835 i2: 2 StorPars: 1.964667
+chain: 4 itn: 43000 itnStor: 43 i2: 1 StorPars: 0.2224366 i2: 2 StorPars: 1.922437
+chain: 4 itn: 44000 itnStor: 44 i2: 1 StorPars: 0.2306687 i2: 2 StorPars: 2.175219
+chain: 4 itn: 45000 itnStor: 45 i2: 1 StorPars: 0.1771711 i2: 2 StorPars: 1.615996
+chain: 4 itn: 46000 itnStor: 46 i2: 1 StorPars: 0.1984586 i2: 2 StorPars: 2.379505
+chain: 4 itn: 47000 itnStor: 47 i2: 1 StorPars: 0.2012129 i2: 2 StorPars: 2.124544
+chain: 4 itn: 48000 itnStor: 48 i2: 1 StorPars: 0.1928692 i2: 2 StorPars: 2.241063
+chain: 4 itn: 49000 itnStor: 49 i2: 1 StorPars: 0.1483472 i2: 2 StorPars: 1.548433
+chain: 4 itn: 50000 itnStor: 50 i2: 1 StorPars: 0.2101114 i2: 2 StorPars: 2.393434
+chain: 4 itn: 51000 itnStor: 51 i2: 1 StorPars: 0.184588 i2: 2 StorPars: 2.056891
+chain: 4 itn: 52000 itnStor: 52 i2: 1 StorPars: 0.1821222 i2: 2 StorPars: 2.143712
+chain: 4 itn: 53000 itnStor: 53 i2: 1 StorPars: 0.1564128 i2: 2 StorPars: 1.540951
+chain: 4 itn: 54000 itnStor: 54 i2: 1 StorPars: 0.1770752 i2: 2 StorPars: 1.624915
+chain: 4 itn: 55000 itnStor: 55 i2: 1 StorPars: 0.1972095 i2: 2 StorPars: 2.109914
+chain: 4 itn: 56000 itnStor: 56 i2: 1 StorPars: 0.1908926 i2: 2 StorPars: 1.840911
+chain: 4 itn: 57000 itnStor: 57 i2: 1 StorPars: 0.2015992 i2: 2 StorPars: 2.246504
+chain: 4 itn: 58000 itnStor: 58 i2: 1 StorPars: 0.1872185 i2: 2 StorPars: 2.082783
+chain: 4 itn: 59000 itnStor: 59 i2: 1 StorPars: 0.1720085 i2: 2 StorPars: 1.624636
+chain: 4 itn: 60000 itnStor: 60 i2: 1 StorPars: 0.1781763 i2: 2 StorPars: 2.043302
+chain: 4 itn: 61000 itnStor: 61 i2: 1 StorPars: 0.1641765 i2: 2 StorPars: 1.718883
+chain: 4 itn: 62000 itnStor: 62 i2: 1 StorPars: 0.1699497 i2: 2 StorPars: 1.732903
+chain: 4 itn: 63000 itnStor: 63 i2: 1 StorPars: 0.2034756 i2: 2 StorPars: 2.324026
+chain: 4 itn: 64000 itnStor: 64 i2: 1 StorPars: 0.1473488 i2: 2 StorPars: 1.563552
+chain: 4 itn: 65000 itnStor: 65 i2: 1 StorPars: 0.182536 i2: 2 StorPars: 1.986373
+chain: 4 itn: 66000 itnStor: 66 i2: 1 StorPars: 0.2150647 i2: 2 StorPars: 2.261741
+chain: 4 itn: 67000 itnStor: 67 i2: 1 StorPars: 0.1505237 i2: 2 StorPars: 1.595981
+chain: 4 itn: 68000 itnStor: 68 i2: 1 StorPars: 0.1476789 i2: 2 StorPars: 1.486018
+chain: 4 itn: 69000 itnStor: 69 i2: 1 StorPars: 0.1565669 i2: 2 StorPars: 1.857469
+chain: 4 itn: 70000 itnStor: 70 i2: 1 StorPars: 0.1767129 i2: 2 StorPars: 1.976568
+chain: 4 itn: 71000 itnStor: 71 i2: 1 StorPars: 0.1880715 i2: 2 StorPars: 1.834185
+chain: 4 itn: 72000 itnStor: 72 i2: 1 StorPars: 0.1992321 i2: 2 StorPars: 2.132128
+chain: 4 itn: 73000 itnStor: 73 i2: 1 StorPars: 0.2001897 i2: 2 StorPars: 1.942928
+chain: 4 itn: 74000 itnStor: 74 i2: 1 StorPars: 0.2055964 i2: 2 StorPars: 2.203485
+chain: 4 itn: 75000 itnStor: 75 i2: 1 StorPars: 0.1541476 i2: 2 StorPars: 1.619008
+chain: 4 itn: 76000 itnStor: 76 i2: 1 StorPars: 0.1794747 i2: 2 StorPars: 2.00703
+chain: 4 itn: 77000 itnStor: 77 i2: 1 StorPars: 0.201747 i2: 2 StorPars: 2.192175
+chain: 4 itn: 78000 itnStor: 78 i2: 1 StorPars: 0.1854434 i2: 2 StorPars: 2.02518
+chain: 4 itn: 79000 itnStor: 79 i2: 1 StorPars: 0.1735195 i2: 2 StorPars: 1.973195
+chain: 4 itn: 80000 itnStor: 80 i2: 1 StorPars: 0.1696878 i2: 2 StorPars: 1.747667
+chain: 4 itn: 81000 itnStor: 81 i2: 1 StorPars: 0.2228082 i2: 2 StorPars: 2.643619
+chain: 4 itn: 82000 itnStor: 82 i2: 1 StorPars: 0.1961337 i2: 2 StorPars: 1.850161
+chain: 4 itn: 83000 itnStor: 83 i2: 1 StorPars: 0.1564442 i2: 2 StorPars: 1.845723
+chain: 4 itn: 84000 itnStor: 84 i2: 1 StorPars: 0.2246611 i2: 2 StorPars: 2.573127
+chain: 4 itn: 85000 itnStor: 85 i2: 1 StorPars: 0.1879591 i2: 2 StorPars: 1.71514
+chain: 4 itn: 86000 itnStor: 86 i2: 1 StorPars: 0.1947584 i2: 2 StorPars: 2.162359
+chain: 4 itn: 87000 itnStor: 87 i2: 1 StorPars: 0.1708267 i2: 2 StorPars: 1.780028
+chain: 4 itn: 88000 itnStor: 88 i2: 1 StorPars: 0.1567689 i2: 2 StorPars: 1.830244
+chain: 4 itn: 89000 itnStor: 89 i2: 1 StorPars: 0.2131712 i2: 2 StorPars: 2.184506
+chain: 4 itn: 90000 itnStor: 90 i2: 1 StorPars: 0.1884838 i2: 2 StorPars: 2.212149
+chain: 4 itn: 91000 itnStor: 91 i2: 1 StorPars: 0.186332 i2: 2 StorPars: 1.958832
+chain: 4 itn: 92000 itnStor: 92 i2: 1 StorPars: 0.188553 i2: 2 StorPars: 1.709047
+chain: 4 itn: 93000 itnStor: 93 i2: 1 StorPars: 0.2020478 i2: 2 StorPars: 1.943648
+chain: 4 itn: 94000 itnStor: 94 i2: 1 StorPars: 0.1426448 i2: 2 StorPars: 1.459301
+chain: 4 itn: 95000 itnStor: 95 i2: 1 StorPars: 0.1676645 i2: 2 StorPars: 1.947298
+chain: 4 itn: 96000 itnStor: 96 i2: 1 StorPars: 0.1882896 i2: 2 StorPars: 2.424961
+chain: 4 itn: 97000 itnStor: 97 i2: 1 StorPars: 0.1602678 i2: 2 StorPars: 1.767868
+chain: 4 itn: 98000 itnStor: 98 i2: 1 StorPars: 0.1842003 i2: 2 StorPars: 1.889166
+chain: 4 itn: 99000 itnStor: 99 i2: 1 StorPars: 0.2085227 i2: 2 StorPars: 2.280212
+chain: 4 itn: 100000 itnStor: 100 i2: 1 StorPars: 0.1868651 i2: 2 StorPars: 1.960428
+chain: 4 itn: 101000 itnStor: 101 i2: 1 StorPars: 0.1971916 i2: 2 StorPars: 1.885456
+chain: 4 itn: 102000 itnStor: 102 i2: 1 StorPars: 0.2132424 i2: 2 StorPars: 2.07318
+chain: 4 itn: 103000 itnStor: 103 i2: 1 StorPars: 0.1797356 i2: 2 StorPars: 1.938487
+chain: 4 itn: 104000 itnStor: 104 i2: 1 StorPars: 0.1989879 i2: 2 StorPars: 2.14552
+chain: 4 itn: 105000 itnStor: 105 i2: 1 StorPars: 0.1996872 i2: 2 StorPars: 2.129545
+chain: 4 itn: 106000 itnStor: 106 i2: 1 StorPars: 0.2396177 i2: 2 StorPars: 2.555362
+chain: 4 itn: 107000 itnStor: 107 i2: 1 StorPars: 0.1590617 i2: 2 StorPars: 1.985672
+chain: 4 itn: 108000 itnStor: 108 i2: 1 StorPars: 0.1525884 i2: 2 StorPars: 1.889911
+chain: 4 itn: 109000 itnStor: 109 i2: 1 StorPars: 0.2064931 i2: 2 StorPars: 2.068759
+chain: 4 itn: 110000 itnStor: 110 i2: 1 StorPars: 0.1729705 i2: 2 StorPars: 1.797234
+chain: 4 itn: 111000 itnStor: 111 i2: 1 StorPars: 0.1736057 i2: 2 StorPars: 1.594008
+chain: 4 itn: 112000 itnStor: 112 i2: 1 StorPars: 0.1880909 i2: 2 StorPars: 1.735191
+chain: 4 itn: 113000 itnStor: 113 i2: 1 StorPars: 0.1965761 i2: 2 StorPars: 2.311604
+chain: 4 itn: 114000 itnStor: 114 i2: 1 StorPars: 0.1843306 i2: 2 StorPars: 2.033825
+chain: 4 itn: 115000 itnStor: 115 i2: 1 StorPars: 0.1497438 i2: 2 StorPars: 1.39516
+chain: 4 itn: 116000 itnStor: 116 i2: 1 StorPars: 0.1677372 i2: 2 StorPars: 1.841128
+chain: 4 itn: 117000 itnStor: 117 i2: 1 StorPars: 0.2209584 i2: 2 StorPars: 2.44877
+chain: 4 itn: 118000 itnStor: 118 i2: 1 StorPars: 0.1575387 i2: 2 StorPars: 1.745272
+chain: 4 itn: 119000 itnStor: 119 i2: 1 StorPars: 0.2176496 i2: 2 StorPars: 1.987653
+chain: 4 itn: 120000 itnStor: 120 i2: 1 StorPars: 0.1709138 i2: 2 StorPars: 1.847047
+chain: 4 itn: 121000 itnStor: 121 i2: 1 StorPars: 0.1412721 i2: 2 StorPars: 1.303713
+chain: 4 itn: 122000 itnStor: 122 i2: 1 StorPars: 0.2053151 i2: 2 StorPars: 2.033807
+chain: 4 itn: 123000 itnStor: 123 i2: 1 StorPars: 0.2417427 i2: 2 StorPars: 2.525201
+chain: 4 itn: 124000 itnStor: 124 i2: 1 StorPars: 0.1694452 i2: 2 StorPars: 1.546341
+chain: 4 itn: 125000 itnStor: 125 i2: 1 StorPars: 0.1751176 i2: 2 StorPars: 1.795516
+chain: 4 itn: 126000 itnStor: 126 i2: 1 StorPars: 0.1905577 i2: 2 StorPars: 1.963565
+chain: 4 itn: 127000 itnStor: 127 i2: 1 StorPars: 0.1784887 i2: 2 StorPars: 2.110136
+chain: 4 itn: 128000 itnStor: 128 i2: 1 StorPars: 0.166347 i2: 2 StorPars: 1.732433
+chain: 4 itn: 129000 itnStor: 129 i2: 1 StorPars: 0.2311877 i2: 2 StorPars: 2.540198
+chain: 4 itn: 130000 itnStor: 130 i2: 1 StorPars: 0.164415 i2: 2 StorPars: 1.879548
+chain: 4 itn: 131000 itnStor: 131 i2: 1 StorPars: 0.1526441 i2: 2 StorPars: 1.769139
+chain: 4 itn: 132000 itnStor: 132 i2: 1 StorPars: 0.1817129 i2: 2 StorPars: 2.012463
+chain: 4 itn: 133000 itnStor: 133 i2: 1 StorPars: 0.2095065 i2: 2 StorPars: 2.299663
+chain: 4 itn: 134000 itnStor: 134 i2: 1 StorPars: 0.163096 i2: 2 StorPars: 1.793736
+chain: 4 itn: 135000 itnStor: 135 i2: 1 StorPars: 0.1762578 i2: 2 StorPars: 2.078533
+chain: 4 itn: 136000 itnStor: 136 i2: 1 StorPars: 0.160265 i2: 2 StorPars: 1.886218
+chain: 4 itn: 137000 itnStor: 137 i2: 1 StorPars: 0.2091855 i2: 2 StorPars: 2.110534
+chain: 4 itn: 138000 itnStor: 138 i2: 1 StorPars: 0.2078308 i2: 2 StorPars: 2.122344
+chain: 4 itn: 139000 itnStor: 139 i2: 1 StorPars: 0.145919 i2: 2 StorPars: 1.72605
+chain: 4 itn: 140000 itnStor: 140 i2: 1 StorPars: 0.1787687 i2: 2 StorPars: 2.158769
+chain: 4 itn: 141000 itnStor: 141 i2: 1 StorPars: 0.1421491 i2: 2 StorPars: 1.819698
+chain: 4 itn: 142000 itnStor: 142 i2: 1 StorPars: 0.2770677 i2: 2 StorPars: 2.303113
+chain: 4 itn: 143000 itnStor: 143 i2: 1 StorPars: 0.1907274 i2: 2 StorPars: 1.941093
+chain: 4 itn: 144000 itnStor: 144 i2: 1 StorPars: 0.1789934 i2: 2 StorPars: 1.890247
+chain: 4 itn: 145000 itnStor: 145 i2: 1 StorPars: 0.1809428 i2: 2 StorPars: 1.890408
+chain: 4 itn: 146000 itnStor: 146 i2: 1 StorPars: 0.1859595 i2: 2 StorPars: 1.955486
+chain: 4 itn: 147000 itnStor: 147 i2: 1 StorPars: 0.1742808 i2: 2 StorPars: 1.72492
+chain: 4 itn: 148000 itnStor: 148 i2: 1 StorPars: 0.1915231 i2: 2 StorPars: 2.31628
+chain: 4 itn: 149000 itnStor: 149 i2: 1 StorPars: 0.2631493 i2: 2 StorPars: 2.631152
+chain: 4 itn: 150000 itnStor: 150 i2: 1 StorPars: 0.2044699 i2: 2 StorPars: 2.180156
+chain: 4 itn: 151000 itnStor: 151 i2: 1 StorPars: 0.2134357 i2: 2 StorPars: 2.594965
+chain: 4 itn: 152000 itnStor: 152 i2: 1 StorPars: 0.1911412 i2: 2 StorPars: 2.251508
+chain: 4 itn: 153000 itnStor: 153 i2: 1 StorPars: 0.1409533 i2: 2 StorPars: 1.384805
+chain: 4 itn: 154000 itnStor: 154 i2: 1 StorPars: 0.16132 i2: 2 StorPars: 2.050246
+chain: 4 itn: 155000 itnStor: 155 i2: 1 StorPars: 0.1782327 i2: 2 StorPars: 1.920754
+chain: 4 itn: 156000 itnStor: 156 i2: 1 StorPars: 0.1754272 i2: 2 StorPars: 1.886093
+chain: 4 itn: 157000 itnStor: 157 i2: 1 StorPars: 0.1710399 i2: 2 StorPars: 1.797879
+chain: 4 itn: 158000 itnStor: 158 i2: 1 StorPars: 0.1798899 i2: 2 StorPars: 1.915733
+chain: 4 itn: 159000 itnStor: 159 i2: 1 StorPars: 0.1638121 i2: 2 StorPars: 1.751211
+chain: 4 itn: 160000 itnStor: 160 i2: 1 StorPars: 0.2395092 i2: 2 StorPars: 2.51645
+chain: 4 itn: 161000 itnStor: 161 i2: 1 StorPars: 0.2509812 i2: 2 StorPars: 2.594515
+chain: 4 itn: 162000 itnStor: 162 i2: 1 StorPars: 0.1647513 i2: 2 StorPars: 1.916339
+chain: 4 itn: 163000 itnStor: 163 i2: 1 StorPars: 0.2272202 i2: 2 StorPars: 2.320532
+chain: 4 itn: 164000 itnStor: 164 i2: 1 StorPars: 0.2284016 i2: 2 StorPars: 2.178554
+chain: 4 itn: 165000 itnStor: 165 i2: 1 StorPars: 0.1771282 i2: 2 StorPars: 1.990639
+chain: 4 itn: 166000 itnStor: 166 i2: 1 StorPars: 0.2314073 i2: 2 StorPars: 2.367636
+chain: 4 itn: 167000 itnStor: 167 i2: 1 StorPars: 0.2305417 i2: 2 StorPars: 2.291475
+chain: 4 itn: 168000 itnStor: 168 i2: 1 StorPars: 0.2130013 i2: 2 StorPars: 2.275347
+chain: 4 itn: 169000 itnStor: 169 i2: 1 StorPars: 0.2099042 i2: 2 StorPars: 2.366542
+chain: 4 itn: 170000 itnStor: 170 i2: 1 StorPars: 0.1629307 i2: 2 StorPars: 1.973148
+chain: 4 itn: 171000 itnStor: 171 i2: 1 StorPars: 0.1736128 i2: 2 StorPars: 1.76644
+chain: 4 itn: 172000 itnStor: 172 i2: 1 StorPars: 0.1625002 i2: 2 StorPars: 1.624335
+chain: 4 itn: 173000 itnStor: 173 i2: 1 StorPars: 0.1760481 i2: 2 StorPars: 1.894506
+chain: 4 itn: 174000 itnStor: 174 i2: 1 StorPars: 0.1943854 i2: 2 StorPars: 2.130696
+chain: 4 itn: 175000 itnStor: 175 i2: 1 StorPars: 0.1691115 i2: 2 StorPars: 1.880831
+chain: 4 itn: 176000 itnStor: 176 i2: 1 StorPars: 0.1966692 i2: 2 StorPars: 2.109452
+chain: 4 itn: 177000 itnStor: 177 i2: 1 StorPars: 0.220967 i2: 2 StorPars: 2.226441
+chain: 4 itn: 178000 itnStor: 178 i2: 1 StorPars: 0.2218505 i2: 2 StorPars: 2.420234
+chain: 4 itn: 179000 itnStor: 179 i2: 1 StorPars: 0.1344684 i2: 2 StorPars: 1.232286
+chain: 4 itn: 180000 itnStor: 180 i2: 1 StorPars: 0.1550347 i2: 2 StorPars: 1.583906
+chain: 4 itn: 181000 itnStor: 181 i2: 1 StorPars: 0.2274012 i2: 2 StorPars: 2.098277
+chain: 4 itn: 182000 itnStor: 182 i2: 1 StorPars: 0.1834295 i2: 2 StorPars: 2.019973
+chain: 4 itn: 183000 itnStor: 183 i2: 1 StorPars: 0.1968101 i2: 2 StorPars: 2.34652
+chain: 4 itn: 184000 itnStor: 184 i2: 1 StorPars: 0.1683698 i2: 2 StorPars: 1.6841
+chain: 4 itn: 185000 itnStor: 185 i2: 1 StorPars: 0.1987361 i2: 2 StorPars: 1.945833
+chain: 4 itn: 186000 itnStor: 186 i2: 1 StorPars: 0.1592648 i2: 2 StorPars: 2.041354
+chain: 4 itn: 187000 itnStor: 187 i2: 1 StorPars: 0.2267702 i2: 2 StorPars: 2.133475
+chain: 4 itn: 188000 itnStor: 188 i2: 1 StorPars: 0.240949 i2: 2 StorPars: 2.59457
+chain: 4 itn: 189000 itnStor: 189 i2: 1 StorPars: 0.1844697 i2: 2 StorPars: 1.963144
+chain: 4 itn: 190000 itnStor: 190 i2: 1 StorPars: 0.1829191 i2: 2 StorPars: 1.851821
+chain: 4 itn: 191000 itnStor: 191 i2: 1 StorPars: 0.1930459 i2: 2 StorPars: 2.205492
+chain: 4 itn: 192000 itnStor: 192 i2: 1 StorPars: 0.2082486 i2: 2 StorPars: 2.258456
+chain: 4 itn: 193000 itnStor: 193 i2: 1 StorPars: 0.2558409 i2: 2 StorPars: 2.544229
+chain: 4 itn: 194000 itnStor: 194 i2: 1 StorPars: 0.1843546 i2: 2 StorPars: 1.858829
+chain: 4 itn: 195000 itnStor: 195 i2: 1 StorPars: 0.1647448 i2: 2 StorPars: 1.734933
+chain: 4 itn: 196000 itnStor: 196 i2: 1 StorPars: 0.1876042 i2: 2 StorPars: 2.197953
+chain: 4 itn: 197000 itnStor: 197 i2: 1 StorPars: 0.252347 i2: 2 StorPars: 2.214042
+chain: 4 itn: 198000 itnStor: 198 i2: 1 StorPars: 0.1865891 i2: 2 StorPars: 1.999927
+chain: 4 itn: 199000 itnStor: 199 i2: 1 StorPars: 0.1688238 i2: 2 StorPars: 1.877514
+chain: 4 itn: 200000 itnStor: 200 i2: 1 StorPars: 0.1706343 i2: 2 StorPars: 1.684888
+chain: 5 itn: 1000 itnStor: 1 i2: 1 StorPars: 0.1549826 i2: 2 StorPars: 1.739024
+chain: 5 itn: 2000 itnStor: 2 i2: 1 StorPars: 0.2382004 i2: 2 StorPars: 2.593539
+chain: 5 itn: 3000 itnStor: 3 i2: 1 StorPars: 0.1873957 i2: 2 StorPars: 2.127318
+chain: 5 itn: 4000 itnStor: 4 i2: 1 StorPars: 0.15195 i2: 2 StorPars: 1.893504
+chain: 5 itn: 5000 itnStor: 5 i2: 1 StorPars: 0.1954653 i2: 2 StorPars: 2.152316
+chain: 5 itn: 6000 itnStor: 6 i2: 1 StorPars: 0.1724036 i2: 2 StorPars: 1.706269
+chain: 5 itn: 7000 itnStor: 7 i2: 1 StorPars: 0.1900055 i2: 2 StorPars: 1.820615
+chain: 5 itn: 8000 itnStor: 8 i2: 1 StorPars: 0.1479416 i2: 2 StorPars: 1.494007
+chain: 5 itn: 9000 itnStor: 9 i2: 1 StorPars: 0.1651709 i2: 2 StorPars: 1.711006
+chain: 5 itn: 10000 itnStor: 10 i2: 1 StorPars: 0.2258109 i2: 2 StorPars: 2.405182
+chain: 5 itn: 11000 itnStor: 11 i2: 1 StorPars: 0.2190432 i2: 2 StorPars: 2.44799
+chain: 5 itn: 12000 itnStor: 12 i2: 1 StorPars: 0.2160659 i2: 2 StorPars: 2.487445
+chain: 5 itn: 13000 itnStor: 13 i2: 1 StorPars: 0.2066067 i2: 2 StorPars: 2.081873
+chain: 5 itn: 14000 itnStor: 14 i2: 1 StorPars: 0.1521403 i2: 2 StorPars: 1.636036
+chain: 5 itn: 15000 itnStor: 15 i2: 1 StorPars: 0.1508549 i2: 2 StorPars: 1.534311
+chain: 5 itn: 16000 itnStor: 16 i2: 1 StorPars: 0.1493377 i2: 2 StorPars: 1.596578
+chain: 5 itn: 17000 itnStor: 17 i2: 1 StorPars: 0.1891374 i2: 2 StorPars: 1.956659
+chain: 5 itn: 18000 itnStor: 18 i2: 1 StorPars: 0.1557479 i2: 2 StorPars: 1.838183
+chain: 5 itn: 19000 itnStor: 19 i2: 1 StorPars: 0.1552704 i2: 2 StorPars: 1.562823
+chain: 5 itn: 20000 itnStor: 20 i2: 1 StorPars: 0.188513 i2: 2 StorPars: 1.780367
+chain: 5 itn: 21000 itnStor: 21 i2: 1 StorPars: 0.1919909 i2: 2 StorPars: 2.005966
+chain: 5 itn: 22000 itnStor: 22 i2: 1 StorPars: 0.1820369 i2: 2 StorPars: 2.23967
+chain: 5 itn: 23000 itnStor: 23 i2: 1 StorPars: 0.1542044 i2: 2 StorPars: 1.670908
+chain: 5 itn: 24000 itnStor: 24 i2: 1 StorPars: 0.1657895 i2: 2 StorPars: 1.822327
+chain: 5 itn: 25000 itnStor: 25 i2: 1 StorPars: 0.2590617 i2: 2 StorPars: 2.479771
+chain: 5 itn: 26000 itnStor: 26 i2: 1 StorPars: 0.1605342 i2: 2 StorPars: 1.496854
+chain: 5 itn: 27000 itnStor: 27 i2: 1 StorPars: 0.1796103 i2: 2 StorPars: 1.911352
+chain: 5 itn: 28000 itnStor: 28 i2: 1 StorPars: 0.2248283 i2: 2 StorPars: 2.472602
+chain: 5 itn: 29000 itnStor: 29 i2: 1 StorPars: 0.1568918 i2: 2 StorPars: 1.623585
+chain: 5 itn: 30000 itnStor: 30 i2: 1 StorPars: 0.1560696 i2: 2 StorPars: 1.786021
+chain: 5 itn: 31000 itnStor: 31 i2: 1 StorPars: 0.1744481 i2: 2 StorPars: 2.004378
+chain: 5 itn: 32000 itnStor: 32 i2: 1 StorPars: 0.197738 i2: 2 StorPars: 2.300474
+chain: 5 itn: 33000 itnStor: 33 i2: 1 StorPars: 0.1941822 i2: 2 StorPars: 2.010079
+chain: 5 itn: 34000 itnStor: 34 i2: 1 StorPars: 0.1743845 i2: 2 StorPars: 1.69411
+chain: 5 itn: 35000 itnStor: 35 i2: 1 StorPars: 0.2110635 i2: 2 StorPars: 2.225552
+chain: 5 itn: 36000 itnStor: 36 i2: 1 StorPars: 0.2192892 i2: 2 StorPars: 2.282428
+chain: 5 itn: 37000 itnStor: 37 i2: 1 StorPars: 0.2136882 i2: 2 StorPars: 2.750878
+chain: 5 itn: 38000 itnStor: 38 i2: 1 StorPars: 0.186838 i2: 2 StorPars: 2.412802
+chain: 5 itn: 39000 itnStor: 39 i2: 1 StorPars: 0.2033604 i2: 2 StorPars: 2.108756
+chain: 5 itn: 40000 itnStor: 40 i2: 1 StorPars: 0.1478375 i2: 2 StorPars: 1.654867
+chain: 5 itn: 41000 itnStor: 41 i2: 1 StorPars: 0.1784699 i2: 2 StorPars: 1.841259
+chain: 5 itn: 42000 itnStor: 42 i2: 1 StorPars: 0.1825168 i2: 2 StorPars: 1.961194
+chain: 5 itn: 43000 itnStor: 43 i2: 1 StorPars: 0.1812755 i2: 2 StorPars: 1.632999
+chain: 5 itn: 44000 itnStor: 44 i2: 1 StorPars: 0.1687192 i2: 2 StorPars: 1.872602
+chain: 5 itn: 45000 itnStor: 45 i2: 1 StorPars: 0.1785314 i2: 2 StorPars: 1.879155
+chain: 5 itn: 46000 itnStor: 46 i2: 1 StorPars: 0.1546534 i2: 2 StorPars: 1.585547
+chain: 5 itn: 47000 itnStor: 47 i2: 1 StorPars: 0.1664381 i2: 2 StorPars: 1.490776
+chain: 5 itn: 48000 itnStor: 48 i2: 1 StorPars: 0.2181596 i2: 2 StorPars: 2.225288
+chain: 5 itn: 49000 itnStor: 49 i2: 1 StorPars: 0.1737998 i2: 2 StorPars: 1.907818
+chain: 5 itn: 50000 itnStor: 50 i2: 1 StorPars: 0.1755884 i2: 2 StorPars: 1.776349
+chain: 5 itn: 51000 itnStor: 51 i2: 1 StorPars: 0.1771977 i2: 2 StorPars: 1.981988
+chain: 5 itn: 52000 itnStor: 52 i2: 1 StorPars: 0.2505977 i2: 2 StorPars: 2.480821
+chain: 5 itn: 53000 itnStor: 53 i2: 1 StorPars: 0.1678864 i2: 2 StorPars: 1.800255
+chain: 5 itn: 54000 itnStor: 54 i2: 1 StorPars: 0.2084022 i2: 2 StorPars: 2.107473
+chain: 5 itn: 55000 itnStor: 55 i2: 1 StorPars: 0.1685887 i2: 2 StorPars: 2.129319
+chain: 5 itn: 56000 itnStor: 56 i2: 1 StorPars: 0.1685116 i2: 2 StorPars: 1.7692
+chain: 5 itn: 57000 itnStor: 57 i2: 1 StorPars: 0.1887593 i2: 2 StorPars: 2.051457
+chain: 5 itn: 58000 itnStor: 58 i2: 1 StorPars: 0.1970846 i2: 2 StorPars: 2.331362
+chain: 5 itn: 59000 itnStor: 59 i2: 1 StorPars: 0.2134549 i2: 2 StorPars: 2.251509
+chain: 5 itn: 60000 itnStor: 60 i2: 1 StorPars: 0.1774997 i2: 2 StorPars: 1.925233
+chain: 5 itn: 61000 itnStor: 61 i2: 1 StorPars: 0.1736242 i2: 2 StorPars: 2.054666
+chain: 5 itn: 62000 itnStor: 62 i2: 1 StorPars: 0.1878786 i2: 2 StorPars: 2.038932
+chain: 5 itn: 63000 itnStor: 63 i2: 1 StorPars: 0.2045756 i2: 2 StorPars: 1.96146
+chain: 5 itn: 64000 itnStor: 64 i2: 1 StorPars: 0.1714809 i2: 2 StorPars: 1.902648
+chain: 5 itn: 65000 itnStor: 65 i2: 1 StorPars: 0.2070626 i2: 2 StorPars: 2.350292
+chain: 5 itn: 66000 itnStor: 66 i2: 1 StorPars: 0.1524234 i2: 2 StorPars: 1.654589
+chain: 5 itn: 67000 itnStor: 67 i2: 1 StorPars: 0.1835504 i2: 2 StorPars: 1.81724
+chain: 5 itn: 68000 itnStor: 68 i2: 1 StorPars: 0.1753936 i2: 2 StorPars: 1.716992
+chain: 5 itn: 69000 itnStor: 69 i2: 1 StorPars: 0.2182415 i2: 2 StorPars: 2.30157
+chain: 5 itn: 70000 itnStor: 70 i2: 1 StorPars: 0.1884413 i2: 2 StorPars: 2.153673
+chain: 5 itn: 71000 itnStor: 71 i2: 1 StorPars: 0.1746375 i2: 2 StorPars: 1.878252
+chain: 5 itn: 72000 itnStor: 72 i2: 1 StorPars: 0.2346917 i2: 2 StorPars: 2.648019
+chain: 5 itn: 73000 itnStor: 73 i2: 1 StorPars: 0.1781462 i2: 2 StorPars: 1.759191
+chain: 5 itn: 74000 itnStor: 74 i2: 1 StorPars: 0.1658853 i2: 2 StorPars: 1.929825
+chain: 5 itn: 75000 itnStor: 75 i2: 1 StorPars: 0.1825721 i2: 2 StorPars: 1.896298
+chain: 5 itn: 76000 itnStor: 76 i2: 1 StorPars: 0.1679695 i2: 2 StorPars: 1.80434
+chain: 5 itn: 77000 itnStor: 77 i2: 1 StorPars: 0.1310694 i2: 2 StorPars: 1.234389
+chain: 5 itn: 78000 itnStor: 78 i2: 1 StorPars: 0.2388727 i2: 2 StorPars: 2.793141
+chain: 5 itn: 79000 itnStor: 79 i2: 1 StorPars: 0.1893931 i2: 2 StorPars: 2.154595
+chain: 5 itn: 80000 itnStor: 80 i2: 1 StorPars: 0.1609091 i2: 2 StorPars: 1.931983
+chain: 5 itn: 81000 itnStor: 81 i2: 1 StorPars: 0.1593962 i2: 2 StorPars: 1.645569
+chain: 5 itn: 82000 itnStor: 82 i2: 1 StorPars: 0.1713473 i2: 2 StorPars: 2.117818
+chain: 5 itn: 83000 itnStor: 83 i2: 1 StorPars: 0.1844977 i2: 2 StorPars: 2.123471
+chain: 5 itn: 84000 itnStor: 84 i2: 1 StorPars: 0.212898 i2: 2 StorPars: 2.417163
+chain: 5 itn: 85000 itnStor: 85 i2: 1 StorPars: 0.2022816 i2: 2 StorPars: 2.124364
+chain: 5 itn: 86000 itnStor: 86 i2: 1 StorPars: 0.1887879 i2: 2 StorPars: 1.919248
+chain: 5 itn: 87000 itnStor: 87 i2: 1 StorPars: 0.2284514 i2: 2 StorPars: 2.413521
+chain: 5 itn: 88000 itnStor: 88 i2: 1 StorPars: 0.2355019 i2: 2 StorPars: 2.292977
+chain: 5 itn: 89000 itnStor: 89 i2: 1 StorPars: 0.145942 i2: 2 StorPars: 1.743237
+chain: 5 itn: 90000 itnStor: 90 i2: 1 StorPars: 0.1452991 i2: 2 StorPars: 1.550074
+chain: 5 itn: 91000 itnStor: 91 i2: 1 StorPars: 0.1857486 i2: 2 StorPars: 1.874662
+chain: 5 itn: 92000 itnStor: 92 i2: 1 StorPars: 0.1666676 i2: 2 StorPars: 1.965389
+chain: 5 itn: 93000 itnStor: 93 i2: 1 StorPars: 0.1746625 i2: 2 StorPars: 2.139316
+chain: 5 itn: 94000 itnStor: 94 i2: 1 StorPars: 0.1942317 i2: 2 StorPars: 1.872747
+chain: 5 itn: 95000 itnStor: 95 i2: 1 StorPars: 0.1707491 i2: 2 StorPars: 1.891641
+chain: 5 itn: 96000 itnStor: 96 i2: 1 StorPars: 0.1368233 i2: 2 StorPars: 1.405816
+chain: 5 itn: 97000 itnStor: 97 i2: 1 StorPars: 0.1833698 i2: 2 StorPars: 1.885829
+chain: 5 itn: 98000 itnStor: 98 i2: 1 StorPars: 0.1971089 i2: 2 StorPars: 2.128426
+chain: 5 itn: 99000 itnStor: 99 i2: 1 StorPars: 0.1820138 i2: 2 StorPars: 2.037903
+chain: 5 itn: 100000 itnStor: 100 i2: 1 StorPars: 0.2110077 i2: 2 StorPars: 2.310732
+chain: 5 itn: 101000 itnStor: 101 i2: 1 StorPars: 0.2015537 i2: 2 StorPars: 2.284122
+chain: 5 itn: 102000 itnStor: 102 i2: 1 StorPars: 0.1779858 i2: 2 StorPars: 1.803546
+chain: 5 itn: 103000 itnStor: 103 i2: 1 StorPars: 0.2142219 i2: 2 StorPars: 2.240815
+chain: 5 itn: 104000 itnStor: 104 i2: 1 StorPars: 0.1888243 i2: 2 StorPars: 2.308237
+chain: 5 itn: 105000 itnStor: 105 i2: 1 StorPars: 0.1848631 i2: 2 StorPars: 2.024181
+chain: 5 itn: 106000 itnStor: 106 i2: 1 StorPars: 0.1607769 i2: 2 StorPars: 1.887864
+chain: 5 itn: 107000 itnStor: 107 i2: 1 StorPars: 0.2051874 i2: 2 StorPars: 2.030541
+chain: 5 itn: 108000 itnStor: 108 i2: 1 StorPars: 0.1876695 i2: 2 StorPars: 1.864382
+chain: 5 itn: 109000 itnStor: 109 i2: 1 StorPars: 0.1866933 i2: 2 StorPars: 1.849846
+chain: 5 itn: 110000 itnStor: 110 i2: 1 StorPars: 0.1926596 i2: 2 StorPars: 2.219949
+chain: 5 itn: 111000 itnStor: 111 i2: 1 StorPars: 0.1618182 i2: 2 StorPars: 1.745621
+chain: 5 itn: 112000 itnStor: 112 i2: 1 StorPars: 0.1691319 i2: 2 StorPars: 1.752536
+chain: 5 itn: 113000 itnStor: 113 i2: 1 StorPars: 0.1823677 i2: 2 StorPars: 1.967158
+chain: 5 itn: 114000 itnStor: 114 i2: 1 StorPars: 0.1744611 i2: 2 StorPars: 2.065199
+chain: 5 itn: 115000 itnStor: 115 i2: 1 StorPars: 0.1955758 i2: 2 StorPars: 2.013259
+chain: 5 itn: 116000 itnStor: 116 i2: 1 StorPars: 0.1758919 i2: 2 StorPars: 1.791113
+chain: 5 itn: 117000 itnStor: 117 i2: 1 StorPars: 0.2367015 i2: 2 StorPars: 2.533946
+chain: 5 itn: 118000 itnStor: 118 i2: 1 StorPars: 0.1843349 i2: 2 StorPars: 2.102608
+chain: 5 itn: 119000 itnStor: 119 i2: 1 StorPars: 0.147189 i2: 2 StorPars: 1.553449
+chain: 5 itn: 120000 itnStor: 120 i2: 1 StorPars: 0.2244514 i2: 2 StorPars: 2.373805
+chain: 5 itn: 121000 itnStor: 121 i2: 1 StorPars: 0.1782349 i2: 2 StorPars: 1.817793
+chain: 5 itn: 122000 itnStor: 122 i2: 1 StorPars: 0.1510841 i2: 2 StorPars: 1.544956
+chain: 5 itn: 123000 itnStor: 123 i2: 1 StorPars: 0.2369167 i2: 2 StorPars: 2.552337
+chain: 5 itn: 124000 itnStor: 124 i2: 1 StorPars: 0.1642788 i2: 2 StorPars: 1.695749
+chain: 5 itn: 125000 itnStor: 125 i2: 1 StorPars: 0.1574967 i2: 2 StorPars: 1.598691
+chain: 5 itn: 126000 itnStor: 126 i2: 1 StorPars: 0.2391154 i2: 2 StorPars: 2.215301
+chain: 5 itn: 127000 itnStor: 127 i2: 1 StorPars: 0.1723773 i2: 2 StorPars: 1.865226
+chain: 5 itn: 128000 itnStor: 128 i2: 1 StorPars: 0.1835458 i2: 2 StorPars: 1.826157
+chain: 5 itn: 129000 itnStor: 129 i2: 1 StorPars: 0.2000854 i2: 2 StorPars: 2.135313
+chain: 5 itn: 130000 itnStor: 130 i2: 1 StorPars: 0.1804003 i2: 2 StorPars: 1.783077
+chain: 5 itn: 131000 itnStor: 131 i2: 1 StorPars: 0.2005286 i2: 2 StorPars: 2.160451
+chain: 5 itn: 132000 itnStor: 132 i2: 1 StorPars: 0.1809832 i2: 2 StorPars: 1.849933
+chain: 5 itn: 133000 itnStor: 133 i2: 1 StorPars: 0.2029642 i2: 2 StorPars: 2.119775
+chain: 5 itn: 134000 itnStor: 134 i2: 1 StorPars: 0.1645537 i2: 2 StorPars: 1.888889
+chain: 5 itn: 135000 itnStor: 135 i2: 1 StorPars: 0.1672318 i2: 2 StorPars: 1.796101
+chain: 5 itn: 136000 itnStor: 136 i2: 1 StorPars: 0.2379846 i2: 2 StorPars: 2.713242
+chain: 5 itn: 137000 itnStor: 137 i2: 1 StorPars: 0.1908212 i2: 2 StorPars: 2.044374
+chain: 5 itn: 138000 itnStor: 138 i2: 1 StorPars: 0.2396467 i2: 2 StorPars: 2.530778
+chain: 5 itn: 139000 itnStor: 139 i2: 1 StorPars: 0.1844064 i2: 2 StorPars: 1.816289
+chain: 5 itn: 140000 itnStor: 140 i2: 1 StorPars: 0.1677641 i2: 2 StorPars: 1.754671
+chain: 5 itn: 141000 itnStor: 141 i2: 1 StorPars: 0.2147033 i2: 2 StorPars: 2.34738
+chain: 5 itn: 142000 itnStor: 142 i2: 1 StorPars: 0.2166525 i2: 2 StorPars: 2.327947
+chain: 5 itn: 143000 itnStor: 143 i2: 1 StorPars: 0.1683089 i2: 2 StorPars: 2.182537
+chain: 5 itn: 144000 itnStor: 144 i2: 1 StorPars: 0.1802174 i2: 2 StorPars: 1.903293
+chain: 5 itn: 145000 itnStor: 145 i2: 1 StorPars: 0.182894 i2: 2 StorPars: 2.036355
+chain: 5 itn: 146000 itnStor: 146 i2: 1 StorPars: 0.2337559 i2: 2 StorPars: 2.675781
+chain: 5 itn: 147000 itnStor: 147 i2: 1 StorPars: 0.1770558 i2: 2 StorPars: 2.083691
+chain: 5 itn: 148000 itnStor: 148 i2: 1 StorPars: 0.2033633 i2: 2 StorPars: 2.544535
+chain: 5 itn: 149000 itnStor: 149 i2: 1 StorPars: 0.2061353 i2: 2 StorPars: 2.058817
+chain: 5 itn: 150000 itnStor: 150 i2: 1 StorPars: 0.2001678 i2: 2 StorPars: 1.901468
+chain: 5 itn: 151000 itnStor: 151 i2: 1 StorPars: 0.1852243 i2: 2 StorPars: 2.072404
+chain: 5 itn: 152000 itnStor: 152 i2: 1 StorPars: 0.2189045 i2: 2 StorPars: 2.255989
+chain: 5 itn: 153000 itnStor: 153 i2: 1 StorPars: 0.1816564 i2: 2 StorPars: 2.281873
+chain: 5 itn: 154000 itnStor: 154 i2: 1 StorPars: 0.1565119 i2: 2 StorPars: 1.772026
+chain: 5 itn: 155000 itnStor: 155 i2: 1 StorPars: 0.2031377 i2: 2 StorPars: 2.054109
+chain: 5 itn: 156000 itnStor: 156 i2: 1 StorPars: 0.2205653 i2: 2 StorPars: 2.172032
+chain: 5 itn: 157000 itnStor: 157 i2: 1 StorPars: 0.1912987 i2: 2 StorPars: 1.997067
+chain: 5 itn: 158000 itnStor: 158 i2: 1 StorPars: 0.1497434 i2: 2 StorPars: 1.614393
+chain: 5 itn: 159000 itnStor: 159 i2: 1 StorPars: 0.253493 i2: 2 StorPars: 2.412623
+chain: 5 itn: 160000 itnStor: 160 i2: 1 StorPars: 0.1774917 i2: 2 StorPars: 1.654108
+chain: 5 itn: 161000 itnStor: 161 i2: 1 StorPars: 0.2271732 i2: 2 StorPars: 2.234173
+chain: 5 itn: 162000 itnStor: 162 i2: 1 StorPars: 0.1517392 i2: 2 StorPars: 1.647742
+chain: 5 itn: 163000 itnStor: 163 i2: 1 StorPars: 0.1626553 i2: 2 StorPars: 1.772878
+chain: 5 itn: 164000 itnStor: 164 i2: 1 StorPars: 0.1943352 i2: 2 StorPars: 2.299594
+chain: 5 itn: 165000 itnStor: 165 i2: 1 StorPars: 0.2299066 i2: 2 StorPars: 2.425539
+chain: 5 itn: 166000 itnStor: 166 i2: 1 StorPars: 0.2077323 i2: 2 StorPars: 2.264853
+chain: 5 itn: 167000 itnStor: 167 i2: 1 StorPars: 0.1832568 i2: 2 StorPars: 1.994889
+chain: 5 itn: 168000 itnStor: 168 i2: 1 StorPars: 0.1592613 i2: 2 StorPars: 1.694587
+chain: 5 itn: 169000 itnStor: 169 i2: 1 StorPars: 0.1855323 i2: 2 StorPars: 2.068547
+chain: 5 itn: 170000 itnStor: 170 i2: 1 StorPars: 0.2302504 i2: 2 StorPars: 2.244596
+chain: 5 itn: 171000 itnStor: 171 i2: 1 StorPars: 0.1883611 i2: 2 StorPars: 2.012253
+chain: 5 itn: 172000 itnStor: 172 i2: 1 StorPars: 0.145338 i2: 2 StorPars: 1.529122
+chain: 5 itn: 173000 itnStor: 173 i2: 1 StorPars: 0.1822446 i2: 2 StorPars: 1.767815
+chain: 5 itn: 174000 itnStor: 174 i2: 1 StorPars: 0.216241 i2: 2 StorPars: 2.08502
+chain: 5 itn: 175000 itnStor: 175 i2: 1 StorPars: 0.2366472 i2: 2 StorPars: 2.452583
+chain: 5 itn: 176000 itnStor: 176 i2: 1 StorPars: 0.1691352 i2: 2 StorPars: 1.626122
+chain: 5 itn: 177000 itnStor: 177 i2: 1 StorPars: 0.1549141 i2: 2 StorPars: 1.757337
+chain: 5 itn: 178000 itnStor: 178 i2: 1 StorPars: 0.2391319 i2: 2 StorPars: 2.586085
+chain: 5 itn: 179000 itnStor: 179 i2: 1 StorPars: 0.2299064 i2: 2 StorPars: 2.148854
+chain: 5 itn: 180000 itnStor: 180 i2: 1 StorPars: 0.242547 i2: 2 StorPars: 2.418699
+chain: 5 itn: 181000 itnStor: 181 i2: 1 StorPars: 0.2380112 i2: 2 StorPars: 2.600604
+chain: 5 itn: 182000 itnStor: 182 i2: 1 StorPars: 0.2084109 i2: 2 StorPars: 2.29046
+chain: 5 itn: 183000 itnStor: 183 i2: 1 StorPars: 0.1583438 i2: 2 StorPars: 1.566142
+chain: 5 itn: 184000 itnStor: 184 i2: 1 StorPars: 0.1999659 i2: 2 StorPars: 2.063079
+chain: 5 itn: 185000 itnStor: 185 i2: 1 StorPars: 0.2366997 i2: 2 StorPars: 2.689407
+chain: 5 itn: 186000 itnStor: 186 i2: 1 StorPars: 0.1950372 i2: 2 StorPars: 1.802509
+chain: 5 itn: 187000 itnStor: 187 i2: 1 StorPars: 0.149887 i2: 2 StorPars: 1.696522
+chain: 5 itn: 188000 itnStor: 188 i2: 1 StorPars: 0.2222187 i2: 2 StorPars: 2.214404
+chain: 5 itn: 189000 itnStor: 189 i2: 1 StorPars: 0.2495273 i2: 2 StorPars: 2.777997
+chain: 5 itn: 190000 itnStor: 190 i2: 1 StorPars: 0.2053272 i2: 2 StorPars: 2.288683
+chain: 5 itn: 191000 itnStor: 191 i2: 1 StorPars: 0.2386539 i2: 2 StorPars: 2.182427
+chain: 5 itn: 192000 itnStor: 192 i2: 1 StorPars: 0.19422 i2: 2 StorPars: 1.816829
+chain: 5 itn: 193000 itnStor: 193 i2: 1 StorPars: 0.1757538 i2: 2 StorPars: 2.225267
+chain: 5 itn: 194000 itnStor: 194 i2: 1 StorPars: 0.2339438 i2: 2 StorPars: 2.60743
+chain: 5 itn: 195000 itnStor: 195 i2: 1 StorPars: 0.1379913 i2: 2 StorPars: 1.675412
+chain: 5 itn: 196000 itnStor: 196 i2: 1 StorPars: 0.2205699 i2: 2 StorPars: 2.545151
+chain: 5 itn: 197000 itnStor: 197 i2: 1 StorPars: 0.2379087 i2: 2 StorPars: 2.351279
+chain: 5 itn: 198000 itnStor: 198 i2: 1 StorPars: 0.2366167 i2: 2 StorPars: 2.577968
+chain: 5 itn: 199000 itnStor: 199 i2: 1 StorPars: 0.1601138 i2: 2 StorPars: 1.740531
+chain: 5 itn: 200000 itnStor: 200 i2: 1 StorPars: 0.1656358 i2: 2 StorPars: 1.732835</code></pre>
+<pre class="r"><code>########### MCMC diagnostics: did the algorithm converge? #############
+require(coda);</code></pre>
+<p><img src="figure/Homework8.Rmd/unnamed-chunk-1-1.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>AllPars = c();
+itnStor = itnStor - 1;
+HalfWay = round(0.5*itnStor);
+x1 = mcmc(StorPars[1,HalfWay:itnStor,]);
+x2 = mcmc(StorPars[2,HalfWay:itnStor,]);
+x3 = mcmc(StorPars[3,HalfWay:itnStor,]);
+x4 = mcmc(StorPars[4,HalfWay:itnStor,]);
+x5 = mcmc(StorPars[5,HalfWay:itnStor,]);
+xAll = mcmc.list(x1,x2,x3,x4,x5);
+
+#Trace plots
+par(ask=&quot;TRUE&quot;);
+par(mai=c(0.5,0.5,0.5,0.5));
+plot(xAll)
+gelmanOut = gelman.diag(xAll)
+print(gelmanOut);</code></pre>
+<pre><code>Potential scale reduction factors:
+
+     Point est. Upper C.I.
+[1,]       1.01       1.03
+[2,]       1.01       1.03
+
+Multivariate psrf
+
+1.01</code></pre>
+<pre class="r"><code>#Autocorrelations
+par(mfrow=c(5,2));
+par(ask=&quot;TRUE&quot;);
+par(mai=c(0.225,0.25,0.225,0.25));
+#par(mai=c(0.5,0.5,0.5,0.5));
+title(main=&quot;&quot;)</code></pre>
+<p><img src="figure/Homework8.Rmd/unnamed-chunk-1-2.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>acf(x1[,1],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x1[,2],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x2[,1],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x2[,2],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x3[,1],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x3[,2],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x4[,1],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x4[,2],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x5[,1],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);
+acf(x5[,2],xlab=&quot;&quot;,ylab=&quot;&quot;); abline(h=-0.1,col=&quot;RED&quot;); abline(h=0.1,col=&quot;RED&quot;);</code></pre>
+<p><img src="figure/Homework8.Rmd/unnamed-chunk-1-3.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>############### Decision-making: should we spray the virus? #################
+AllData = c();
+for(chain in 1:maxchain){
+    AllData = rbind(AllData,StorPars[chain,1:ThinStor,]);
+}
+
+
+Burnout&lt;-function(nu,mu,V,S0,I0,i){ #This function is a straight line
+
+    return (1 - i - (1 + nu*V/mu*(i*S0+I0))^(-V));
+
+}
+
+S0 = 0.1; I0 = 0.01;
+UpperPctl = round(0.25*ThinStor);
+LowerPctl = round(0.75*ThinStor);
+S0Range = seq(from=0.0,to=10.0,by=0.1); #the range of values over which we will calculate the root
+S0Dim = length(S0Range);
+ParamDim = nrow(AllData);
+#FractInf = array(dim=c(S0Dim,ParamDim));
+FractInf = c();
+FIPlotUpper = c(); FIPlotLower = c(); FIMedian = c();
+i = 1;
+for(S0 in S0Range){
+    for(j in 1:ThinStor){
+    
+        z = uniroot(f=Burnout,interval=c(0.0,1.0),nu=AllData[j,1],mu=0.41,V=AllData[j,2],S0=S0,I0=I0);
+        FractInf[j] = z$root;
+        #cat(&quot;S0:&quot;,S0,&quot;j:&quot;,j,&quot;FractInf:&quot;,FractInf[j],&quot;\n&quot;);
+
+        if(1){
+            Ordering = order(FractInf,decreasing=TRUE); #figuring out the order of the parameters
+            OrderedFractInf = cbind(FractInf)[Ordering,] #Carrying out the ordering...
+            FIPlotUpper[i] = OrderedFractInf[UpperPctl];
+            FIPlotLower[i] = OrderedFractInf[LowerPctl];
+            FIMedian[i] = median(FractInf);
+        }
+
+    }
+    #line = readline();
+    i = i + 1;
+}
+
+par(ask=&quot;FALSE&quot;);
+
+
+
+k1 = 0.0;
+k2 = 100.0;
+#k2 = 0.05;
+
+par(mfrow=c(1,1));
+
+MedianCost = k1 + k2*(1-FIMedian)*S0Range;
+LowerCost = k1 + k2*(1-FIPlotUpper)*S0Range;
+UpperCost = k1 + k2*(1-FIPlotLower)*S0Range;
+#plot(S0Range,(1-FIMedian)*S0Range*k1*exp(k2*Defoln),type=&quot;l&quot;); #exponential
+par(mfrow=c(1,1));
+Upperylim = max(UpperCost);
+Lowerylim = min(LowerCost);
+par(mai=c(1,1,1,1));
+plot(S0Range,MedianCost,type=&quot;l&quot;,ylim=c(Lowerylim,Upperylim),ylab=&quot;Cost&quot;,xlab=&quot;Insect Density&quot;);  #linear
+lines(S0Range,UpperCost,type=&quot;l&quot;,lwd=2.5);
+lines(S0Range,LowerCost,type=&quot;l&quot;,lwd=2.5);</code></pre>
+<p><img src="figure/Homework8.Rmd/unnamed-chunk-1-4.png" width="864" style="display: block; margin: auto;" /></p>
+<p>Thought questions 1. The forest service personnel that we work with have sometimes been dismayed when they spray high density populations, but get almost the same infection rate as in populations at the same density that are unsprayed. What does epidemiological theory say could be the explanation?<br />
+</p>
+<p>According to figure 4, the higher the insect density (starting from density &gt; 2), the lower the cost of not spraying. It means that in order to get the maximum effect of spraying we would need to spray when the insect density if low (around 1). In other words, spraying is less effective in high insect density (6~) compared to lower density (0.5~2).<br />
+</p>
+<ol start="2" style="list-style-type: decimal">
+<li>At low insect densities, the cost of not spraying increases with increasing density, because of the defoliation caused by the insect. Eventually, however, the cost of not spraying falls very sharply with increasing host density, leading to a peak in the cost curve. The curve at first increases with increasing insect density, but why does it then fall very sharply? Be sure to invoke the disease-density threshold in your answer.<br />
+</li>
+</ol>
+<p>For density dependent diseases, there exists a threshold at which the transmission of the pathogen becomes inefficient. This is called the disease-density threshold. The threshold host density of a species refers to the minimum concentration of individuals necessary to sustain a given disease within a population (Wikipedia). Therefore, the reason the cost of not spraying plummets after the threshold is because the pathogen has already reached and passed the point where it cannot sustain itself due to its transmission being ineffective.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Suppose that the cost of spraying is 40$/hectare (vertical axis units on the figure are in dollars/hectare). What is the highest density at which you would recommend spraying? Also, note that the horizontal axis scale is insects /m2. If the pest manager then says that costs above 60/hectare are absolutely unacceptable, what is the highest density at which you would recommend spraying? Be sure to invoke the 75th percentile line in your answer.</li>
+</ol>
+<p>The cost of spraying has to be less than cost of not spraying(depicted in graph) in order to justify the act of spraying. Therefore, if we use the 75th percentile of cost of not spraying as our worst case scenario, we could get the highest insect density where the cost of not spraying(75th percentile) is lower or equal to 60/hectare.</p>
+<pre class="r"><code>dev.off()</code></pre>
+<pre><code>null device 
+          1 </code></pre>
+<pre class="r"><code>par(mai=c(1,1,1,1));
+plot(S0Range,MedianCost,type=&quot;l&quot;,ylim=c(Lowerylim,Upperylim),ylab=&quot;Cost&quot;,xlab=&quot;Insect Density&quot;);  #linear
+lines(S0Range,UpperCost,type=&quot;l&quot;,lwd=2.5);
+lines(S0Range,LowerCost,type=&quot;l&quot;,lwd=2.5);
+abline(h=60, col=&#39;red&#39;)
+
+S0Range[UpperCost &lt; 60]</code></pre>
+<pre><code> [1]  0.0  0.1  0.2  0.3  0.4  0.5  0.6  1.3  1.4  1.5  1.6  1.7  1.8  1.9  2.0
+[16]  2.1  2.2  2.3  2.4  2.5  2.6  2.7  2.8  2.9  3.0  3.1  3.2  3.3  3.4  3.5
+[31]  3.6  3.7  3.8  3.9  4.0  4.1  4.2  4.3  4.4  4.5  4.6  4.7  4.8  4.9  5.0
+[46]  5.1  5.2  5.3  5.4  5.5  5.6  5.7  5.8  5.9  6.0  6.1  6.2  6.3  6.4  6.5
+[61]  6.6  6.7  6.8  6.9  7.0  7.1  7.2  7.3  7.4  7.5  7.6  7.7  7.8  7.9  8.0
+[76]  8.1  8.2  8.3  8.4  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3  9.4  9.5
+[91]  9.6  9.7  9.8  9.9 10.0</code></pre>
+<pre class="r"><code>abline(v=0.65, col=&#39;blue&#39;)</code></pre>
+<p>There are two points where the 75th percentile graph intersects with cost = 60$. However, it would be recommended to spray before the insect density gets higher and already damage the ecosystem. That density is 0.65insects/m^2 (blue line).</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.3 (2020-10-10)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19042)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] coda_0.19-4     workflowr_1.6.2
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.5        pillar_1.5.1      compiler_4.0.3    bslib_0.2.4      
+ [5] later_1.1.0.1     jquerylib_0.1.3   git2r_0.28.0      highr_0.8        
+ [9] tools_4.0.3       digest_0.6.27     jsonlite_1.7.2    evaluate_0.14    
+[13] lifecycle_1.0.0   tibble_3.0.4      lattice_0.20-41   pkgconfig_2.0.3  
+[17] rlang_0.4.10      yaml_2.2.1        xfun_0.20         stringr_1.4.0    
+[21] knitr_1.31        fs_1.5.0          vctrs_0.3.6       sass_0.3.1       
+[25] rprojroot_2.0.2   grid_4.0.3        glue_1.4.2        R6_2.5.0         
+[29] fansi_0.4.2       rmarkdown_2.7     magrittr_2.0.1    whisker_0.4      
+[33] promises_1.1.1    ellipsis_0.3.1    htmltools_0.5.1.1 httpuv_1.5.4     
+[37] utf8_1.1.4        stringi_1.5.3     crayon_1.4.1     </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
