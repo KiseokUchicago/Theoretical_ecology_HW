@@ -325,8 +325,6 @@ For density dependent diseases, there exists a threshold at which the transmissi
 
 The cost of spraying has to be less than cost of not spraying(depicted in graph) in order to justify the act of spraying. Therefore, if we use the 75th percentile of cost of not spraying as our worst case scenario, we could get the highest insect density where the cost of not spraying(75th percentile) is lower or equal to 60/hectare. 
 ```{r}
-dev.off()
-par(mai=c(1,1,1,1));
 plot(S0Range,MedianCost,type="l",ylim=c(Lowerylim,Upperylim),ylab="Cost",xlab="Insect Density");  #linear
 lines(S0Range,UpperCost,type="l",lwd=2.5);
 lines(S0Range,LowerCost,type="l",lwd=2.5);
