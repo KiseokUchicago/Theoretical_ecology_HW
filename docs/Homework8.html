@@ -473,16 +473,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree93ac74e11724aee80b955dd404238aa35dcfeb2dtargetblank93ac74ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/93ac74e11724aee80b955dd404238aa35dcfeb2d" target="_blank">93ac74e</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree72ca356b212deffe1c39871fdf5a1981dc110a3dtargetblank72ca356a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/72ca356b212deffe1c39871fdf5a1981dc110a3d" target="_blank">72ca356</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree93ac74e11724aee80b955dd404238aa35dcfeb2dtargetblank93ac74ea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomKiseokUchicagoTheoreticalecologyHWtree72ca356b212deffe1c39871fdf5a1981dc110a3dtargetblank72ca356a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/93ac74e11724aee80b955dd404238aa35dcfeb2d" target="_blank">93ac74e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/tree/72ca356b212deffe1c39871fdf5a1981dc110a3d" target="_blank">72ca356</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -533,6 +533,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/KiseokUchicago/Theoretical_ecology_HW/blob/72ca356b212deffe1c39871fdf5a1981dc110a3d/analysis/Homework8.Rmd" target="_blank">72ca356</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-03-13
+</td>
+<td>
+HW8 plot
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/KiseokUchicago/Theoretical_ecology_HW/08379459b24b6ff7ce4f8d2462c8d613e2c7d6d7/docs/Homework8.html" target="_blank">0837945</a>
+</td>
+<td>
+KiseokUChicago
+</td>
+<td>
+2021-03-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1880,11 +1914,7 @@ lines(S0Range,LowerCost,type=&quot;l&quot;,lwd=2.5);</code></pre>
 <li>Suppose that the cost of spraying is 40$/hectare (vertical axis units on the figure are in dollars/hectare). What is the highest density at which you would recommend spraying? Also, note that the horizontal axis scale is insects /m2. If the pest manager then says that costs above 60/hectare are absolutely unacceptable, what is the highest density at which you would recommend spraying? Be sure to invoke the 75th percentile line in your answer.</li>
 </ol>
 <p>The cost of spraying has to be less than cost of not spraying(depicted in graph) in order to justify the act of spraying. Therefore, if we use the 75th percentile of cost of not spraying as our worst case scenario, we could get the highest insect density where the cost of not spraying(75th percentile) is lower or equal to 60/hectare.</p>
-<pre class="r"><code>dev.off()</code></pre>
-<pre><code>null device 
-          1 </code></pre>
-<pre class="r"><code>par(mai=c(1,1,1,1));
-plot(S0Range,MedianCost,type=&quot;l&quot;,ylim=c(Lowerylim,Upperylim),ylab=&quot;Cost&quot;,xlab=&quot;Insect Density&quot;);  #linear
+<pre class="r"><code>plot(S0Range,MedianCost,type=&quot;l&quot;,ylim=c(Lowerylim,Upperylim),ylab=&quot;Cost&quot;,xlab=&quot;Insect Density&quot;);  #linear
 lines(S0Range,UpperCost,type=&quot;l&quot;,lwd=2.5);
 lines(S0Range,LowerCost,type=&quot;l&quot;,lwd=2.5);
 abline(h=60, col=&#39;red&#39;)
@@ -1898,6 +1928,7 @@ S0Range[UpperCost &lt; 60]</code></pre>
 [76]  8.1  8.2  8.3  8.4  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3  9.4  9.5
 [91]  9.6  9.7  9.8  9.9 10.0</code></pre>
 <pre class="r"><code>abline(v=0.65, col=&#39;blue&#39;)</code></pre>
+<p><img src="figure/Homework8.Rmd/unnamed-chunk-2-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p>There are two points where the 75th percentile graph intersects with cost = 60$. However, it would be recommended to spray before the insect density gets higher and already damage the ecosystem. That density is 0.65insects/m^2 (blue line).</p>
 <br>
 <p>
